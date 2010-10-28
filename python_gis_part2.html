@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.7: http://docutils.sourceforge.net/" />
+<meta name="version" content="S5 1.1" />
+<title>Developing Geospatial software with Python</title>
+<style type="text/css">
+
+.highlight .hll { background-color: #333333 }
+.highlight  { background: #111111; color: #ffffff }
+.highlight .c { color: #008800; font-style: italic; background-color: #0f140f } /* Comment */
+.highlight .err { color: #ffffff } /* Error */
+.highlight .g { color: #ffffff } /* Generic */
+.highlight .k { color: #fb660a; font-weight: bold } /* Keyword */
+.highlight .l { color: #ffffff } /* Literal */
+.highlight .n { color: #ffffff } /* Name */
+.highlight .o { color: #ffffff } /* Operator */
+.highlight .x { color: #ffffff } /* Other */
+.highlight .p { color: #ffffff } /* Punctuation */
+.highlight .cm { color: #008800; font-style: italic; background-color: #0f140f } /* Comment.Multiline */
+.highlight .cp { color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f } /* Comment.Preproc */
+.highlight .c1 { color: #008800; font-style: italic; background-color: #0f140f } /* Comment.Single */
+.highlight .cs { color: #008800; font-style: italic; background-color: #0f140f } /* Comment.Special */
+.highlight .gd { color: #ffffff } /* Generic.Deleted */
+.highlight .ge { color: #ffffff } /* Generic.Emph */
+.highlight .gr { color: #ffffff } /* Generic.Error */
+.highlight .gh { color: #ffffff; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #ffffff } /* Generic.Inserted */
+.highlight .go { color: #444444; background-color: #222222 } /* Generic.Output */
+.highlight .gp { color: #ffffff } /* Generic.Prompt */
+.highlight .gs { color: #ffffff } /* Generic.Strong */
+.highlight .gu { color: #ffffff; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #ffffff } /* Generic.Traceback */
+.highlight .kc { color: #fb660a; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #fb660a; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #fb660a; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #fb660a } /* Keyword.Pseudo */
+.highlight .kr { color: #fb660a; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #cdcaa9; font-weight: bold } /* Keyword.Type */
+.highlight .ld { color: #ffffff } /* Literal.Date */
+.highlight .m { color: #0086f7; font-weight: bold } /* Literal.Number */
+.highlight .s { color: #0086d2 } /* Literal.String */
+.highlight .na { color: #ff0086; font-weight: bold } /* Name.Attribute */
+.highlight .nb { color: #ffffff } /* Name.Builtin */
+.highlight .nc { color: #ffffff } /* Name.Class */
+.highlight .no { color: #0086d2 } /* Name.Constant */
+.highlight .nd { color: #ffffff } /* Name.Decorator */
+.highlight .ni { color: #ffffff } /* Name.Entity */
+.highlight .ne { color: #ffffff } /* Name.Exception */
+.highlight .nf { color: #ff0086; font-weight: bold } /* Name.Function */
+.highlight .nl { color: #ffffff } /* Name.Label */
+.highlight .nn { color: #ffffff } /* Name.Namespace */
+.highlight .nx { color: #ffffff } /* Name.Other */
+.highlight .py { color: #ffffff } /* Name.Property */
+.highlight .nt { color: #fb660a; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #fb660a } /* Name.Variable */
+.highlight .ow { color: #ffffff } /* Operator.Word */
+.highlight .w { color: #888888 } /* Text.Whitespace */
+.highlight .mf { color: #0086f7; font-weight: bold } /* Literal.Number.Float */
+.highlight .mh { color: #0086f7; font-weight: bold } /* Literal.Number.Hex */
+.highlight .mi { color: #0086f7; font-weight: bold } /* Literal.Number.Integer */
+.highlight .mo { color: #0086f7; font-weight: bold } /* Literal.Number.Oct */
+.highlight .sb { color: #0086d2 } /* Literal.String.Backtick */
+.highlight .sc { color: #0086d2 } /* Literal.String.Char */
+.highlight .sd { color: #0086d2 } /* Literal.String.Doc */
+.highlight .s2 { color: #0086d2 } /* Literal.String.Double */
+.highlight .se { color: #0086d2 } /* Literal.String.Escape */
+.highlight .sh { color: #0086d2 } /* Literal.String.Heredoc */
+.highlight .si { color: #0086d2 } /* Literal.String.Interpol */
+.highlight .sx { color: #0086d2 } /* Literal.String.Other */
+.highlight .sr { color: #0086d2 } /* Literal.String.Regex */
+.highlight .s1 { color: #0086d2 } /* Literal.String.Single */
+.highlight .ss { color: #0086d2 } /* Literal.String.Symbol */
+.highlight .bp { color: #ffffff } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #fb660a } /* Name.Variable.Class */
+.highlight .vg { color: #fb660a } /* Name.Variable.Global */
+.highlight .vi { color: #fb660a } /* Name.Variable.Instance */
+.highlight .il { color: #0086f7; font-weight: bold } /* Literal.Number.Integer.Long */
+
+</style>
+<!-- configuration parameters -->
+<meta name="defaultView" content="slideshow" />
+<meta name="controlVis" content="hidden" />
+<!-- style sheet links -->
+<script src="ui/django/slides.js" type="text/javascript"></script>
+<link rel="stylesheet" href="ui/django/slides.css"
+      type="text/css" media="projection" id="slideProj" />
+<link rel="stylesheet" href="ui/django/outline.css"
+      type="text/css" media="screen" id="outlineStyle" />
+<link rel="stylesheet" href="ui/django/print.css"
+      type="text/css" media="print" id="slidePrint" />
+<link rel="stylesheet" href="ui/django/opera.css"
+      type="text/css" media="projection" id="operaFix" />
+
+<style type="text/css">
+#currentSlide {display: none;}
+</style>
+</head>
+<body>
+<div class="layout">
+<div id="controls"></div>
+<div id="currentSlide"></div>
+<div id="header">
+
+</div>
+<div id="footer">
+<h1>Developing Geospatial software with Python, Part 2</h1>
+<h2>GFOSS Day, Foligno - 18/19 November 2010</h2>
+</div>
+</div>
+<div class="presentation">
+<div class="slide" id="slide0">
+<h1 class="title">Developing Geospatial software with Python, Part 2</h1>
+<h2 class="subtitle" id="alessandro-pasotti-apasotti-gmail-com-paolo-corti-pcorti-gmail-com">Alessandro Pasotti (<a class="reference external" href="mailto:apasotti&#64;gmail.com">apasotti&#64;gmail.com</a>), Paolo Corti (<a class="reference external" href="mailto:pcorti&#64;gmail.com">pcorti&#64;gmail.com</a>)</h2>
+
+
+</div>
+<div class="slide" id="building-blocks-webservices">
+<h1>Building blocks: WebServices</h1>
+<p>Only a selection from an huge set:</p>
+<ul class="incremental simple">
+<li>OWS (OGC Web Services)</li>
+<li>GeoNames</li>
+<li>Google Maps</li>
+<li>Yahoo Maps</li>
+</ul>
+</div>
+<div class="slide" id="building-blocks-ogc-web-services">
+<h1>Building blocks: OGC Web Services</h1>
+<div class="sidebar">
+<p class="first sidebar-title">Libs</p>
+<ul class="last simple">
+<li>owslib (client)</li>
+<li>mapnik (server)</li>
+<li>mapscript (both)</li>
+<li>qgis (both)</li>
+</ul>
+</div>
+<p>Open Geospatial Consortium defines the following standards for geospatial web services (OWS):</p>
+<ul class="incremental simple">
+<li><em>WMS</em> (Web Map Service)</li>
+<li><em>WFS</em> (Web Feature Service)</li>
+<li><em>WCS</em> (Web Coverage Service)</li>
+<li><em>CSW</em> (Catalogue Service for Web)</li>
+<li><em>WPS</em> (Web Processing Service)</li>
+<li>many others...</li>
+</ul>
+<p>KVP/XML requests</p>
+</div>
+<div class="slide" id="ogc-web-services-wms">
+<h1>OGC Web Services: WMS</h1>
+<p><em>Web Map Service</em> (WMS) is a standard protocol for serving georeferenced map images over the Internet that are generated by a map server using data (vector and cover) from a GIS database</p>
+<img alt="images/wms.png" src="images/wms.png" />
+</div>
+<div class="slide" id="ogc-web-services-wms-operations">
+<h1>OGC Web Services: WMS operations</h1>
+<ul class="simple">
+<li><em>GetCapabilities</em> - returns parameters about the WMS and the available layers (*)</li>
+<li><em>GetMap</em> - with parameters provided (srs, format, width, eight, bbox, layers...) returns a map image (*)</li>
+<li><em>GetFeatureInfo</em> - with parameters provided returns feature informations (**)</li>
+<li><em>DescribeLayer</em></li>
+<li><em>GetLegendGraphic</em></li>
+</ul>
+<p>(*) basic WMS
+(**) queryable WMS</p>
+</div>
+<div class="slide" id="ogc-web-services-wms-getmap-operation">
+<h1>OGC Web Services: WMS GetMap operation</h1>
+<img alt="images/duomo.jpg" class="align-right" src="images/duomo.jpg" />
+<p>main parameters: layers, styles, srs, bbox, width, height, format</p>
+<p>sample GetMap operation (output is an image):</p>
+<p><a class="reference external" href="http://wms.pcn.minambiente.it/cgi-bin/mapserv.exe?map=/ms_ogc/service/ortofoto_colore_06_f32.map&amp;layers=ortofoto_colore_06&amp;styles=&amp;srs=EPSG:32632&amp;format=image/jpeg&amp;request=GetMap&amp;bgcolor=0xFFFFFF&amp;height=300&amp;width=300&amp;version=1.1.1&amp;bbox=514832,5034338,515032,5034548&amp;exceptions=application/vnd.ogc.se_xml&amp;transparent=FALSE">http://wms.pcn.minambiente.it/cgi-bin/mapserv.exe?map=/ms_ogc/service/ortofoto_colore_06_f32.map&amp;layers=ortofoto_colore_06&amp;styles=&amp;srs=EPSG:32632&amp;format=image/jpeg&amp;request=GetMap&amp;bgcolor=0xFFFFFF&amp;height=300&amp;width=300&amp;version=1.1.1&amp;bbox=514832,5034338,515032,5034548&amp;exceptions=application/vnd.ogc.se_xml&amp;transparent=FALSE</a></p>
+</div>
+<div class="slide" id="ogc-web-services-wfs">
+<h1>OGC Web Services: WFS</h1>
+<p><em>Web Feature Service</em> (WFS) provides a standard interface allowing requests for geographical features across the web using platform-independent calls</p>
+<p>The WFS specification defines interfaces for describing data manipulation operations of geographic features. Data manipulation operations include the ability to:</p>
+<ul class="incremental simple">
+<li>Get or Query features based on spatial and non-spatial constraints (*)</li>
+<li>Create a new feature instance (WFS-T)</li>
+<li>Delete a feature instance (WFS-T)</li>
+<li>Update a feature instance (WFS-T)</li>
+</ul>
+</div>
+<div class="slide" id="ogc-web-services-wfs-operations">
+<h1>OGC Web Services: WFS operations</h1>
+<ul class="incremental simple">
+<li>GetCapabilities (1)</li>
+<li>DescribeFeatureType (1)</li>
+<li>GetFeature (1)</li>
+<li>GetGmlObject (2)</li>
+<li>Transaction (3)</li>
+<li>LockFeature (3)</li>
+</ul>
+<ol class="arabic simple">
+<li>basic WFS - read only</li>
+<li>XLink WFS</li>
+<li>transaction WFS (WFS-T)</li>
+</ol>
+</div>
+<div class="slide" id="ogc-web-services-wfs-getfeature-operation">
+<h1>OGC Web Services: WFS GetFeature operation</h1>
+<p>main parameters: typeName, maxfeatures, query...</p>
+<p>sample GetFeature operation (output is GML)</p>
+<p><a class="reference external" href="http://myserver/geoserver/wfs?request=GetFeature&amp;version=1.0.0&amp;typeName=layer1&amp;maxfeatures=1">http://myserver/geoserver/wfs?request=GetFeature&amp;version=1.0.0&amp;typeName=layer1&amp;maxfeatures=1</a></p>
+</div>
+<div class="slide" id="ogc-web-services-wcs">
+<h1>OGC Web Services: WCS</h1>
+<p>Web Coverage Service Interface Standard (WCS) provides an interface allowing requests for geographical coverages across the web using platform-independent calls</p>
+<p>Operations:</p>
+<ul class="simple">
+<li>GetCapabilities</li>
+<li>DescribeCoverage</li>
+<li>GetCoverage</li>
+</ul>
+</div>
+<div class="slide" id="ogc-web-services-wcs-getcoverage-operation">
+<h1>OGC Web Services: WCS GetCoverage operation</h1>
+<p>main parameters: coverage, crs, bbox, time, width, height, resx, resy, format</p>
+<p>GetCoverage operation (output is a coverage):</p>
+<p><a class="reference external" href="http://my.host.com/cgi-bin/mapserv?map=mywcs.map&amp;SERVICE=wcs&amp;VERSION=1.0.0&amp;REQUEST=GetCoverage&amp;coverage=bathymetry&amp;CRS=EPSG:42304&amp;BBOX=-2200000,-712631,3072800,3840000&amp;WIDTH=3199&amp;HEIGHT=2833&amp;FORMAT=GTiff">http://my.host.com/cgi-bin/mapserv?map=mywcs.map&amp;SERVICE=wcs&amp;VERSION=1.0.0&amp;REQUEST=GetCoverage&amp;coverage=bathymetry&amp;CRS=EPSG:42304&amp;BBOX=-2200000,-712631,3072800,3840000&amp;WIDTH=3199&amp;HEIGHT=2833&amp;FORMAT=GTiff</a></p>
+<p>Note: at least one time or bbox parameter is needed</p>
+</div>
+<div class="slide" id="ogc-web-services-csw">
+<h1>OGC Web Services: CSW</h1>
+<p>Catalogue Service</p>
+<ul class="simple">
+<li>defines common interfaces to discover, browse, query and manage metadata about data, services, and other potential resources</li>
+<li>defines a query language (similar to the SQL &quot;Where Clause&quot;) to be supported by all OGC Catalogue Interfaces in order to support search interoperability</li>
+<li>common queryable elements - request (subject, title, abstract, anytext (1), format, identifier, modified, type, boundingbox, CRS...)</li>
+<li>core returnable properties -response (title, creator, subject, description, publisher, contributor, date, type...)</li>
+</ul>
+<p>Operations:</p>
+<ul class="simple">
+<li>GetCapabilities</li>
+<li>DescribeRecord</li>
+<li>GetDomain (*)</li>
+<li>GetRecords</li>
+<li>GetRecordById</li>
+<li>Transaction (*)</li>
+<li>Harvest</li>
+</ul>
+<p>(*) optional implementations</p>
+</div>
+<div class="slide" id="ogc-web-services-csw-getrecords-operation">
+<h1>OGC Web Services: CSW GetRecords operation</h1>
+<p>main parameters: outputFormat (XML, text, html), maxRecords, SortBy, Constraint</p>
+<p>GetRecords operation (output is XML):</p>
+<p><a class="reference external" href="http://www.someserver.com/csw/csw.cgi?request=GetRecords&amp;version=2.0.2&amp;outputFormat=application/xml&amp;outputSchema=http://www.opengis.net/cat/cs">http://www.someserver.com/csw/csw.cgi?request=GetRecords&amp;version=2.0.2&amp;outputFormat=application/xml&amp;outputSchema=http://www.opengis.net/cat/cs</a>
+w/2.0.2&amp;namespace=csw:<a class="reference external" href="http://www.opengis.org/cat/csw&amp;ResponseHandler=">http://www.opengis.org/cat/csw&amp;ResponseHandler=</a>&quot;<a class="reference external" href="mailto:pvretano&#64;cubewerx.com">mailto:pvretano&#64;cubewerx.com</a>&quot;&amp;typeName=csw:Record&amp;elementSetName=brief&amp;c
+onstraintlanguage=CQLTEXT&amp;constraint=&quot;csw:AnyText Like '%pollution%'&quot;</p>
+</div>
+<div class="slide" id="ogc-web-services-wps">
+<h1>OGC Web Services: WPS</h1>
+<p>Web Processing Server provides rules for standardizing how inputs and outputs (requests and responses) for geospatial processing services</p>
+<div class="sidebar">
+<p class="first sidebar-title">Libs</p>
+<ul class="last simple">
+<li>pyWPS</li>
+</ul>
+</div>
+</div>
+<div class="slide" id="building-blocks-web-services-geonames">
+<h1>Building blocks - Web Services: GeoNames</h1>
+<ul class="simple">
+<li>a geographical database that covers all countries and contains over eight million placenames</li>
+<li>license: Creative Commons Attribution 3.0</li>
+<li>both a web application and a big set of web services</li>
+</ul>
+</div>
+<div class="slide" id="geonames-web-services">
+<h1>GeoNames: Web Services</h1>
+<p>Most notably:</p>
+<ul class="simple">
+<li>geocoding</li>
+<li>reverse geocoding</li>
+<li>place hierarchy</li>
+<li>places from bounding box</li>
+<li>wikipedia search</li>
+<li>postal code search</li>
+<li>elevation</li>
+</ul>
+</div>
+<div class="slide" id="geonames-example-of-api-use">
+<h1>GeoNames: example of API use</h1>
+<p>Regions of Italy:</p>
+<p><a class="reference external" href="http://ws.geonames.org/children?geonameId=3175395">http://ws.geonames.org/children?geonameId=3175395</a></p>
+<p>Response:</p>
+<div class="highlight"><pre><span class="nt">&lt;geonames</span> <span class="na">style=</span><span class="s">&quot;MEDIUM&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;totalResultsCount&gt;</span>20<span class="nt">&lt;/totalResultsCount&gt;</span>
+    <span class="nt">&lt;geoname&gt;</span>
+    <span class="nt">&lt;toponymName&gt;</span>Abruzzo<span class="nt">&lt;/toponymName&gt;</span>
+    <span class="nt">&lt;name&gt;</span>Abruzzo<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;lat&gt;</span>42.25<span class="nt">&lt;/lat&gt;</span>
+    <span class="nt">&lt;lng&gt;</span>13.75<span class="nt">&lt;/lng&gt;</span>
+    ...
+</pre></div>
+</div>
+<div class="slide" id="building-blocks-web-services-google-maps">
+<h1>Building blocks - Web Services: Google Maps</h1>
+<ul>
+<li><p class="first">google map embedding (javascript API)</p>
+</li>
+<li><dl class="first docutils">
+<dt>google map webservices</dt>
+<dd><ul class="first last simple">
+<li>geocoding (and reverse geocoding)</li>
+<li>directions</li>
+<li>elevations</li>
+<li>places</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="slide" id="google-maps-example-of-api-use">
+<h1>Google Maps: example of API use</h1>
+<p>A geocoding request example:</p>
+<p><a class="reference external" href="http://maps.googleapis.com/maps/api/geocode/xml?address=123+via+Oberdan+Foligno,+Italy&amp;sensor=true">http://maps.googleapis.com/maps/api/geocode/xml?address=123+via+Oberdan+Foligno,+Italy&amp;sensor=true</a></p>
+<p>Response:</p>
+<div class="highlight"><pre><span class="nt">&lt;GeocodeResponse&gt;</span>
+<span class="nt">&lt;status&gt;</span>OK<span class="nt">&lt;/status&gt;</span>
+<span class="nt">&lt;result&gt;</span>
+<span class="nt">&lt;type&gt;</span>street_address<span class="nt">&lt;/type&gt;</span>
+<span class="nt">&lt;formatted_address&gt;</span>
+Via Guglielmo Oberdan, 123, 06034 Foligno Perugia, Italy
+<span class="nt">&lt;/formatted_address&gt;</span>
+...
+</pre></div>
+</div>
+<div class="slide" id="building-blocks-qgis">
+<h1>Building blocks: QGIS</h1>
+<img alt="images/qgis_logo.png" class="align-right" src="images/qgis_logo.png" style="width: 156.8px; height: 167.6px;" />
+<p>QGIS (Quantum GIS) is a <em>C++ Qt</em> cross-platform GIS desktop application with vector editing
+capabilities and python scripting support.</p>
+<ul class="incremental simple">
+<li>python plugins (lot of)</li>
+<li><em>standalone</em> python applications (headless or GUI)</li>
+<li>OGC WMS headless server</li>
+</ul>
+</div>
+<div class="slide" id="qgis-standalone-headless">
+<h1>QGIS: standalone headless</h1>
+<blockquote>
+Loading a vector layer</blockquote>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">qgis.gui</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">QgsApplication</span><span class="o">.</span><span class="n">setPrefixPath</span><span class="p">(</span><span class="s">&quot;/usr&quot;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">QgsApplication</span><span class="o">.</span><span class="n">initQgis</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">vlayer</span> <span class="o">=</span> <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="s">&quot;regioni.shp&quot;</span><span class="p">,</span> <span class="s">&quot;regioni&quot;</span><span class="p">,</span> <span class="s">&quot;ogr&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">vlayer</span><span class="o">.</span><span class="n">isValid</span><span class="p">()</span>
+<span class="bp">True</span>
+</pre></div>
+</div>
+<div class="slide" id="qgis-standalone-render">
+<h1>QGIS: standalone (render)</h1>
+<blockquote>
+Rendering</blockquote>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">QgsMapLayerRegistry</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">addMapLayer</span><span class="p">(</span><span class="n">vlayer</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">qgis</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">QgsVectorLayer</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x13be270</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">PyQt4.QtGui</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">PyQt4.QtCore</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">img</span> <span class="o">=</span> <span class="n">QImage</span><span class="p">(</span><span class="n">QSize</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span><span class="mi">600</span><span class="p">),</span> <span class="n">QImage</span><span class="o">.</span><span class="n">Format_ARGB32_Premultiplied</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">QPainter</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span><span class="o">.</span><span class="n">begin</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<span class="bp">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span><span class="o">.</span><span class="n">setRenderHint</span><span class="p">(</span><span class="n">QPainter</span><span class="o">.</span><span class="n">Antialiasing</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">render</span> <span class="o">=</span> <span class="n">QgsMapRenderer</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">lst</span> <span class="o">=</span> <span class="p">[</span> <span class="n">vlayer</span><span class="o">.</span><span class="n">getLayerID</span><span class="p">()</span> <span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">render</span><span class="o">.</span><span class="n">setLayerSet</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">rect</span> <span class="o">=</span> <span class="n">QgsRectangle</span><span class="p">(</span><span class="n">render</span><span class="o">.</span><span class="n">fullExtent</span><span class="p">())</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">rect</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">1.1</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">render</span><span class="o">.</span><span class="n">setExtent</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">render</span><span class="o">.</span><span class="n">setOutputSize</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">img</span><span class="o">.</span><span class="n">logicalDpiX</span><span class="p">())</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="n">PyQt4</span><span class="o">.</span><span class="n">QtCore</span><span class="o">.</span><span class="n">QSize</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span><span class="o">.</span><span class="n">isActive</span><span class="p">()</span>
+<span class="bp">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">render</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span><span class="o">.</span><span class="n">end</span><span class="p">()</span>
+<span class="bp">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">&quot;render.png&quot;</span><span class="p">,</span><span class="s">&quot;png&quot;</span><span class="p">)</span>
+<span class="bp">True</span>
+</pre></div>
+</div>
+<div class="slide" id="qgis-result">
+<h1>QGIS: result</h1>
+<img alt="images/render.png" src="images/render.png" style="width: 640.0px; height: 480.0px;" />
+</div>
+<div class="slide" id="qgis-standalone-gui">
+<h1>QGIS: standalone GUI</h1>
+<div class="sidebar">
+<p class="first sidebar-title">Requires</p>
+<ul class="last simple">
+<li><em>pyQt4</em></li>
+<li><em>QtDesigner</em> (recommended)</li>
+<li>GUI programming skills</li>
+</ul>
+</div>
+<img alt="images/qgis_qui_programming.png" src="images/qgis_qui_programming.png" />
+</div>
+<div class="slide" id="qgis-standalone-gui-less-is-more">
+<h1>QGIS standalone GUI less is more</h1>
+<blockquote>
+Minimal example: shapefile viewer</blockquote>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">PyQt4</span> <span class="kn">import</span> <span class="n">QtGui</span><span class="p">,</span> <span class="n">QtCore</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">qgis</span> <span class="kn">import</span> <span class="n">core</span><span class="p">,</span> <span class="n">gui</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">core</span><span class="o">.</span><span class="n">QgsApplication</span><span class="o">.</span><span class="n">setPrefixPath</span><span class="p">(</span><span class="s">&#39;/usr&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">core</span><span class="o">.</span><span class="n">QgsApplication</span><span class="o">.</span><span class="n">initQgis</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">app</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">l</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">QgsVectorLayer</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="s">&#39;ogr&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">canvas</span> <span class="o">=</span> <span class="n">gui</span><span class="o">.</span><span class="n">QgsMapCanvas</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">canvas</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span><span class="mi">600</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">core</span><span class="o">.</span><span class="n">QgsMapLayerRegistry</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">addMapLayer</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">canvas</span><span class="o">.</span><span class="n">setExtent</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">extent</span><span class="p">())</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">cl</span> <span class="o">=</span> <span class="n">gui</span><span class="o">.</span><span class="n">QgsMapCanvasLayer</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">canvas</span><span class="o">.</span><span class="n">setLayerSet</span><span class="p">([</span> <span class="n">cl</span> <span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">canvas</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">retval</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">core</span><span class="o">.</span><span class="n">QgsApplication</span><span class="o">.</span><span class="n">exitQgis</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">retval</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="slide" id="qgis-plugins">
+<h1>QGIS: plugins</h1>
+<blockquote>
+Powerful extensions to QGIS! Download from <a class="reference external" href="http://pyqgis.org">http://pyqgis.org</a></blockquote>
+<ul class="simple">
+<li>start from a barebone plugin or use the <cite>Plugin builder &lt;http://www.dimitrisk.gr/qgis/creator/&gt;</cite></li>
+<li>create a GUI with <em>QtDesigner</em></li>
+<li>connect GUI events with QGIS code</li>
+<li>control QGIS application from python code</li>
+<li>see: QGIS APIs <a class="reference external" href="http://doc.qgis.org/head/">http://doc.qgis.org/head/</a></li>
+</ul>
+</div>
+<div class="slide" id="geopy">
+<h1>Geopy</h1>
+<blockquote>
+Geopy (<a class="reference external" href="http://code.google.com/p/geopy/">http://code.google.com/p/geopy/</a>) provides an interface to external <strong>geocoding</strong> and <strong>reverse geocoding</strong>  <em>webservices</em></blockquote>
+<p>Providers:</p>
+<ul class="simple">
+<li>Google Maps</li>
+<li>Yahoo! Maps</li>
+<li>Windows Local Live (Virtual Earth)</li>
+<li>geocoder.us</li>
+<li>GeoNames</li>
+<li>MediaWiki pages (with the GIS extension)</li>
+<li>Semantic MediaWiki pages</li>
+</ul>
+</div>
+<div class="slide" id="geopy-installation-and-usage">
+<h1>Geopy: installation and usage</h1>
+<div class="highlight"><pre><span class="nv">$ </span>sudo easy_install geopy
+</pre></div>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">geopy</span> <span class="kn">import</span> <span class="n">geocoders</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">g</span> <span class="o">=</span> <span class="n">geocoders</span><span class="o">.</span><span class="n">Google</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">g</span><span class="o">.</span><span class="n">geocode</span><span class="p">(</span><span class="s">&#39;via anelli 12, milano&#39;</span><span class="p">)</span>
+<span class="p">(</span><span class="s">u&#39;Via Luigi Anelli, 12, 20122 Milan, Italy&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">45.452325000000002</span><span class="p">,</span> <span class="mf">9.1927447999999998</span><span class="p">))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">g</span><span class="o">.</span><span class="n">geocode</span><span class="p">(</span><span class="s">&#39;otherworld&#39;</span><span class="p">)</span>
+<span class="n">GQueryError</span><span class="p">:</span> <span class="n">No</span> <span class="n">corresponding</span> <span class="n">geographic</span> <span class="n">location</span> <span class="n">could</span> <span class="n">be</span> <span class="n">found</span> <span class="k">for</span> <span class="n">the</span> <span class="n">specified</span> <span class="n">location</span><span class="p">,</span> <span class="n">possibly</span> <span class="n">because</span> <span class="n">the</span> <span class="n">address</span> <span class="ow">is</span> <span class="n">relatively</span> <span class="n">new</span><span class="p">,</span> <span class="ow">or</span> <span class="n">because</span> <span class="n">it</span> <span class="n">may</span> <span class="n">be</span> <span class="n">incorrect</span><span class="o">.</span>
+</pre></div>
+</div>
+<div class="slide" id="geopy-risultati-multipli">
+<h1>Geopy: risultati multipli</h1>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">g</span><span class="o">.</span><span class="n">geocode</span><span class="p">(</span><span class="s">&#39;xyz&#39;</span><span class="p">)</span>
+<span class="ne">ValueError</span><span class="p">:</span> <span class="n">Didn</span><span class="s">&#39;t find exactly one placemark! (Found 6.)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">geocode</span><span class="p">(</span><span class="s">&#39;xyz&#39;</span><span class="p">,</span> <span class="n">exactly_one</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<span class="o">...</span>     <span class="n">l</span>
+<span class="o">...</span>
+<span class="p">(</span><span class="s">u&#39;S Xyz Rd, Pickford, MI 49774, USA&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">46.118099999999998</span><span class="p">,</span> <span class="o">-</span><span class="mf">84.321274599999995</span><span class="p">))</span>
+<span class="p">(</span><span class="s">u&#39;XYZ Liquor, 295 US Highway 17 S, Bartow, FL 33830, USA&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">27.895257999999998</span><span class="p">,</span> <span class="o">-</span><span class="mf">81.828790999999995</span><span class="p">))</span>
+<span class="p">(</span><span class="s">u&#39;XYZ Restaurant, 80 Seawall Rd, Southwest Harbor, ME 04679-4024, USA&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">44.269646999999999</span><span class="p">,</span> <span class="o">-</span><span class="mf">68.322371000000004</span><span class="p">))</span>
+<span class="p">(</span><span class="s">u&#39;XYZ Trading, 7018 Harwin Dr, Houston, TX 77036-2114, USA&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">29.718654999999998</span><span class="p">,</span> <span class="o">-</span><span class="mf">95.507260000000002</span><span class="p">))</span>
+<span class="p">(</span><span class="s">u&#39;Xyz Exterminating, PO Box 1643, Grand Island, NE 68802-1643, USA&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">40.93</span><span class="p">,</span> <span class="o">-</span><span class="mf">98.340000000000003</span><span class="p">))</span>
+<span class="p">(</span><span class="s">u&#39;</span><span class="se">\uff38\uff39\uff3a\u6c34\u6ca2</span><span class="s">&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mf">39.156194399999997</span><span class="p">,</span> <span class="mf">141.1596222</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="slide" id="geopy-reverse">
+<h1>Geopy: reverse</h1>
+<blockquote>
+<strong>svn</strong> version required</blockquote>
+<div class="highlight"><pre><span class="nv">$ </span>svn checkout http://geopy.googlecode.com/svn/branches/reverse-geocode geopy
+<span class="nv">$ </span><span class="nb">cd </span>geopy/
+<span class="nv">$ </span>sudo python setup.py install
+</pre></div>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">point</span><span class="p">)</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">geocode</span><span class="p">(</span><span class="s">&#39;via anelli 1, milano&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">point</span>
+<span class="p">(</span><span class="mf">45.453902599999999</span><span class="p">,</span> <span class="mf">9.1930519000000004</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">g</span><span class="o">.</span><span class="n">reverse</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+<span class="p">(</span><span class="s">u&#39;Via Luigi Anelli, 1, 20122 Milan, Italy&#39;</span><span class="p">,</span>
+<span class="p">(</span><span class="mf">45.453902599999999</span><span class="p">,</span> <span class="mf">9.1930519000000004</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="slide" id="owslib">
+<h1>OWSLib</h1>
+<blockquote>
+OWSLib Makes WxS Suck Less.
+A library to consume OGC(TM) web services.</blockquote>
+<div class="sidebar">
+<p class="first sidebar-title">Depends on</p>
+<ul class="last simple">
+<li>lxml</li>
+</ul>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Standard</th>
+<th class="head">Version(s)</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>OGC WMS</td>
+<td>1.1.1</td>
+</tr>
+<tr><td>OGC WFS</td>
+<td>1.0.0, 1.1.0</td>
+</tr>
+<tr><td>OGC WCS</td>
+<td>1.0.0, 1.1.0</td>
+</tr>
+<tr><td>OGC WMC</td>
+<td>1.1.0</td>
+</tr>
+<tr><td>OGC SOS</td>
+<td>1.0.0 (not complete)</td>
+</tr>
+<tr><td>OGC CSW</td>
+<td>2.0.2</td>
+</tr>
+<tr><td>OGC Filter</td>
+<td>1.1.0</td>
+</tr>
+<tr><td>OGC OWS Common</td>
+<td>1.0.0, 1.1.0, 2.0</td>
+</tr>
+<tr><td>NASA DIF</td>
+<td>9.7</td>
+</tr>
+<tr><td>FGDC CSDGM</td>
+<td>1998</td>
+</tr>
+<tr><td>ISO 19139</td>
+<td>2003/2007</td>
+</tr>
+<tr><td>Dublin Core</td>
+<td>1.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="slide" id="owslib-installation-and-usage">
+<h1>OWSLib: installation and usage</h1>
+<div class="highlight"><pre><span class="nv">$ </span>sudo easy_install OWSLib
+</pre></div>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">owslib.wms</span> <span class="kn">import</span> <span class="n">WebMapService</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">wms</span> <span class="o">=</span> <span class="n">WebMapService</span><span class="p">(</span><span class="s">&#39;http://wms.pcn.minambiente.it/cgi-bin/mapserv.exe?map=/ms_ogc/service/ortofoto_colore_06_f32.map&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s">&#39;1.1.1&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="n">wms</span><span class="o">.</span><span class="n">contents</span><span class="p">)</span>
+<span class="p">[</span><span class="s">&#39;ortofoto_colore_06&#39;</span><span class="p">,</span> <span class="s">&#39;watermark&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">wms</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="s">&#39;ortofoto_colore_06&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">wms</span><span class="p">[</span><span class="s">&#39;ortofoto_colore_06&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">boundingBox</span>
+<span class="p">(</span><span class="mf">298457.0</span><span class="p">,</span> <span class="mf">3914540.0</span><span class="p">,</span> <span class="mf">1327000.0</span><span class="p">,</span> <span class="mf">5239710.0</span><span class="p">,</span> <span class="s">&#39;EPSG:32632&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">wms</span><span class="p">[</span><span class="s">&#39;ortofoto_colore_06&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">boundingBoxWGS84</span>
+<span class="p">(</span><span class="mf">6.3349900000000003</span><span class="p">,</span>
+<span class="mf">35.034300000000002</span><span class="p">,</span>
+<span class="mf">19.840800000000002</span><span class="p">,</span>
+<span class="mf">47.310899999999997</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="slide" id="owslib-usage">
+<h1>OWSLib: usage</h1>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">wms</span><span class="o">.</span><span class="n">getOperationByName</span><span class="p">(</span><span class="s">&#39;GetMap&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">formatOptions</span>
+<span class="p">[</span><span class="s">&#39;image/png&#39;</span><span class="p">,</span>
+<span class="s">&#39;image/gif&#39;</span><span class="p">,</span>
+<span class="s">&#39;image/png; mode=24bit&#39;</span><span class="p">,</span>
+<span class="s">&#39;image/jpeg&#39;</span><span class="p">,</span>
+<span class="s">&#39;image/wbmp&#39;</span><span class="p">,</span>
+<span class="s">&#39;image/tiff&#39;</span><span class="p">,</span>
+<span class="s">&#39;image/svg+xml&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">img</span> <span class="o">=</span> <span class="n">wms</span><span class="o">.</span><span class="n">getmap</span><span class="p">(</span> <span class="n">layers</span><span class="o">=</span> <span class="p">[</span><span class="s">&#39;ortofoto_colore_06&#39;</span><span class="p">],</span>  <span class="n">bbox</span> <span class="o">=</span> <span class="p">(</span><span class="mi">514832</span><span class="p">,</span> <span class="mi">5034338</span><span class="p">,</span> <span class="mi">515032</span><span class="p">,</span> <span class="mi">5034548</span><span class="p">),</span> <span class="n">srs</span> <span class="o">=</span> <span class="s">&#39;EPSG:32632&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span> <span class="n">format</span> <span class="o">=</span> <span class="s">&#39;image/jpeg&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">img</span><span class="o">.</span><span class="n">geturl</span><span class="p">()</span>
+<span class="s">&#39;http://wms.pcn.minambiente.it/cgi-bin/mapserv.exe?map= ...&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">outfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;duomo.jpg&#39;</span><span class="p">,</span> <span class="s">&#39;wb&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">outfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="slide" id="owslib-result">
+<h1>OWSLib: result</h1>
+<blockquote>
+<img alt="images/duomo.jpg" src="images/duomo.jpg" />
+</blockquote>
+</div>
+<div class="slide" id="mapnik">
+<h1>Mapnik</h1>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">mapnik</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">mapnik</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span><span class="mi">300</span><span class="p">,</span><span class="s">&quot;+proj=latlong +datum=WGS84&quot;</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">background</span> <span class="o">=</span> <span class="n">mapnik</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="s">&#39;steelblue&#39;</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">mapnik</span><span class="o">.</span><span class="n">Style</span><span class="p">()</span>
+<span class="n">r</span><span class="o">=</span><span class="n">mapnik</span><span class="o">.</span><span class="n">Rule</span><span class="p">()</span>
+<span class="n">r</span><span class="o">.</span><span class="n">symbols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mapnik</span><span class="o">.</span><span class="n">PolygonSymbolizer</span><span class="p">(</span><span class="n">mapnik</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="s">&#39;#f2eff9&#39;</span><span class="p">)))</span>
+<span class="n">r</span><span class="o">.</span><span class="n">symbols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mapnik</span><span class="o">.</span><span class="n">LineSymbolizer</span><span class="p">(</span><span class="n">mapnik</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="s">&#39;rgb(50%,50%,50%)&#39;</span><span class="p">),</span><span class="mf">0.1</span><span class="p">))</span>
+<span class="n">s</span><span class="o">.</span><span class="n">rules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">append_style</span><span class="p">(</span><span class="s">&#39;My Style&#39;</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="slide" id="mapscript">
+<h1>Mapscript</h1>
+</div>
+<div class="slide" id="pywps">
+<h1>pyWPS</h1>
+</div>
+<div class="slide" id="grass">
+<h1>GRASS</h1>
+</div>
+<div class="slide" id="links">
+<h1>Links</h1>
+<ul>
+<li><dl class="first docutils">
+<dt>QGIS</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://www.qgis.org/wiki/Python_Bindings">http://www.qgis.org/wiki/Python_Bindings</a></li>
+<li><a class="reference external" href="http://desktopgisbook.com/Creating_a_Standalone_GIS_Application_1">http://desktopgisbook.com/Creating_a_Standalone_GIS_Application_1</a></li>
+<li><a class="reference external" href="http://www.dimitrisk.gr/qgis/creator/">http://www.dimitrisk.gr/qgis/creator/</a></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+</body>
+</html>
