@@ -432,11 +432,11 @@ Minimal example: shapefile viewer</blockquote>
 <blockquote>
 Powerful extensions to QGIS! Download from <a class="reference external" href="http://pyqgis.org">http://pyqgis.org</a></blockquote>
 <ul class="simple">
-<li>start from a barebone plugin or use the <cite>Plugin builder &lt;http://www.dimitrisk.gr/qgis/creator/&gt;</cite></li>
+<li>start from a barebone plugin or use the <a class="reference external" href="http://www.dimitrisk.gr/qgis/creator/">Plugin builder</a></li>
 <li>create a GUI with <em>QtDesigner</em></li>
 <li>connect GUI events with QGIS code</li>
 <li>control QGIS application from python code</li>
-<li>see: QGIS APIs <a class="reference external" href="http://doc.qgis.org/head/">http://doc.qgis.org/head/</a></li>
+<li>see: QGIS APIs <a class="reference external" href="http://qgis.org/api/">http://qgis.org/api/</a></li>
 </ul>
 </div>
 <div class="slide" id="geopy">
@@ -615,6 +615,49 @@ A library to consume OGC(TM) web services.</blockquote>
 </div>
 <div class="slide" id="mapscript">
 <h1>Mapscript</h1>
+<blockquote>
+Python bindings to <strong>UMN MapServer</strong> (<em>C++</em>)</blockquote>
+<ul class="simple">
+<li>complete bindings: full access to MapServer power</li>
+<li>not very <em>pythonic</em></li>
+<li><a class="reference external" href="http://mapserver.org/mapscript/">http://mapserver.org/mapscript/</a></li>
+</ul>
+<p>Installation:</p>
+<div class="highlight"><pre><span class="nv">$ </span>sudo apt-get install python-mapscript
+</pre></div>
+</div>
+<div class="slide" id="mapscript-usage">
+<h1>Mapscript: usage</h1>
+<div class="sidebar">
+<p class="first sidebar-title">Hate</p>
+<p class="last">I hate mapfiles :)</p>
+</div>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">mapscript</span>
+<span class="nb">map</span> <span class="o">=</span> <span class="n">mapscript</span><span class="o">.</span><span class="n">mapObj</span><span class="p">(</span>  <span class="p">)</span>
+<span class="nb">map</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;Test Map&#39;</span>
+<span class="nb">map</span><span class="o">.</span><span class="n">setSize</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+<span class="nb">map</span><span class="o">.</span><span class="n">setExtent</span><span class="p">(</span><span class="o">-</span><span class="mf">180.0</span><span class="p">,</span><span class="o">-</span><span class="mf">90.0</span><span class="p">,</span><span class="mf">180.0</span><span class="p">,</span><span class="mf">90.0</span><span class="p">)</span>
+<span class="nb">map</span><span class="o">.</span><span class="n">imagecolor</span><span class="o">.</span><span class="n">setRGB</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+<span class="nb">map</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">mapscript</span><span class="o">.</span><span class="n">MS_DD</span>
+<span class="n">layer</span> <span class="o">=</span> <span class="n">mapscript</span><span class="o">.</span><span class="n">layerObj</span><span class="p">(</span><span class="nb">map</span><span class="p">)</span>
+<span class="n">layer</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;regioni&quot;</span>
+<span class="n">layer</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">mapscript</span><span class="o">.</span><span class="n">MS_LAYER_POLYGON</span>
+<span class="n">layer</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="n">mapscript</span><span class="o">.</span><span class="n">MS_DEFAULT</span>
+<span class="n">layer</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span>  <span class="s">&#39;data/regioni&#39;</span>
+<span class="n">lass1</span> <span class="o">=</span> <span class="n">mapscript</span><span class="o">.</span><span class="n">classObj</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+<span class="n">class1</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Regioni&quot;</span>
+<span class="n">style</span> <span class="o">=</span> <span class="n">mapscript</span><span class="o">.</span><span class="n">styleObj</span><span class="p">(</span><span class="n">class1</span><span class="p">)</span>
+<span class="n">style</span><span class="o">.</span><span class="n">outlinecolor</span><span class="o">.</span><span class="n">setRGB</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">style</span><span class="o">.</span><span class="n">color</span><span class="o">.</span><span class="n">setRGB</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">extent</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">getExtent</span><span class="p">()</span>
+<span class="nb">map</span><span class="o">.</span><span class="n">setExtent</span><span class="p">(</span><span class="n">extent</span><span class="o">.</span><span class="n">minx</span><span class="p">,</span> <span class="n">extent</span><span class="o">.</span><span class="n">miny</span><span class="p">,</span> <span class="n">extent</span><span class="o">.</span><span class="n">maxx</span><span class="p">,</span> <span class="n">extent</span><span class="o">.</span><span class="n">maxy</span><span class="p">)</span>
+<span class="n">mapimage</span> <span class="o">=</span> <span class="nb">map</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+<span class="n">mapimage</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">&#39;images/mapscript_map.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="slide" id="mapscript-result">
+<h1>MapScript: result</h1>
+<img alt="images/mapscript_map.png" src="images/mapscript_map.png" />
 </div>
 <div class="slide" id="pywps">
 <h1>pyWPS</h1>

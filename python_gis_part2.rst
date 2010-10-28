@@ -400,11 +400,11 @@ QGIS: plugins
 
 	Powerful extensions to QGIS! Download from http://pyqgis.org
 
-* start from a barebone plugin or use the `Plugin builder <http://www.dimitrisk.gr/qgis/creator/>`
+* start from a barebone plugin or use the `Plugin builder <http://www.dimitrisk.gr/qgis/creator/>`_
 * create a GUI with *QtDesigner* 
 * connect GUI events with QGIS code
 * control QGIS application from python code
-* see: QGIS APIs http://doc.qgis.org/head/
+* see: QGIS APIs http://qgis.org/api/
 
 
 Geopy
@@ -426,6 +426,7 @@ Providers:
 
 Geopy: installation and usage
 ==============================
+
 
 .. sourcecode:: bash
 
@@ -585,8 +586,54 @@ Mapnik
 
 Mapscript
 =========
+	Python bindings to **UMN MapServer** (*C*)
+
+* complete bindings: full access to MapServer power
+* not very *pythonic*
+* http://mapserver.org/mapscript/
+
+Installation:
+
+.. sourcecode:: bash
+
+	$ sudo apt-get install python-mapscript
+
+Mapscript: usage
+================
+
+.. sidebar:: Hate
+
+	I hate mapfiles ;)
+
+.. sourcecode:: python
+
+	import mapscript
+	map = mapscript.mapObj(  )
+	map.name = 'Test Map'
+	map.setSize(300, 300)
+	map.setExtent(-180.0,-90.0,180.0,90.0)
+	map.imagecolor.setRGB(80, 180, 80)
+	map.units = mapscript.MS_DD
+	layer = mapscript.layerObj(map)
+	layer.name = "regioni"
+	layer.type = mapscript.MS_LAYER_POLYGON
+	layer.status = mapscript.MS_DEFAULT
+	layer.data =  'data/regioni'
+	lass1 = mapscript.classObj(layer)
+	class1.name = "Regioni"
+	style = mapscript.styleObj(class1)
+	style.outlinecolor.setRGB(100, 100, 100)
+	style.color.setRGB(200, 200, 200)
+	extent = layer.getExtent()
+	map.setExtent(extent.minx, extent.miny, extent.maxx, extent.maxy)
+	mapimage = map.draw()
+	mapimage.save('images/mapscript_map.png')
 
 
+MapScript: result
+=================
+
+.. image:: images/mapscript_map.png
 
 pyWPS
 =====
