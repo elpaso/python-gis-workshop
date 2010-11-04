@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils 0.7: http://docutils.sourceforge.net/" />
+<meta name="generator" content="Docutils 0.6: http://docutils.sourceforge.net/" />
 <meta name="version" content="S5 1.1" />
 <title>Developing Geospatial software with Python</title>
 <style type="text/css">
@@ -168,7 +168,7 @@
 </div>
 <div class="slide" id="ogc-web-services-wms-getmap-operation">
 <h1>OGC Web Services: WMS GetMap operation</h1>
-<img alt="images/duomo.jpg" class="align-right" src="images/duomo.jpg" />
+<img align="right" alt="images/duomo.jpg" class="align-right" src="images/duomo.jpg" />
 <p>main parameters: layers, styles, srs, bbox, width, height, format</p>
 <p>sample GetMap operation (output is an image):</p>
 <p><a class="reference external" href="http://wms.pcn.minambiente.it/cgi-bin/mapserv.exe?map=/ms_ogc/service/ortofoto_colore_06_f32.map&amp;layers=ortofoto_colore_06&amp;styles=&amp;srs=EPSG:32632&amp;format=image/jpeg&amp;request=GetMap&amp;bgcolor=0xFFFFFF&amp;height=300&amp;width=300&amp;version=1.1.1&amp;bbox=514832,5034338,515032,5034548&amp;exceptions=application/vnd.ogc.se_xml&amp;transparent=FALSE">http://wms.pcn.minambiente.it/cgi-bin/mapserv.exe?map=/ms_ogc/service/ortofoto_colore_06_f32.map&amp;layers=ortofoto_colore_06&amp;styles=&amp;srs=EPSG:32632&amp;format=image/jpeg&amp;request=GetMap&amp;bgcolor=0xFFFFFF&amp;height=300&amp;width=300&amp;version=1.1.1&amp;bbox=514832,5034338,515032,5034548&amp;exceptions=application/vnd.ogc.se_xml&amp;transparent=FALSE</a></p>
@@ -333,7 +333,7 @@ Via Guglielmo Oberdan, 123, 06034 Foligno Perugia, Italy
 </div>
 <div class="slide" id="building-blocks-qgis">
 <h1>Building blocks: QGIS</h1>
-<img alt="images/qgis_logo.png" class="align-right" src="images/qgis_logo.png" style="width: 156.8px; height: 167.6px;" />
+<img align="right" alt="images/qgis_logo.png" class="align-right" src="images/qgis_logo.png" style="width: 156.8px; height: 167.6px;" />
 <p>QGIS (Quantum GIS) is a <em>C++ Qt</em> cross-platform GIS desktop application with vector editing
 capabilities and python scripting support.</p>
 <ul class="incremental simple">
@@ -616,7 +616,7 @@ A library to consume OGC(TM) web services.</blockquote>
 <div class="slide" id="mapscript">
 <h1>Mapscript</h1>
 <blockquote>
-Python bindings to <strong>UMN MapServer</strong> (<em>C++</em>)</blockquote>
+Python bindings to <strong>UMN MapServer</strong> (<em>C</em>)</blockquote>
 <ul class="simple">
 <li>complete bindings: full access to MapServer power</li>
 <li>not very <em>pythonic</em></li>
@@ -630,7 +630,7 @@ Python bindings to <strong>UMN MapServer</strong> (<em>C++</em>)</blockquote>
 <h1>Mapscript: usage</h1>
 <div class="sidebar">
 <p class="first sidebar-title">Hate</p>
-<p class="last">I hate mapfiles :)</p>
+<p class="last">I hate mapfiles ;)</p>
 </div>
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">mapscript</span>
 <span class="nb">map</span> <span class="o">=</span> <span class="n">mapscript</span><span class="o">.</span><span class="n">mapObj</span><span class="p">(</span>  <span class="p">)</span>
