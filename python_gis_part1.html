@@ -6,8 +6,6 @@
 <meta name="generator" content="Docutils 0.6: http://docutils.sourceforge.net/" />
 <meta name="version" content="S5 1.1" />
 <title>Developing Geospatial software with Python</title>
-<meta name="authors" content="Alessandro Pasotti  Paolo Corti" />
-<meta name="date" content="2010-10-21" />
 <style type="text/css">
 
 .highlight .hll { background-color: #333333 }
@@ -108,84 +106,106 @@
 
 </div>
 <div id="footer">
+<h1>Developing Geospatial software with Python, Part 1</h1>
 <h2>GFOSS Day, Foligno - 18/19 November 2010</h2>
 </div>
 </div>
 <div class="presentation">
 <div class="slide" id="slide0">
+<h1 class="title">Developing Geospatial software with Python, Part 1</h1>
+<h2 class="subtitle" id="alessandro-pasotti-apasotti-gmail-com-paolo-corti-pcorti-gmail-com">Alessandro Pasotti (<a class="reference external" href="mailto:apasotti&#64;gmail.com">apasotti&#64;gmail.com</a>), Paolo Corti (<a class="reference external" href="mailto:pcorti&#64;gmail.com">pcorti&#64;gmail.com</a>)</h2>
 
-<table class="docinfo" frame="void" rules="none">
-<col class="docinfo-name" />
-<col class="docinfo-content" />
-<tbody valign="top">
-<tr><th class="docinfo-name">Version:</th>
-<td>0.1</td></tr>
-<tr><th class="docinfo-name">Authors:</th>
-<td>Alessandro Pasotti
-<br />Paolo Corti</td></tr>
-<tr><th class="docinfo-name">Revision:</th>
-<td>1.1</td></tr>
-<tr><th class="docinfo-name">Date:</th>
-<td>2010-10-21</td></tr>
-</tbody>
-</table>
 
 </div>
-<div class="slide" id="developing-geospatial-software-with-python-part-1">
-<h1>Developing Geospatial software with Python, Part 1</h1>
-<p>Alessandro Pasotti (<a class="reference external" href="mailto:apasotti&#64;gmail.com">apasotti&#64;gmail.com</a>), Paolo Corti (<a class="reference external" href="mailto:pcorti&#64;gmail.com">pcorti&#64;gmail.com</a>)</p>
-<div class="section" id="building-blocks">
-<h2>Building blocks</h2>
-<p>Part 1 - Paolo Corti
-* GDAL/OGR (Python bindings, GeoDjango, GeoAlchemy)
-* GEOS (GeoDjango, Shapely)
-* PROJ.4 (Python bindings, GeoDjango, GeoAlchemy)</p>
-<p>Part 2 - Alessandro Pasotti
-* OWS (OWSLib, pyWPS)
-* WebServices (GeoPy, Mapnik, Mapscript)
-* Desktop (QGIS, GRASS)</p>
+<div class="slide" id="summary">
+<h1>Summary</h1>
+<blockquote>
+Part 1 - Paolo Corti</blockquote>
+<ul>
+<li><p class="first"><strong>GDAL/OGR</strong> (Python bindings, GeoDjango, GeoAlchemy)</p>
+</li>
+<li><p class="first"><strong>GEOS</strong> (GeoDjango, Shapely)</p>
+</li>
+<li><p class="first"><strong>PROJ.4</strong> (Python bindings, GeoDjango, GeoAlchemy)</p>
+<blockquote>
+<p>Part 2 - Alessandro Pasotti</p>
+</blockquote>
+</li>
+<li><p class="first"><strong>OWS</strong> (OWSLib, pyWPS)</p>
+</li>
+<li><p class="first"><strong>WebServices</strong> (GeoPy, Mapnik, Mapscript)</p>
+</li>
+<li><p class="first"><strong>Desktop</strong> (QGIS, GRASS)</p>
+</li>
+</ul>
 </div>
-<div class="section" id="building-blocks-gdal-ogr">
-<h2>Building blocks: GDAL/OGR</h2>
+<div class="slide" id="building-blocks">
+<h1>Building blocks</h1>
+<ul>
+<li><dl class="first docutils">
+<dt><strong>GDAL</strong> Geospatial Data Abstraction Library</dt>
+<dd><ul class="first last simple">
+<li><strong>OGR</strong> Simple Feature Library</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first"><strong>GEOS</strong> Geometry Engine, Open Source</p>
+</li>
+<li><p class="first"><strong>PROJ.4</strong> Cartographic Projections Library</p>
+</li>
+</ul>
+</div>
+<div class="slide" id="building-blocks-gdal-ogr">
+<h1>Building blocks: GDAL/OGR</h1>
+<dl class="docutils">
+<dt><strong>GDAL</strong> Geospatial Data Abstraction Library</dt>
+<dd><strong>OGR</strong> Simple Feature Library</dd>
+</dl>
 <ul class="simple">
 <li>basic library for almost all FOSS4G projects (and often $$$ projects)</li>
-<li>library and utilities for reading/writing GIS formats</li>
+<li>library and utilities for reading/writing a plethora of GIS formats</li>
 <li>raster/cover (GDAL) and vectorial (OGR)</li>
-<li>OGR follows the OGC Simple feature acces specifications</li>
+<li>OGR follows the OGC Simple feature access specifications</li>
 <li>written mostly in C++ by Frank Warmerdam</li>
-<li>license: MIT</li>
+<li>license: <strong>MIT</strong></li>
 </ul>
 </div>
-<div class="section" id="gdal-ogr-large-diffusion">
-<h2>GDAL/OGR: large diffusion</h2>
-<p>Huge list of sofware using GDAL, here only most important (full list &#64; GDAL website)</p>
+<div class="slide" id="gdal-ogr-large-diffusion">
+<h1>GDAL/OGR: large diffusion</h1>
+<blockquote>
+Huge list of sofware using GDAL, here only most important (full list &#64; GDAL website)</blockquote>
 <ul class="simple">
-<li>FOSS4G: GRASS, GeoServer, gvSIG, MapServer, MapGuide, Orfeo Toolbox, OSSIM, QGIS, R</li>
-<li>$$$: ArcGis, ERDAS, FME, Google Earth</li>
+<li><strong>FOSS4G</strong>: GRASS, GeoServer, gvSIG, MapServer, MapGuide, Orfeo Toolbox, OSSIM, QGIS, R</li>
+<li><strong>$$$</strong>: ArcGis, ERDAS, FME, Google Earth</li>
 </ul>
 </div>
-<div class="section" id="gdal-ogr-many-supported-formats-vector">
-<h2>GDAL/OGR: many supported formats (vector)</h2>
-<p>Long list too, here only most important (full list &#64;gdalwebsite)</p>
+<div class="slide" id="gdal-ogr-many-supported-formats-vector">
+<h1>GDAL/OGR: many supported formats (vector)</h1>
+<blockquote>
+<p>Long list too, here only most important (full list &#64; gdal website)</p>
 <p>OGR (Vector):</p>
+</blockquote>
 <ul class="simple">
-<li>FOSS4G (RW): PostGis, Spatialite, MySQL, csv, GeoJSON, GeoRSS, GML, GPSBabel, GPX, GRASS, KML, WFS</li>
-<li>$$$: Shapefile, ArcInfo Coverage (R), ArcInfo .E00 (R), AutoCAD DXF, Esri PGDB (R), ArcSde (R), FMEObjects Gateway (R), MapInfo, Microstation DGN, Oracle Spatial, Microsoft MS Spatial</li>
+<li><strong>FOSS4G</strong> (RW): PostGis, Spatialite, MySQL, csv, GeoJSON, GeoRSS, GML, GPSBabel, GPX, GRASS, KML, WFS</li>
+<li><strong>$$$</strong>: Shapefile, ArcInfo Coverage (R), ArcInfo .E00 (R), AutoCAD DXF, Esri PGDB (R), ArcSde (R), FMEObjects Gateway (R), MapInfo, Microstation DGN, Oracle Spatial, Microsoft MS Spatial</li>
 </ul>
 </div>
-<div class="section" id="gdal-ogr-many-supported-formats-raster">
-<h2>GDAL/OGR: many supported formats (raster)</h2>
-<p>GDAL (Raster):</p>
+<div class="slide" id="gdal-ogr-many-supported-formats-raster">
+<h1>GDAL/OGR: many supported formats (raster)</h1>
+<blockquote>
+GDAL (Raster):</blockquote>
 <ul class="simple">
-<li>FOSS4G (RW): GRASS Rasters, WKTRaster, Rasterlite</li>
-<li>$$$: ArcInfo ASCII Grid, ArcSde Raster (R), ERDAS (R), Oracle Spatial GeoRaster, Intergraph</li>
+<li><strong>FOSS4G</strong> (RW): GRASS Rasters, WKTRaster, Rasterlite</li>
+<li><strong>$$$</strong>: ArcInfo ASCII Grid, ArcSde Raster (R), ERDAS (R), Oracle Spatial GeoRaster, Intergraph</li>
 </ul>
 </div>
-<div class="section" id="gdal-ogr-bindings">
-<h2>GDAL/OGR: bindings</h2>
-<p>bindings provide the GDAL power to developers using other languages than C/C++</p>
+<div class="slide" id="gdal-ogr-bindings">
+<h1>GDAL/OGR: bindings</h1>
+<blockquote>
+bindings (based on SWIG) provide the GDAL power to developers using other languages than C/C++</blockquote>
 <ul class="simple">
-<li>Python</li>
+<li><strong>Python</strong></li>
 <li>Perl</li>
 <li>VB6 (COM) - No SWIG</li>
 <li>Ruby</li>
@@ -194,9 +214,10 @@
 <li>R</li>
 </ul>
 </div>
-<div class="section" id="gdal-ogr-command-line-utilities">
-<h2>GDAL/OGR: command line utilities</h2>
-<p>The power of GDAL/OGR at your fingertips (some written in python)!</p>
+<div class="slide" id="gdal-ogr-command-line-utilities-raster">
+<h1>GDAL/OGR: command line utilities (raster)</h1>
+<blockquote>
+The power of GDAL/OGR at your fingertips (mostly in c, cpp but some written in python)!</blockquote>
 <ul class="simple">
 <li>gdalinfo: info about a file</li>
 <li>gdal_translate: copy a raster with control on output</li>
@@ -208,58 +229,71 @@
 <li>gdal_polygonize.py: generate polygons from raster</li>
 </ul>
 </div>
-<div class="section" id="building-blocks-geos">
-<h2>Building blocks: GEOS</h2>
+<div class="slide" id="gdal-ogr-command-line-utilities-vector">
+<h1>GDAL/OGR: command line utilities (vector)</h1>
 <ul class="simple">
-<li>it is a C++ port of JTS (Java Topology Suite di Vivid Solutions)</li>
-<li>originally started from Refractions for PostGIS</li>
-<li>provides all the OGC Simple Features for SQL spatial predicate functions and spatial operators</li>
-<li>license: LGPL</li>
+<li>ogrinfo: lists information about an OGR supported data source</li>
+<li>ogr2ogr: converts simple features data between file formats</li>
+<li>ogrtindex: creates a tileindex</li>
 </ul>
 </div>
-<div class="section" id="geos-api-for-modelling-and-manipulating-2-dimensional-linear-geometry">
-<h2>GEOS: API for modelling and manipulating 2-dimensional linear geometry</h2>
+<div class="slide" id="building-blocks-geos">
+<h1>Building blocks: GEOS</h1>
+<ul class="simple">
+<li>it is a C++ port of <strong>JTS</strong> (Java Topology Suite from Vivid Solutions)</li>
+<li>originally started from Refractions for PostGIS</li>
+<li>provides all the OGC Simple Features implementations for SQL spatial predicate functions and spatial operators</li>
+<li>license: <strong>LGPL</strong></li>
+</ul>
+</div>
+<div class="slide" id="geos-api-for-modelling-and-manipulating-2-dimensional-linear-geometry">
+<h1>GEOS: API for modelling and manipulating 2-dimensional linear geometry</h1>
+<p><strong>GEOS</strong> Geometry Engine, Open Source</p>
 <ul class="simple">
 <li>model for geometric objects (Point, Linestring, Polygon, Multipoint, Multipolygon, GeomCollection)</li>
 <li>predicates and relationships (has_z, is_empty, is_valid, contains, crosses, equals, intersects, touches...)</li>
 <li>spatial analysis methods (boundary, centroid, difference, intersection, union, buffer, envelope, simplify...)</li>
-<li>interoperability (WKT, WKB)</li>
+<li>interoperability and serialization/deserialization (WKT, WKB...)</li>
 </ul>
 </div>
-<div class="section" id="geos-huge-diffusion">
-<h2>GEOS: huge diffusion</h2>
-<p>Huge list of sofware using GEOS, here only most important (full list &#64; GEOS website)</p>
+<div class="slide" id="geos-huge-diffusion">
+<h1>GEOS: huge diffusion</h1>
+<blockquote>
+Huge list of sofware using GEOS, here only most important (full list &#64; GEOS website)</blockquote>
 <ul class="simple">
-<li>FOSS4G: PostGIS, Spatialite, MapServer, QGIS, OGR, Shapely, GeoDjango</li>
-<li>$$$: FME, Autodesk MapGuide Enterprise</li>
+<li><strong>FOSS4G</strong>: PostGIS, Spatialite, MapServer, QGIS, OGR, Shapely, GeoDjango</li>
+<li><strong>$$$</strong>: FME, Autodesk MapGuide Enterprise</li>
 </ul>
 </div>
-<div class="section" id="geos-bindings">
-<h2>GEOS: bindings</h2>
-<p>bindings provide the GEOS power to developers using other languages than C/C++</p>
+<div class="slide" id="geos-bindings">
+<h1>GEOS: bindings</h1>
+<blockquote>
+bindings provide the GEOS power to developers using other languages than C/C++</blockquote>
 <ul class="simple">
-<li>Python (not manteined anymore --&gt; GeoDjango, Shapely)</li>
+<li><strong>Python</strong> (not manteined anymore --&gt; GeoDjango, Shapely)</li>
 <li>Ruby</li>
 <li>PHP</li>
 </ul>
 <p>Java developers of course must use the JTS!</p>
 <p>.NET developers can use the .NET JTS port (NetTopologySuite)</p>
 </div>
-<div class="section" id="building-blocks-proj-4">
-<h2>Building blocks: PROJ.4</h2>
+<div class="slide" id="building-blocks-proj-4">
+<h1>Building blocks: PROJ.4</h1>
+<p><strong>PROJ.4</strong> Cartographic Projections Library</p>
 <ul class="simple">
 <li>PROJ.4 Cartographic Projections library originally written by Gerald Evenden then of the USGS</li>
 <li>written in c/c++</li>
-<li>both a command line and an API</li>
+<li>both a <strong>command line</strong> and an <strong>API</strong></li>
 <li>used from almost any FOSS4G project</li>
-<li>ported to js (Proj4js) and Java (Proj4J)</li>
-<li>license: MIT</li>
+<li>ported to javascript (Proj4js) and Java (Proj4J)</li>
+<li>license: <strong>MIT</strong></li>
 </ul>
 </div>
-<div class="section" id="proj-4-api">
-<h2>PROJ.4: API</h2>
-<p>Mainly 2 methods available:</p>
-<ol class="arabic">
+<div class="slide" id="proj-4-api">
+<h1>PROJ.4: API</h1>
+<blockquote>
+Just 2 methods available:</blockquote>
+<ul>
 <li><p class="first">create a projPJ coordinate system object from the string definition:</p>
 <pre class="literal-block">
 projPJ pj_init_plus(const char *definition);
@@ -270,37 +304,353 @@ projPJ pj_init_plus(const char *definition);
 int pj_transform( projPJ srcdefn, projPJ dstdefn, long point_count, int point_offset, double *x, double *y, double *z );
 </pre>
 </li>
-</ol>
+</ul>
 </div>
-<div class="section" id="notes-on-implementation">
-<h2>Notes on implementation</h2>
+<div class="slide" id="notes-on-implementation">
+<h1>Notes on implementation</h1>
 <ul>
-<li><p class="first">pure Python (GeoAlchemy, GeoPy, OWSLib, pyWPS)</p>
+<li><p class="first"><strong>pure Python</strong> (GeoAlchemy, GeoPy, OWSLib, pyWPS)</p>
 </li>
 <li><dl class="first docutils">
 <dt>Python and C/C++ libraries</dt>
 <dd><ul class="first last simple">
-<li>with SWIG (GDAL/OGR bindings, Mapscript, GRASS, QGIS)</li>
-<li>with ctypes (GeoDjango, Shapely, Mapnik)</li>
+<li>with <strong>SWIG</strong> (GDAL/OGR bindings, Mapscript, GRASS, QGIS)</li>
+<li>with <strong>ctypes</strong> (GeoDjango, Shapely, Mapnik)</li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
 </div>
-<div class="section" id="id1">
-<h2>GDAL/OGR bindings</h2>
-<p>section about GDAL/OGR bindings</p>
+<div class="slide" id="id1">
+<h1>GDAL/OGR bindings</h1>
+<p>GDAL/OGR library offers Python bindings generated by SWIG</p>
 </div>
-<div class="section" id="geodjango">
-<h2>GeoDjango</h2>
+<div class="slide" id="gdal-ogr-bindings-resources">
+<h1>GDAL/OGR bindings: resources</h1>
+<ul class="simple">
+<li>Geoprocessing with Python using OpenSource GIS: <a class="reference external" href="http://www.gis.usu.edu/~chrisg/python/2009/">http://www.gis.usu.edu/~chrisg/python/2009/</a></li>
+</ul>
 </div>
-<div class="section" id="geoalchemy">
-<h2>GeoAlchemy</h2>
+<div class="slide" id="geodjango">
+<h1>GeoDjango</h1>
+<ul class="simple">
+<li><strong>Django</strong>: The Web framework for perfectionists with deadlines</li>
+<li><strong>GeoDjango</strong>: The Geographic Web Framework for perfectionists with deadlines</li>
+<li>since Django 1.0 is a <strong>core package</strong></li>
+<li>it is a framework including a set of API, utility and tool for developing GIS application with Django</li>
+<li>as Django, you may use GeoDajngo both in <strong>web</strong> and <strong>desktop</strong> context</li>
+<li>license: <strong>BSD</strong></li>
+</ul>
 </div>
-<div class="section" id="shapely">
-<h2>Shapely</h2>
+<div class="slide" id="geodjango-index">
+<h1>GeoDjango: Index</h1>
+<ul>
+<li><p class="first"><strong>GeoDjango Architecture</strong></p>
+</li>
+<li><dl class="first docutils">
+<dt><strong>GeoDjango features tour</strong></dt>
+<dd><ul class="first last simple">
+<li>GeoDjango Model API</li>
+<li>GEOS API</li>
+<li>GDAL/OGR API</li>
+<li>Measurement Units API</li>
+<li>GeoDjango Admin site</li>
+<li>Utilities (LayerMapping, OgrInspect)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
 </div>
+<div class="slide" id="geodjango-architecture">
+<h1>GeoDjango: Architecture</h1>
+<ul>
+<li><dl class="first docutils">
+<dt>Spatial Database</dt>
+<dd><ul class="first last simple">
+<li>PostGis</li>
+<li>Spatialite</li>
+<li>MySql (not OGC-compliant, limited functionality)</li>
+<li>Oracle</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>GIS Libraries</dt>
+<dd><ul class="first last simple">
+<li>GEOS (Geometry Engine Open Source)</li>
+<li>GDAL/OGR (Geospatial Data Abstraction Library)</li>
+<li>PROJ.4 (Cartographic Projections Library)</li>
+<li>GeoIP</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="slide" id="geodjango-features-model-api-1">
+<h1>GeoDjango features: Model API (1)</h1>
+<blockquote>
+Geometry Field (django.contrib.gis.db extends django.db)</blockquote>
+<ul>
+<li><p class="first">PointField, LineStringField, PolygonField</p>
+</li>
+<li><p class="first">MultiPointField, MultiLineStringField, MultiPolygonField</p>
+</li>
+<li><p class="first">GeometryCollectionField</p>
+</li>
+<li><p class="first">GeometryField &lt;novità 1.2&gt;</p>
+<blockquote>
+<p>Geometry Field options</p>
+</blockquote>
+</li>
+<li><p class="first"><strong>srid</strong> (default 4326 = WGS84 dd)</p>
+</li>
+<li><p class="first"><strong>dim</strong> (default 2, 3 will support z)</p>
+</li>
+<li><p class="first"><strong>spatial_index</strong> (default True, spatial index is built)</p>
+</li>
+</ul>
+</div>
+<div class="slide" id="geodjango-features-model-api-2">
+<h1>GeoDjango features: Model API (2)</h1>
+<blockquote>
+In Django models we get Geographic Field e GeoManager</blockquote>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib.gis.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+<span class="k">class</span> <span class="nc">Site</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Spatial model for site&quot;&quot;&quot;</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">()</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+    <span class="n">geometry</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">MultiPolygonField</span><span class="p">(</span><span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>
+    <span class="n">objects</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">GeoManager</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="slide" id="geodjango-features-model-api-3">
+<h1>GeoDjango features: Model API (3)</h1>
+<div class="highlight"><pre><span class="nv">$ </span>./manage.py sqlall myapp
+</pre></div>
+<div class="highlight"><pre><span class="k">BEGIN</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="ss">&quot;myapp_site&quot;</span> <span class="p">(</span>
+    <span class="ss">&quot;id&quot;</span> <span class="nb">serial</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="ss">&quot;code&quot;</span> <span class="nb">integer</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="ss">&quot;name&quot;</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span>
+<span class="p">)</span>
+<span class="p">;</span>
+<span class="k">SELECT</span> <span class="n">AddGeometryColumn</span><span class="p">(</span><span class="s1">&#39;myapp_site&#39;</span><span class="p">,</span> <span class="s1">&#39;geometry&#39;</span><span class="p">,</span> <span class="mi">4326</span><span class="p">,</span> <span class="s1">&#39;MULTIPOLYGON&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="ss">&quot;myapp_site&quot;</span> <span class="k">ALTER</span> <span class="ss">&quot;geometry&quot;</span> <span class="k">SET</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">INDEX</span> <span class="ss">&quot;myapp_site_geometry_id&quot;</span>
+    <span class="k">ON</span> <span class="ss">&quot;myapp_site&quot;</span> <span class="k">USING</span> <span class="n">GIST</span> <span class="p">(</span> <span class="ss">&quot;geometry&quot;</span> <span class="n">GIST_GEOMETRY_OPS</span> <span class="p">);</span>
+<span class="k">COMMIT</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="slide" id="geodjango-features-model-api-4">
+<h1>GeoDjango features: Model API (4)</h1>
+<blockquote>
+CRUD methods: Create, Update</blockquote>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">myapp.models</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">new_point</span> <span class="o">=</span> <span class="n">SandboxLayer</span><span class="p">(</span><span class="n">nome</span><span class="o">=</span><span class="s">&#39;punto 1&#39;</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="s">&#39;POINT(13.8 42.5)&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">new_point</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">connection</span><span class="o">.</span><span class="n">queries</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="p">{</span><span class="s">&#39;time&#39;</span><span class="p">:</span> <span class="s">&#39;0.061&#39;</span><span class="p">,</span> <span class="s">&#39;sql&#39;</span><span class="p">:</span> <span class="s">&#39;INSERT INTO &quot;fauna_sandboxlayer&quot; (&quot;nome&quot;, &quot;geometry&quot;)</span>
+<span class="n">VALUES</span> <span class="p">(</span><span class="n">E</span>\<span class="s">&#39;punto 1</span><span class="se">\&#39;</span><span class="s">, ST_GeomFromEWKB(E</span><span class="se">\&#39;\\\\</span><span class="s">001</span><span class="se">\\\\</span><span class="s">...&#39;</span><span class="p">))</span><span class="s">&#39;}</span>
+</pre></div>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">new_point</span> <span class="o">=</span> <span class="n">SandboxLayer</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">nome__contains</span><span class="o">=</span><span class="s">&#39;pun&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">new_point</span><span class="o">.</span><span class="n">nome</span> <span class="o">=</span> <span class="s">&#39;punto 2&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">new_point</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">connection</span><span class="o">.</span><span class="n">queries</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="p">{</span><span class="s">&#39;time&#39;</span><span class="p">:</span> <span class="s">&#39;0.002&#39;</span><span class="p">,</span> <span class="s">&#39;sql&#39;</span><span class="p">:</span> <span class="s">&#39;UPDATE &quot;fauna_sandboxlayer&quot; SET &quot;nome&quot; = E</span><span class="se">\&#39;</span><span class="s">punto 2</span><span class="se">\&#39;</span><span class="s">,</span>
+    <span class="s">&quot;geometry&quot;</span> <span class="o">=</span> <span class="n">ST_GeomFromEWKB</span><span class="p">(</span><span class="n">E</span>\<span class="s">&#39;</span><span class="se">\\\\</span><span class="s">001</span><span class="se">\\\\</span><span class="s">...&#39;</span><span class="p">)</span>
+    <span class="n">WHERE</span> <span class="s">&quot;fauna_sandboxlayer&quot;</span><span class="o">.</span><span class="s">&quot;id&quot;</span> <span class="o">=</span> <span class="mi">1</span> <span class="s">&#39;}</span>
+</pre></div>
+</div>
+<div class="slide" id="geodjango-features-model-api-5">
+<h1>GeoDjango features: Model API (5)</h1>
+<blockquote>
+CRUD methods: Read, Delete</blockquote>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">avvistamento</span> <span class="o">=</span> <span class="n">Avvistamento</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">regione</span> <span class="o">=</span> <span class="n">Regione</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">geometry__intersects</span><span class="o">=</span><span class="n">avvistamento</span><span class="o">.</span><span class="n">geometry</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">regione</span>
+<span class="p">[</span><span class="o">&lt;</span><span class="n">Regione</span><span class="p">:</span> <span class="n">ABRUZZO</span><span class="o">&gt;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">connection</span><span class="o">.</span><span class="n">queries</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="p">{</span><span class="s">&#39;time&#39;</span><span class="p">:</span> <span class="s">&#39;0.187&#39;</span><span class="p">,</span> <span class="s">&#39;sql&#39;</span><span class="p">:</span> <span class="s">&#39;SELECT &quot;fauna_regione&quot;.&quot;id&quot;, &quot;fauna_regione&quot;.&quot;codice&quot;,</span>
+    <span class="s">&quot;fauna_regione&quot;</span><span class="o">.</span><span class="s">&quot;nome&quot;</span><span class="p">,</span> <span class="s">&quot;fauna_regione&quot;</span><span class="o">.</span><span class="s">&quot;geometry&quot;</span>
+    <span class="n">FROM</span> <span class="s">&quot;fauna_regione&quot;</span> <span class="n">WHERE</span> <span class="n">ST_Intersects</span><span class="p">(</span><span class="s">&quot;fauna_regione&quot;</span><span class="o">.</span><span class="s">&quot;geometry&quot;</span><span class="p">,</span>
+    <span class="n">ST_GeomFromEWKB</span><span class="p">(</span><span class="n">E</span>\<span class="s">&#39;</span><span class="se">\\\\</span><span class="s">001\...&#39;</span><span class="p">))</span> <span class="n">LIMIT</span> <span class="mi">21</span><span class="s">&#39;}</span>
+</pre></div>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">sandfeat</span> <span class="o">=</span> <span class="n">SandboxLayer</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">sandfeat</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">connection</span><span class="o">.</span><span class="n">queries</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="p">{</span><span class="s">&#39;time&#39;</span><span class="p">:</span> <span class="s">&#39;0.002&#39;</span><span class="p">,</span> <span class="s">&#39;sql&#39;</span><span class="p">:</span> <span class="s">&#39;DELETE FROM &quot;fauna_sandboxlayer&quot; WHERE &quot;id&quot; IN (1)&#39;</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">SandboxLayer</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">connection</span><span class="o">.</span><span class="n">queries</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+<span class="p">{</span><span class="s">&#39;time&#39;</span><span class="p">:</span> <span class="s">&#39;0.002&#39;</span><span class="p">,</span> <span class="s">&#39;sql&#39;</span><span class="p">:</span> <span class="s">&#39;DELETE FROM &quot;fauna_sandboxlayer&quot; WHERE &quot;id&quot; IN (3, 2)&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="slide" id="geodjango-features-geos-api-1">
+<h1>GeoDjango features: GEOS API (1)</h1>
+<blockquote>
+a model for geometric objects (Simple Feature Access)</blockquote>
+<ul class="simple">
+<li>Point</li>
+<li>LineString, LinearRing</li>
+<li>Polygon</li>
+<li>Geometry Collections (MultiPoint, MultiLineString, MultiPolygon, GeometryCollection)</li>
+</ul>
+</div>
+<div class="slide" id="geodjango-features-geos-api-2">
+<h1>GeoDjango features: GEOS API (2)</h1>
+<ul class="simple">
+<li><strong>geometric properties and methods</strong> (empty, geom_type, hasz, num_coords, simple, valid, centroid, envelope, area, distance, length, srs, transform...)</li>
+<li><strong>representation and serialization</strong> (ewkt, hex, hexewkb, json, geojson, kml, ogr, wkb, ewkb, wkt)</li>
+<li><strong>predicates and relationships</strong> (contains, crosses, equals, intersects, touches, within, ...)</li>
+<li><strong>spatial analysis methods</strong> (buffer, difference, intersection, simplify, union, ...)</li>
+</ul>
+</div>
+<div class="slide" id="geodjango-features-geos-api-example-1">
+<h1>GeoDjango features: GEOS API, Example 1</h1>
+<blockquote>
+geometric objects (point), geometric properties (hasz, geom_type)
+and representation and serialization</blockquote>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">myapp.models</span> <span class="kn">import</span> <span class="n">Place</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">place</span> <span class="o">=</span> <span class="n">Place</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">point</span> <span class="o">=</span> <span class="n">place</span><span class="o">.</span><span class="n">geometry</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">point</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">point</span><span class="o">.</span><span class="n">y</span>
+<span class="p">(</span><span class="mf">13.798828125</span><span class="p">,</span> <span class="mf">42.5390625</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">point</span><span class="o">.</span><span class="n">hasz</span>
+<span class="bp">False</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">point</span><span class="o">.</span><span class="n">geom_type</span>
+<span class="s">&#39;Point&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">point</span><span class="o">.</span><span class="n">json</span>
+<span class="s">&#39;{ &quot;type&quot;: &quot;Point&quot;, &quot;coordinates&quot;: [ 13.798828, 42.539062 ] }&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">point</span><span class="o">.</span><span class="n">ewkt</span> <span class="c"># extended wkt</span>
+<span class="s">&#39;SRID=4326;POINT (13.7988281250000000 42.5390625000000000)&#39;</span>
+</pre></div>
+</div>
+<div class="slide" id="geodjango-features-geos-api-example-2">
+<h1>GeoDjango features: GEOS API, Example 2</h1>
+<blockquote>
+predicates and relationships, transformations (requires GDAL), spatial analysis methods</blockquote>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">myapp.models</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">abruzzo</span> <span class="o">=</span> <span class="n">Regione</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">nome</span><span class="o">=</span><span class="s">&#39;ABRUZZO&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">avvistamento</span> <span class="o">=</span> <span class="n">Avvistamento</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">abruzzo</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">avvistamento</span><span class="o">.</span><span class="n">geometry</span><span class="p">)</span>
+<span class="bp">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">avvistamento</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">ewkt</span>
+<span class="s">&#39;SRID=4326;POINT (13.7988281250000000 42.5390625000000000)&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">transformed_point</span> <span class="o">=</span> <span class="n">avvistamento</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="mi">3395</span><span class="p">,</span><span class="n">clone</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">transformed_point</span><span class="o">.</span><span class="n">ewkt</span>
+<span class="s">&#39;SRID=3395;POINT (1536078.5204189007636160 5213176.4834084874019027)&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">buffer</span> <span class="o">=</span> <span class="n">SandboxLayer</span><span class="p">(</span><span class="n">nome</span><span class="o">=</span><span class="s">&#39;buffer&#39;</span><span class="p">,</span><span class="n">geometry</span><span class="o">=</span><span class="n">transformed_point</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">20000</span><span class="p">))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">buffer</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="slide" id="geodjango-features-gdal-ogr-api">
+<h1>GeoDjango features: GDAL/OGR API</h1>
+<blockquote>
+excellent alternative to GDAL/OGR Python bindings</blockquote>
+<ul class="simple">
+<li>not <strong>required</strong> for GeoDjango (required only for srs trasformations and for LayerMapping)</li>
+<li>via the <strong>DataSource</strong> class get the access to any <strong>OGR</strong> format, (R/W in many cases)</li>
+<li>get access to the GEOS API via geos method on <strong>OGRGeometry</strong> class</li>
+<li>get access to other API via representative properties (wkt, wkb, json, ...)</li>
+</ul>
+</div>
+<div class="slide" id="geodjango-features-gdal-ogr-api-example">
+<h1>GeoDjango features: GDAL/OGR API, Example</h1>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">django.contrib.gis.gdal</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">DataSource</span><span class="p">(</span><span class="s">&#39;data/shapefile/myshape.shp&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+<span class="n">data</span><span class="o">/</span><span class="n">shapefile</span><span class="o">/</span><span class="n">myshape</span><span class="o">.</span><span class="n">shp</span> <span class="p">(</span><span class="n">ESRI</span> <span class="n">Shapefile</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ds</span><span class="p">))</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">lyr</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">lyr</span><span class="p">)</span>
+<span class="n">myshape</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">lyr</span><span class="o">.</span><span class="n">num_feat</span><span class="p">)</span>
+<span class="mi">20</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">lyr</span><span class="o">.</span><span class="n">geom_type</span><span class="p">)</span>
+<span class="n">Polygon</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">lyr</span><span class="o">.</span><span class="n">srs</span><span class="o">.</span><span class="n">srid</span><span class="p">)</span>
+<span class="mi">4326</span>
+</pre></div>
+</div>
+<div class="slide" id="geodjango-features-gdal-ogr-api-example-follows">
+<h1>GeoDjango features: GDAL/OGR API, Example (follows)</h1>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">lyr</span><span class="o">.</span><span class="n">fields</span><span class="p">)</span>
+<span class="p">[</span><span class="s">&#39;gid&#39;</span><span class="p">,</span> <span class="s">&#39;objectid&#39;</span><span class="p">,</span> <span class="s">&#39;code&#39;</span><span class="p">,</span> <span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="s">&#39;shape_area&#39;</span><span class="p">,</span> <span class="s">&#39;shape_len&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">feat</span> <span class="ow">in</span> <span class="n">lyr</span><span class="p">:</span>
+   <span class="o">....</span><span class="p">:</span>        <span class="k">print</span><span class="p">(</span><span class="n">feat</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">),</span> <span class="n">feat</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="n">num_points</span><span class="p">)</span>
+   <span class="o">....</span><span class="p">:</span>
+<span class="n">first_feature</span> <span class="mi">14811</span>
+<span class="n">second_feature</span> <span class="mi">3598</span>
+<span class="o">...</span>
+<span class="n">last_feature</span> <span class="mi">19131</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">feat</span> <span class="o">=</span> <span class="n">lyr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">feat</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">))</span>
+<span class="n">first_feature</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">geom</span> <span class="o">=</span> <span class="n">feat</span><span class="o">.</span><span class="n">geom</span> <span class="c"># OGRGeometry, non GEOSGeometry</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">geom</span><span class="o">.</span><span class="n">srid</span><span class="p">)</span>
+<span class="mi">4326</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">feat</span><span class="o">.</span><span class="n">geom</span><span class="o">.</span><span class="n">wkt</span><span class="p">[:</span><span class="mi">100</span><span class="p">])</span>
+<span class="n">MULTIPOLYGON</span> <span class="p">(((</span><span class="mf">8.439415832216145</span> <span class="mf">46.465900481500874</span><span class="p">,</span><span class="mf">8.439484266241374</span> <span class="mf">46.465576832714113</span><span class="p">,</span><span class="mf">8.43950386</span><span class="o">...</span>
+</pre></div>
+</div>
+<div class="slide" id="geodjango-features-measurement-units-api">
+<h1>GeoDjango features: Measurement Units API</h1>
+<blockquote>
+API for measurement units conversion and management</blockquote>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">django.contrib.gis.measure</span> <span class="kn">import</span> <span class="n">Distance</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">d1</span> <span class="o">=</span> <span class="n">Distance</span><span class="p">(</span><span class="n">km</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span>  <span class="k">print</span> <span class="n">d1</span>
+<span class="mf">5.0</span> <span class="n">km</span>
+<span class="o">&gt;&gt;&gt;</span>  <span class="k">print</span> <span class="n">d1</span><span class="o">.</span><span class="n">mi</span>
+<span class="mf">3.10685596119</span>
+<span class="o">&gt;&gt;&gt;</span>  <span class="n">d2</span> <span class="o">=</span> <span class="n">Distance</span><span class="p">(</span><span class="n">mi</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span>  <span class="k">print</span> <span class="n">d1</span> <span class="o">+</span> <span class="n">d2</span>
+<span class="mf">13.04672</span> <span class="n">km</span>
+<span class="o">&gt;&gt;&gt;</span>  <span class="n">a</span> <span class="o">=</span> <span class="n">d1</span> <span class="o">*</span> <span class="n">d2</span>
+<span class="k">print</span> <span class="n">a</span>
+<span class="mf">40.2336</span> <span class="n">sq_km</span>
+</pre></div>
+</div>
+<div class="slide" id="geodjango-features-geomodeladmin">
+<h1>GeoDjango features: GeoModelAdmin</h1>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span> <span class="nn">django.contrib.gis.admin</span> <span class="kn">import</span> <span class="n">GeoModelAdmin</span>
+<span class="kn">from</span> <span class="nn">models</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">class</span> <span class="nc">AvvistamentoAdmin</span><span class="p">(</span><span class="n">GeoModelAdmin</span><span class="p">):</span>
+
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Avvistamento</span>
+
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;data&#39;</span><span class="p">,</span> <span class="s">&#39;animale&#39;</span><span class="p">,</span> <span class="s">&#39;interesse&#39;</span><span class="p">]</span>
+    <span class="n">list_filter</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;data&#39;</span><span class="p">,</span> <span class="s">&#39;animale&#39;</span><span class="p">,</span> <span class="s">&#39;interesse&#39;</span><span class="p">]</span>
+    <span class="n">date_hierarchy</span> <span class="o">=</span> <span class="s">&#39;data&#39;</span>
+    <span class="n">fieldsets</span> <span class="o">=</span> <span class="p">(</span>
+      <span class="p">(</span><span class="s">&#39;Caratteristiche avvistamento&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;fields&#39;</span><span class="p">:</span> <span class="p">((</span><span class="s">&#39;data&#39;</span><span class="p">,</span> <span class="s">&#39;animale&#39;</span><span class="p">,</span> <span class="s">&#39;note&#39;</span><span class="p">,</span> <span class="s">&#39;interesse&#39;</span><span class="p">))}),</span>
+      <span class="p">(</span><span class="s">&#39;Mappa&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;fields&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s">&#39;geometry&#39;</span><span class="p">,)}),</span>
+    <span class="p">)</span>
+
+    <span class="c"># Openlayers settings</span>
+    <span class="n">scrollable</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">map_width</span> <span class="o">=</span> <span class="mi">500</span>
+    <span class="n">map_height</span> <span class="o">=</span> <span class="mi">500</span>
+    <span class="n">openlayers_url</span> <span class="o">=</span> <span class="s">&#39;/static/openlayers/lib/OpenLayers.js&#39;</span>
+    <span class="n">default_zoom</span> <span class="o">=</span> <span class="mi">6</span>
+    <span class="n">default_lon</span> <span class="o">=</span> <span class="mi">13</span>
+    <span class="n">default_lat</span> <span class="o">=</span> <span class="mi">42</span>
+
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Avvistamento</span><span class="p">,</span> <span class="n">AvvistamentoAdmin</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="slide" id="geoalchemy">
+<h1>GeoAlchemy</h1>
+</div>
+<div class="slide" id="shapely">
+<h1>Shapely</h1>
 </div>
 </div>
 </body>
