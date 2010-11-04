@@ -9,6 +9,68 @@ Developing Geospatial software with Python, Part 2
 Alessandro Pasotti (apasotti@gmail.com), Paolo Corti (pcorti@gmail.com)
 -----------------------------------------------------------------------
 
+Building blocks: overview
+=========================
+
+
+.. graph:: images/lib_schema.png
+
+	digraph g {
+
+		node [shape=box]
+
+		subgraph cluster_formats {
+			label="Data providers"
+			color = "grey"
+			shapefile [label="Vector (OGR)"]
+			ows [label="OGC WS"]
+			postgis [label="PostGIS"]
+			prop_ws [label="WS (Google & C.)"]
+			raster [label="Raster"]
+		}
+
+
+		subgraph cluster_libs {
+			label="Libraries"
+			style=filled
+			color=lightgrey
+			node [style=filled,color=white]
+			owslib [label="OWSlib"]
+			mapscript [label="MapScript"]
+			geopy [label="GeoPy"]
+			qgis [label="QGIS"]
+		}
+
+		// input
+		edge [color=red, label ="in", fontsize=9]
+		prop_ws -> geopy
+		ows -> owslib
+		ows -> mapscript        
+		ows -> qgis
+		shapefile -> qgis
+		shapefile -> mapscript
+
+		// output
+		edge [color=blue, label="out"]
+		qgis -> shapefile
+		qgis -> postgis
+		qgis -> ows
+		qgis->raster
+		mapscript -> shapefile
+		mapscript -> raster
+		
+	}
+
+      
+Classification:
+
+.. class:: incremental
+
+* architecture: pure python / binary wrappers, *pythonicity*
+* application interaction: GUI / headless
+* input/output formats
+* performances and scalability (mostly unexplored)
+* documentation, maturity
 
 
 Building blocks: WebServices
@@ -28,10 +90,10 @@ Building blocks: OGC Web Services
 
 .. sidebar:: Libs
 
-	* owslib (client)
-	* mapnik (server)
-	* mapscript (both)
-	* qgis (both)
+	* OWSlib (client)
+	* Mapnik (server)
+	* Mapscript (both)
+	* QGIS (both)
 
 
 
@@ -58,14 +120,14 @@ OGC Web Services: WMS
 
        digraph g {
                 rankdir="LR"
-                
+
                 edge [fontcolor=red fontsize=9]
                 node [shape=box style="rounded"]
 
                 wmsc [label="WMS-client"]
                 wmsc2 [label="WMS-client"]
                 wmss [label="WMS-server" shape=box style=""]
-                
+
                 wmsc -> wmss [label="GetMap request"]
                 wmss -> wmsc2 [label="image response"]
 
@@ -138,7 +200,9 @@ http://myserver/geoserver/wfs?request=GetFeature&version=1.0.0&typeName=layer1&m
 OGC Web Services: WCS
 =====================
 
-Web Coverage Service Interface Standard (WCS) provides an interface allowing requests for geographical coverages across the web using platform-independent calls
+	Web Coverage Service Interface Standard (WCS) provides an interface allowing requests for geographical coverages across the web using platform-independent calls
+
+.. class:: incremental
 
 Operations:
 
@@ -160,14 +224,25 @@ Note: at least one time or bbox parameter is needed
 OGC Web Services: CSW
 =====================
 
-Catalogue Service
+	Catalogue Service
+
+.. class:: incremental
+
 
 * defines common interfaces to discover, browse, query and manage metadata about data, services, and other potential resources
 * defines a query language (similar to the SQL "Where Clause") to be supported by all OGC Catalogue Interfaces in order to support search interoperability
 * common queryable elements - request (subject, title, abstract, anytext (1), format, identifier, modified, type, boundingbox, CRS...)
 * core returnable properties -response (title, creator, subject, description, publisher, contributor, date, type...)
 
+
+
+
+OGC Web Services: CSW operations
+================================
+
 Operations:
+
+.. class:: incremental
 
 * GetCapabilities
 * DescribeRecord
@@ -196,10 +271,10 @@ OGC Web Services: WPS
 Web Processing Server provides rules for standardizing how inputs and outputs (requests and responses) for geospatial processing services
 
 .. sidebar:: Libs
-	
+
 	* pyWPS
 
-	
+
 Building blocks - Web Services: GeoNames
 ========================================
 
@@ -211,6 +286,8 @@ GeoNames: Web Services
 ======================
 
 Most notably:
+
+
 
 * geocoding
 * reverse geocoding
@@ -278,7 +355,7 @@ Building blocks: QGIS
 	:scale: 20%
 	:align: right
 
-QGIS (Quantum GIS) is a *C++ Qt* cross-platform GIS desktop application with vector editing 
+QGIS (Quantum GIS) is a *C++ Qt* cross-platform GIS desktop application with vector editing
 capabilities and python scripting support.
 
 
@@ -296,6 +373,7 @@ QGIS: standalone headless
 
 .. sourcecode:: python
 
+	>>> # Application init
 	>>> from qgis.gui import *
 	>>> from qgis.core import *
 	>>> QgsApplication.setPrefixPath("/usr", True)
@@ -303,6 +381,9 @@ QGIS: standalone headless
 	>>> vlayer = QgsVectorLayer("regioni.shp", "regioni", "ogr")
 	>>> vlayer.isValid()
 	True
+	>>> # Add layer to registry
+        >>> QgsMapLayerRegistry.instance().addMapLayer(vlayer)
+        <qgis.core.QgsVectorLayer object at 0x13be270>
 
 
 
@@ -313,8 +394,7 @@ QGIS: standalone (render)
 
 .. sourcecode:: python
 
-	>>> QgsMapLayerRegistry.instance().addMapLayer(vlayer)
-	<qgis.core.QgsVectorLayer object at 0x13be270>
+	>>> # GUI setup
 	>>> from PyQt4.QtGui import *
 	>>> from PyQt4.QtCore import *
 	>>> img = QImage(QSize(800,600), QImage.Format_ARGB32_Premultiplied)
@@ -329,10 +409,6 @@ QGIS: standalone (render)
 	>>> rect.scale(1.1)
 	>>> render.setExtent(rect)
 	>>> render.setOutputSize(img.size(), img.logicalDpiX())
-	>>> img.size()
-	PyQt4.QtCore.QSize(800, 600)
-	>>> p.isActive()
-	True
 	>>> render.render(p)
 	>>> p.end()
 	True
@@ -360,7 +436,7 @@ QGIS: standalone GUI
 
 	digraph g {
 		node [shape=box style=rounded]
-		
+
 		"GUI design w. QtDesigner" -> "Connect GUI events w. python code"
 	}
 
@@ -371,16 +447,18 @@ QGIS standalone GUI less is more
 	Minimal example: shapefile viewer
 
 .. sourcecode:: python
-	
+
 	>>> from PyQt4 import QtGui, QtCore
 	>>> import sys, os
 	>>> from qgis import core, gui
-
+	>>> # QGIS application init
 	>>> core.QgsApplication.setPrefixPath('/usr', True)
 	>>> core.QgsApplication.initQgis()
 	>>> app = QtGui.QApplication(sys.argv)
-
+        >>> # Layer loading and canvas init
 	>>> l = core.QgsVectorLayer(sys.argv[1], os.path.basename(sys.argv[1]), 'ogr')
+	>>> l.isValid()
+	True
 	>>> canvas = gui.QgsMapCanvas()
 	>>> canvas.resize(800,600)
 	>>> core.QgsMapLayerRegistry.instance().addMapLayer(l)
@@ -391,7 +469,7 @@ QGIS standalone GUI less is more
 	>>> retval = app.exec_()
 	>>> core.QgsApplication.exitQgis()
 	>>> sys.exit(retval)
-		
+
 
 
 
@@ -401,7 +479,7 @@ QGIS: plugins
 	Powerful extensions to QGIS! Download from http://pyqgis.org
 
 * start from a barebone plugin or use the `Plugin builder <http://www.dimitrisk.gr/qgis/creator/>`_
-* create a GUI with *QtDesigner* 
+* create a GUI with *QtDesigner*
 * connect GUI events with QGIS code
 * control QGIS application from python code
 * see: QGIS APIs http://qgis.org/api/
@@ -410,7 +488,7 @@ QGIS: plugins
 Geopy
 ==========================
 
-    Geopy (`<http://code.google.com/p/geopy/>`_) provides an interface to external **geocoding** and **reverse geocoding**  *webservices* 
+    Geopy (`<http://code.google.com/p/geopy/>`_) provides an interface to external **geocoding** and **reverse geocoding**  *webservices*
 
 
 Providers:
@@ -641,6 +719,60 @@ pyWPS
 
 GRASS
 =====
+    Powerful **raster** GIS analysis (mixed: *C*, *Python* etc.)
+
+* GRASS Python scripting library
+* GRASS ctypes bindings (low level GRASS library calls)
+
+ .. image:: images/grasslogo_vector_small.png
+    :align: right
+
+* has a lot of environment requirements
+* difficult to configure for an headless use
+* http://grass.osgeo.org/programming6/pythonlib.html
+* http://grass.osgeo.org/grass64/manuals/html64_user/index.html
+
+
+GRASS: scripting
+================
+
+
+.. sourcecode:: python
+
+    import sys, os
+
+    GISBASE = '/usr/lib/grass64/'
+    wd = os.path.dirname(os.path.realpath(__file__))
+
+    sys.path.append( GISBASE + 'etc/python/' )
+    os.environ['GISBASE'] = GISBASE
+    os.environ['GISRC'] = '/home/' + os.environ['USER'] + '/.grassrc6'
+    os.environ['PATH'] = os.environ['PATH'] + ':' + GISBASE + 'scripts/'
+    os.environ['PATH'] = os.environ['PATH'] + ':' + GISBASE + 'bin/'
+
+    import grass.script as grass
+
+    print grass.gisenv()
+
+    print wd + '/../data/regioni.shp'
+    print grass.run_command('v.in.ogr -l', dsn = wd + '/../data/regioni.shp')
+
+
+GRASS: ctypes
+=============
+
+.. sourcecode:: bash
+
+    $ export LD_LIBRARY_PATH='/usr/lib/grass64/lib/'
+
+.. class:: handout
+
+    Ctypes reads LD_LIBRARY_PATH on python interpreter startup: non way to set this from the script.
+
+.. sourcecode:: python
+
+    from ctypes import *
+    cgrass.G__gisinit()
 
 
 Links
@@ -648,6 +780,9 @@ Links
 
 * QGIS
 	* http://www.qgis.org/wiki/Python_Bindings
+	* http://www.qgis.org/pyqgis-cookbook/
 	* http://desktopgisbook.com/Creating_a_Standalone_GIS_Application_1
 	* http://www.dimitrisk.gr/qgis/creator/
+
+
 

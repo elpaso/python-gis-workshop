@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from qgis.gui import *
 from qgis.core import *
@@ -6,7 +7,7 @@ QgsApplication.initQgis()
 
 import os
 
-wd = os.getcwd()
+wd = os.path.dirname(__file__)
 
 vlayer = QgsVectorLayer(wd + "/../data/regioni.shp", "regioni", "ogr")
 vlayer.isValid()

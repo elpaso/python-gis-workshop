@@ -117,6 +117,18 @@
 
 
 </div>
+<div class="slide" id="building-blocks-overview">
+<h1>Building blocks: overview</h1>
+<img alt="images/lib_schema.png" src="images/lib_schema.png" />
+<p>Classification:</p>
+<ul class="incremental simple">
+<li>architecture: pure python / binary wrappers, <em>pythonicity</em></li>
+<li>application interaction: GUI / headless</li>
+<li>input/output formats</li>
+<li>performances and scalability (mostly unexplored)</li>
+<li>documentation, maturity</li>
+</ul>
+</div>
 <div class="slide" id="building-blocks-webservices">
 <h1>Building blocks: WebServices</h1>
 <p>Only a selection from an huge set:</p>
@@ -132,10 +144,10 @@
 <div class="sidebar">
 <p class="first sidebar-title">Libs</p>
 <ul class="last simple">
-<li>owslib (client)</li>
-<li>mapnik (server)</li>
-<li>mapscript (both)</li>
-<li>qgis (both)</li>
+<li>OWSlib (client)</li>
+<li>Mapnik (server)</li>
+<li>Mapscript (both)</li>
+<li>QGIS (both)</li>
 </ul>
 </div>
 <p>Open Geospatial Consortium defines the following standards for geospatial web services (OWS):</p>
@@ -208,8 +220,9 @@
 </div>
 <div class="slide" id="ogc-web-services-wcs">
 <h1>OGC Web Services: WCS</h1>
-<p>Web Coverage Service Interface Standard (WCS) provides an interface allowing requests for geographical coverages across the web using platform-independent calls</p>
-<p>Operations:</p>
+<blockquote>
+Web Coverage Service Interface Standard (WCS) provides an interface allowing requests for geographical coverages across the web using platform-independent calls</blockquote>
+<p class="incremental">Operations:</p>
 <ul class="simple">
 <li>GetCapabilities</li>
 <li>DescribeCoverage</li>
@@ -225,15 +238,19 @@
 </div>
 <div class="slide" id="ogc-web-services-csw">
 <h1>OGC Web Services: CSW</h1>
-<p>Catalogue Service</p>
-<ul class="simple">
+<blockquote>
+Catalogue Service</blockquote>
+<ul class="incremental simple">
 <li>defines common interfaces to discover, browse, query and manage metadata about data, services, and other potential resources</li>
 <li>defines a query language (similar to the SQL &quot;Where Clause&quot;) to be supported by all OGC Catalogue Interfaces in order to support search interoperability</li>
 <li>common queryable elements - request (subject, title, abstract, anytext (1), format, identifier, modified, type, boundingbox, CRS...)</li>
 <li>core returnable properties -response (title, creator, subject, description, publisher, contributor, date, type...)</li>
 </ul>
+</div>
+<div class="slide" id="ogc-web-services-csw-operations">
+<h1>OGC Web Services: CSW operations</h1>
 <p>Operations:</p>
-<ul class="simple">
+<ul class="incremental simple">
 <li>GetCapabilities</li>
 <li>DescribeRecord</li>
 <li>GetDomain (*)</li>
@@ -346,21 +363,24 @@ capabilities and python scripting support.</p>
 <h1>QGIS: standalone headless</h1>
 <blockquote>
 Loading a vector layer</blockquote>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">qgis.gui</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="c"># Application init</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">qgis.gui</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">QgsApplication</span><span class="o">.</span><span class="n">setPrefixPath</span><span class="p">(</span><span class="s">&quot;/usr&quot;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">QgsApplication</span><span class="o">.</span><span class="n">initQgis</span><span class="p">()</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">vlayer</span> <span class="o">=</span> <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="s">&quot;regioni.shp&quot;</span><span class="p">,</span> <span class="s">&quot;regioni&quot;</span><span class="p">,</span> <span class="s">&quot;ogr&quot;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">vlayer</span><span class="o">.</span><span class="n">isValid</span><span class="p">()</span>
 <span class="bp">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c"># Add layer to registry</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">QgsMapLayerRegistry</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">addMapLayer</span><span class="p">(</span><span class="n">vlayer</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">qgis</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">QgsVectorLayer</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x13be270</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <div class="slide" id="qgis-standalone-render">
 <h1>QGIS: standalone (render)</h1>
 <blockquote>
 Rendering</blockquote>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">QgsMapLayerRegistry</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">addMapLayer</span><span class="p">(</span><span class="n">vlayer</span><span class="p">)</span>
-<span class="o">&lt;</span><span class="n">qgis</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">QgsVectorLayer</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x13be270</span><span class="o">&gt;</span>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="c"># GUI setup</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">PyQt4.QtGui</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">PyQt4.QtCore</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">img</span> <span class="o">=</span> <span class="n">QImage</span><span class="p">(</span><span class="n">QSize</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span><span class="mi">600</span><span class="p">),</span> <span class="n">QImage</span><span class="o">.</span><span class="n">Format_ARGB32_Premultiplied</span><span class="p">)</span>
@@ -375,10 +395,6 @@ Rendering</blockquote>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">rect</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">1.1</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">render</span><span class="o">.</span><span class="n">setExtent</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">render</span><span class="o">.</span><span class="n">setOutputSize</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">img</span><span class="o">.</span><span class="n">logicalDpiX</span><span class="p">())</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
-<span class="n">PyQt4</span><span class="o">.</span><span class="n">QtCore</span><span class="o">.</span><span class="n">QSize</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span><span class="o">.</span><span class="n">isActive</span><span class="p">()</span>
-<span class="bp">True</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">render</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">p</span><span class="o">.</span><span class="n">end</span><span class="p">()</span>
 <span class="bp">True</span>
@@ -409,12 +425,14 @@ Minimal example: shapefile viewer</blockquote>
 <div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">PyQt4</span> <span class="kn">import</span> <span class="n">QtGui</span><span class="p">,</span> <span class="n">QtCore</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">qgis</span> <span class="kn">import</span> <span class="n">core</span><span class="p">,</span> <span class="n">gui</span>
-
+<span class="o">&gt;&gt;&gt;</span> <span class="c"># QGIS application init</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">core</span><span class="o">.</span><span class="n">QgsApplication</span><span class="o">.</span><span class="n">setPrefixPath</span><span class="p">(</span><span class="s">&#39;/usr&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">core</span><span class="o">.</span><span class="n">QgsApplication</span><span class="o">.</span><span class="n">initQgis</span><span class="p">()</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">app</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
-
+<span class="o">&gt;&gt;&gt;</span> <span class="c"># Layer loading and canvas init</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">l</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">QgsVectorLayer</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="s">&#39;ogr&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">l</span><span class="o">.</span><span class="n">isValid</span><span class="p">()</span>
+<span class="bp">True</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">canvas</span> <span class="o">=</span> <span class="n">gui</span><span class="o">.</span><span class="n">QgsMapCanvas</span><span class="p">()</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">canvas</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span><span class="mi">600</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">core</span><span class="o">.</span><span class="n">QgsMapLayerRegistry</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">addMapLayer</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
@@ -616,7 +634,7 @@ A library to consume OGC(TM) web services.</blockquote>
 <div class="slide" id="mapscript">
 <h1>Mapscript</h1>
 <blockquote>
-Python bindings to <strong>UMN MapServer</strong> (<em>C++</em>)</blockquote>
+Python bindings to <strong>UMN MapServer</strong> (<em>C</em>)</blockquote>
 <ul class="simple">
 <li>complete bindings: full access to MapServer power</li>
 <li>not very <em>pythonic</em></li>
@@ -630,7 +648,7 @@ Python bindings to <strong>UMN MapServer</strong> (<em>C++</em>)</blockquote>
 <h1>Mapscript: usage</h1>
 <div class="sidebar">
 <p class="first sidebar-title">Hate</p>
-<p class="last">I hate mapfiles :)</p>
+<p class="last">I hate mapfiles ;)</p>
 </div>
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">mapscript</span>
 <span class="nb">map</span> <span class="o">=</span> <span class="n">mapscript</span><span class="o">.</span><span class="n">mapObj</span><span class="p">(</span>  <span class="p">)</span>
@@ -664,6 +682,51 @@ Python bindings to <strong>UMN MapServer</strong> (<em>C++</em>)</blockquote>
 </div>
 <div class="slide" id="grass">
 <h1>GRASS</h1>
+<blockquote>
+Powerful <strong>raster</strong> GIS analysis (mixed: <em>C</em>, <em>Python</em> etc.)</blockquote>
+<ul class="simple">
+<li>GRASS Python scripting library</li>
+<li>GRASS ctypes bindings (low level GRASS library calls)</li>
+</ul>
+<blockquote>
+<img alt="images/grasslogo_vector_small.png" class="align-right" src="images/grasslogo_vector_small.png" />
+</blockquote>
+<ul class="simple">
+<li>has a lot of environment requirements</li>
+<li>difficult to configure for an headless use</li>
+<li><a class="reference external" href="http://grass.osgeo.org/programming6/pythonlib.html">http://grass.osgeo.org/programming6/pythonlib.html</a></li>
+<li><a class="reference external" href="http://grass.osgeo.org/grass64/manuals/html64_user/index.html">http://grass.osgeo.org/grass64/manuals/html64_user/index.html</a></li>
+</ul>
+</div>
+<div class="slide" id="grass-scripting">
+<h1>GRASS: scripting</h1>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+
+<span class="n">GISBASE</span> <span class="o">=</span> <span class="s">&#39;/usr/lib/grass64/&#39;</span>
+<span class="n">wd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">GISBASE</span> <span class="o">+</span> <span class="s">&#39;etc/python/&#39;</span> <span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;GISBASE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">GISBASE</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;GISRC&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;/home/&#39;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;USER&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;/.grassrc6&#39;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;PATH&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;PATH&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;:&#39;</span> <span class="o">+</span> <span class="n">GISBASE</span> <span class="o">+</span> <span class="s">&#39;scripts/&#39;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;PATH&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;PATH&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;:&#39;</span> <span class="o">+</span> <span class="n">GISBASE</span> <span class="o">+</span> <span class="s">&#39;bin/&#39;</span>
+
+<span class="kn">import</span> <span class="nn">grass.script</span> <span class="kn">as</span> <span class="nn">grass</span>
+
+<span class="k">print</span> <span class="n">grass</span><span class="o">.</span><span class="n">gisenv</span><span class="p">()</span>
+
+<span class="k">print</span> <span class="n">wd</span> <span class="o">+</span> <span class="s">&#39;/../data/regioni.shp&#39;</span>
+<span class="k">print</span> <span class="n">grass</span><span class="o">.</span><span class="n">run_command</span><span class="p">(</span><span class="s">&#39;v.in.ogr -l&#39;</span><span class="p">,</span> <span class="n">dsn</span> <span class="o">=</span> <span class="n">wd</span> <span class="o">+</span> <span class="s">&#39;/../data/regioni.shp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="slide" id="grass-ctypes">
+<h1>GRASS: ctypes</h1>
+<div class="highlight"><pre><span class="nv">$ </span><span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="s1">&#39;/usr/lib/grass64/lib/&#39;</span>
+</pre></div>
+<p class="handout">Ctypes reads LD_LIBRARY_PATH on python interpreter startup: non way to set this from the script.</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">cgrass</span><span class="o">.</span><span class="n">G__gisinit</span><span class="p">()</span>
+</pre></div>
 </div>
 <div class="slide" id="links">
 <h1>Links</h1>
@@ -672,6 +735,7 @@ Python bindings to <strong>UMN MapServer</strong> (<em>C++</em>)</blockquote>
 <dt>QGIS</dt>
 <dd><ul class="first last simple">
 <li><a class="reference external" href="http://www.qgis.org/wiki/Python_Bindings">http://www.qgis.org/wiki/Python_Bindings</a></li>
+<li><a class="reference external" href="http://www.qgis.org/pyqgis-cookbook/">http://www.qgis.org/pyqgis-cookbook/</a></li>
 <li><a class="reference external" href="http://desktopgisbook.com/Creating_a_Standalone_GIS_Application_1">http://desktopgisbook.com/Creating_a_Standalone_GIS_Application_1</a></li>
 <li><a class="reference external" href="http://www.dimitrisk.gr/qgis/creator/">http://www.dimitrisk.gr/qgis/creator/</a></li>
 </ul>
