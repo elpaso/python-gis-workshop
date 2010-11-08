@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils 0.6: http://docutils.sourceforge.net/" />
+<meta name="generator" content="Docutils 0.7: http://docutils.sourceforge.net/" />
 <meta name="version" content="S5 1.1" />
 <title>Developing Geospatial software with Python</title>
 <style type="text/css">
@@ -126,7 +126,7 @@
 <li>application interaction: GUI / headless</li>
 <li>input/output formats</li>
 <li>performances and scalability (mostly unexplored)</li>
-<li>documentation, maturity</li>
+<li>documentation, maturity, support, community</li>
 </ul>
 </div>
 <div class="slide" id="building-blocks-webservices">
@@ -180,7 +180,7 @@
 </div>
 <div class="slide" id="ogc-web-services-wms-getmap-operation">
 <h1>OGC Web Services: WMS GetMap operation</h1>
-<img align="right" alt="images/duomo.jpg" class="align-right" src="images/duomo.jpg" />
+<img alt="images/duomo.jpg" class="align-right" src="images/duomo.jpg" />
 <p>main parameters: layers, styles, srs, bbox, width, height, format</p>
 <p>sample GetMap operation (output is an image):</p>
 <p><a class="reference external" href="http://wms.pcn.minambiente.it/cgi-bin/mapserv.exe?map=/ms_ogc/service/ortofoto_colore_06_f32.map&amp;layers=ortofoto_colore_06&amp;styles=&amp;srs=EPSG:32632&amp;format=image/jpeg&amp;request=GetMap&amp;bgcolor=0xFFFFFF&amp;height=300&amp;width=300&amp;version=1.1.1&amp;bbox=514832,5034338,515032,5034548&amp;exceptions=application/vnd.ogc.se_xml&amp;transparent=FALSE">http://wms.pcn.minambiente.it/cgi-bin/mapserv.exe?map=/ms_ogc/service/ortofoto_colore_06_f32.map&amp;layers=ortofoto_colore_06&amp;styles=&amp;srs=EPSG:32632&amp;format=image/jpeg&amp;request=GetMap&amp;bgcolor=0xFFFFFF&amp;height=300&amp;width=300&amp;version=1.1.1&amp;bbox=514832,5034338,515032,5034548&amp;exceptions=application/vnd.ogc.se_xml&amp;transparent=FALSE</a></p>
@@ -350,7 +350,7 @@ Via Guglielmo Oberdan, 123, 06034 Foligno Perugia, Italy
 </div>
 <div class="slide" id="building-blocks-qgis">
 <h1>Building blocks: QGIS</h1>
-<img align="right" alt="images/qgis_logo.png" class="align-right" src="images/qgis_logo.png" style="width: 156.8px; height: 167.6px;" />
+<img alt="images/qgis_logo.png" class="align-right" src="images/qgis_logo.png" style="width: 156.8px; height: 167.6px;" />
 <p>QGIS (Quantum GIS) is a <em>C++ Qt</em> cross-platform GIS desktop application with vector editing
 capabilities and python scripting support.</p>
 <ul class="incremental simple">
@@ -620,6 +620,9 @@ A library to consume OGC(TM) web services.</blockquote>
 </div>
 <div class="slide" id="mapnik">
 <h1>Mapnik</h1>
+<blockquote>
+Mapnik is a <em>C++</em> Toolkit for developing mapping applications.
+Above all Mapnik is about making beautiful maps. Suitable for both server and desktop.</blockquote>
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">mapnik</span>
 <span class="n">m</span> <span class="o">=</span> <span class="n">mapnik</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span><span class="mi">300</span><span class="p">,</span><span class="s">&quot;+proj=latlong +datum=WGS84&quot;</span><span class="p">)</span>
 <span class="n">m</span><span class="o">.</span><span class="n">background</span> <span class="o">=</span> <span class="n">mapnik</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="s">&#39;steelblue&#39;</span><span class="p">)</span>
@@ -688,43 +691,58 @@ Powerful <strong>raster</strong> GIS analysis (mixed: <em>C</em>, <em>Python</em
 <li>GRASS Python scripting library</li>
 <li>GRASS ctypes bindings (low level GRASS library calls)</li>
 </ul>
-<blockquote>
 <img alt="images/grasslogo_vector_small.png" class="align-right" src="images/grasslogo_vector_small.png" />
-</blockquote>
 <ul class="simple">
-<li>has a lot of environment requirements</li>
+<li>lot of environment requirements</li>
 <li>difficult to configure for an headless use</li>
-<li><a class="reference external" href="http://grass.osgeo.org/programming6/pythonlib.html">http://grass.osgeo.org/programming6/pythonlib.html</a></li>
-<li><a class="reference external" href="http://grass.osgeo.org/grass64/manuals/html64_user/index.html">http://grass.osgeo.org/grass64/manuals/html64_user/index.html</a></li>
 </ul>
 </div>
 <div class="slide" id="grass-scripting">
 <h1>GRASS: scripting</h1>
+<p>Environment setup</p>
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
 
 <span class="n">GISBASE</span> <span class="o">=</span> <span class="s">&#39;/usr/lib/grass64/&#39;</span>
 <span class="n">wd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span>
 
+<span class="c"># Setup environment</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">GISBASE</span> <span class="o">+</span> <span class="s">&#39;etc/python/&#39;</span> <span class="p">)</span>
 <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;GISBASE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">GISBASE</span>
 <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;GISRC&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;/home/&#39;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;USER&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;/.grassrc6&#39;</span>
 <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;PATH&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;PATH&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;:&#39;</span> <span class="o">+</span> <span class="n">GISBASE</span> <span class="o">+</span> <span class="s">&#39;scripts/&#39;</span>
 <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;PATH&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;PATH&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;:&#39;</span> <span class="o">+</span> <span class="n">GISBASE</span> <span class="o">+</span> <span class="s">&#39;bin/&#39;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;LD_LIBRARY_PATH&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">GISBASE</span> <span class="o">+</span> <span class="s">&#39;lib/&#39;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;GIS_LOCK&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">()</span>
 
 <span class="kn">import</span> <span class="nn">grass.script</span> <span class="kn">as</span> <span class="nn">grass</span>
-
-<span class="k">print</span> <span class="n">grass</span><span class="o">.</span><span class="n">gisenv</span><span class="p">()</span>
-
-<span class="k">print</span> <span class="n">wd</span> <span class="o">+</span> <span class="s">&#39;/../data/regioni.shp&#39;</span>
-<span class="k">print</span> <span class="n">grass</span><span class="o">.</span><span class="n">run_command</span><span class="p">(</span><span class="s">&#39;v.in.ogr -l&#39;</span><span class="p">,</span> <span class="n">dsn</span> <span class="o">=</span> <span class="n">wd</span> <span class="o">+</span> <span class="s">&#39;/../data/regioni.shp&#39;</span><span class="p">)</span>
 </pre></div>
+</div>
+<div class="slide" id="grass-scripting-2">
+<h1>GRASS: scripting (2)</h1>
+<p>Running commands</p>
+<div class="highlight"><pre><span class="k">print</span> <span class="n">grass</span><span class="o">.</span><span class="n">run_command</span><span class="p">(</span><span class="s">&#39;g.version&#39;</span><span class="p">,</span> <span class="n">flags</span> <span class="o">=</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">grass</span><span class="o">.</span><span class="n">run_command</span><span class="p">(</span><span class="s">&#39;v.in.ogr&#39;</span><span class="p">,</span> <span class="n">flags</span> <span class="o">=</span> <span class="s">&#39;l&#39;</span><span class="p">,</span> <span class="n">dsn</span> <span class="o">=</span> <span class="n">wd</span> <span class="o">+</span> <span class="s">&#39;/../data/regioni.shp&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">grass</span><span class="o">.</span><span class="n">run_command</span><span class="p">(</span><span class="s">&#39;v.in.ogr&#39;</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="s">&#39;c&#39;</span><span class="p">,</span> <span class="n">layer</span> <span class="o">=</span> <span class="s">&#39;regioni&#39;</span><span class="p">,</span> <span class="n">location</span> <span class="o">=</span> <span class="s">&#39;regioni&#39;</span><span class="p">,</span> <span class="n">output</span> <span class="o">=</span> <span class="s">&#39;regioni&#39;</span><span class="p">,</span>  <span class="n">dsn</span> <span class="o">=</span> <span class="n">wd</span> <span class="o">+</span> <span class="s">&#39;/../data/regioni.shp&#39;</span><span class="p">)</span>
+<span class="c"># Set region resolution</span>
+<span class="k">print</span> <span class="n">grass</span><span class="o">.</span><span class="n">run_command</span><span class="p">(</span><span class="s">&#39;g.mapset&#39;</span><span class="p">,</span> <span class="n">mapset</span><span class="o">=</span><span class="s">&#39;PERMANENT&#39;</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s">&#39;regioni&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">grass</span><span class="o">.</span><span class="n">run_command</span><span class="p">(</span><span class="s">&#39;g.region&#39;</span><span class="p">,</span> <span class="n">res</span> <span class="o">=</span> <span class="mf">0.02</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">grass</span><span class="o">.</span><span class="n">run_command</span><span class="p">(</span><span class="s">&#39;g.list&#39;</span><span class="p">,</span>  <span class="nb">type</span> <span class="o">=</span> <span class="s">&#39;vect&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">grass</span><span class="o">.</span><span class="n">run_command</span><span class="p">(</span><span class="s">&#39;v.to.rast&#39;</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="s">&#39;regioni&#39;</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s">&#39;regioni&#39;</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s">&#39;cod_reg&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">grass</span><span class="o">.</span><span class="n">run_command</span><span class="p">(</span><span class="s">&#39;r.out.png&#39;</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="s">&#39;regioni&#39;</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span> <span class="n">wd</span> <span class="o">+</span> <span class="s">&#39;/../images/regioni_grass.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="slide" id="grass-result">
+<h1>GRASS: result</h1>
+<!-- image:a images/regioni_grass.png
+:scale: 50% -->
 </div>
 <div class="slide" id="grass-ctypes">
 <h1>GRASS: ctypes</h1>
 <div class="highlight"><pre><span class="nv">$ </span><span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="s1">&#39;/usr/lib/grass64/lib/&#39;</span>
 </pre></div>
-<p class="handout">Ctypes reads LD_LIBRARY_PATH on python interpreter startup: non way to set this from the script.</p>
+<p class="handout">Ctypes reads LD_LIBRARY_PATH at python interpreter startup: non way to set this from the script.</p>
 <div class="highlight"><pre><span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">cgrass</span> <span class="o">=</span> <span class="n">CDLL</span><span class="p">(</span><span class="s">&quot;libgrass_gis.so&quot;</span><span class="p">)</span>
 <span class="n">cgrass</span><span class="o">.</span><span class="n">G__gisinit</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -738,6 +756,23 @@ Powerful <strong>raster</strong> GIS analysis (mixed: <em>C</em>, <em>Python</em
 <li><a class="reference external" href="http://www.qgis.org/pyqgis-cookbook/">http://www.qgis.org/pyqgis-cookbook/</a></li>
 <li><a class="reference external" href="http://desktopgisbook.com/Creating_a_Standalone_GIS_Application_1">http://desktopgisbook.com/Creating_a_Standalone_GIS_Application_1</a></li>
 <li><a class="reference external" href="http://www.dimitrisk.gr/qgis/creator/">http://www.dimitrisk.gr/qgis/creator/</a></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>GRASS</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://grass.osgeo.org/programming6/pythonlib.html">http://grass.osgeo.org/programming6/pythonlib.html</a></li>
+<li><a class="reference external" href="http://grass.osgeo.org/grass64/manuals/html64_user/index.html">http://grass.osgeo.org/grass64/manuals/html64_user/index.html</a></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Mapnik</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://mapnik.org">http://mapnik.org</a></li>
 </ul>
 </dd>
 </dl>

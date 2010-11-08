@@ -18,6 +18,18 @@ Building blocks: overview
 	digraph g {
 
 		node [shape=box]
+		subgraph cluster_libs {
+			label="Libraries"
+			style=filled
+			color=lightgrey
+			node [style=filled,color=white]
+			owslib [label="OWSlib"]
+			mapscript [label="MapScript"]
+			geopy [label="GeoPy"]
+			qgis [label="QGIS"]
+            grass [label="GRASS"]
+            mapnik [label="Mapnik"]
+		}
 
 		subgraph cluster_formats {
 			label="Data providers"
@@ -30,16 +42,6 @@ Building blocks: overview
 		}
 
 
-		subgraph cluster_libs {
-			label="Libraries"
-			style=filled
-			color=lightgrey
-			node [style=filled,color=white]
-			owslib [label="OWSlib"]
-			mapscript [label="MapScript"]
-			geopy [label="GeoPy"]
-			qgis [label="QGIS"]
-		}
 
 		// input
 		edge [color=red, label ="in", fontsize=9]
@@ -49,15 +51,31 @@ Building blocks: overview
 		ows -> qgis
 		shapefile -> qgis
 		shapefile -> mapscript
-
+        shapefile -> grass
+        ows -> grass
+        postgis -> grass
+        postgis -> mapscript
+        postgis -> qgis
+        
 		// output
 		edge [color=blue, label="out"]
 		qgis -> shapefile
 		qgis -> postgis
 		qgis -> ows
-		qgis->raster
+		qgis -> raster
 		mapscript -> shapefile
 		mapscript -> raster
+        mapscript -> postgis
+        mapscript -> ows
+    
+        grass -> raster
+        grass -> shapefile
+        grass -> postgis
+        grass -> raster
+
+        mapnik -> ows
+        mapnik -> raster
+        
 		
 	}
 
@@ -70,7 +88,7 @@ Classification:
 * application interaction: GUI / headless
 * input/output formats
 * performances and scalability (mostly unexplored)
-* documentation, maturity
+* documentation, maturity, support, community
 
 
 Building blocks: WebServices
@@ -419,7 +437,7 @@ QGIS: standalone (render)
 QGIS: result
 ============
 
-.. image :: images/render.png
+.. image:: images/render.png
 	:scale: 80%
 
 
@@ -648,19 +666,36 @@ OWSLib: result
 Mapnik
 ======
 
+    Mapnik is a *C++* Toolkit for developing mapping applications. 
+    Above all Mapnik is about making beautiful maps. Suitable for both server and desktop.
+
+.. sidebar:: Pros & Cons
+        
+        * Itegrated WMS server
+        * Lack of documentation  
+        * XML configuration for styles
+        * No SLD support
+ 
 
 .. sourcecode:: python
 
-
     import mapnik
-    m = mapnik.Map(600,300,"+proj=latlong +datum=WGS84")
+    m = mapnik.Map(300,300,"+proj=latlong +datum=WGS84")
     m.background = mapnik.Color('steelblue')
     s = mapnik.Style()
-    r=mapnik.Rule()
+    r = mapnik.Rule()
     r.symbols.append(mapnik.PolygonSymbolizer(mapnik.Color('#f2eff9')))
     r.symbols.append(mapnik.LineSymbolizer(mapnik.Color('rgb(50%,50%,50%)'),0.1))
     s.rules.append(r)
     m.append_style('My Style',s)
+    lyr = mapnik.Layer('world',"+proj=latlong +datum=WGS84")
+    lyr.datasource = mapnik.Shapefile(file = '../data/regioni')
+    lyr.styles.append('My Style')
+    m.layers.append(lyr)
+    m.zoom_to_box(lyr.envelope())
+    mapnik.render_to_file(m, '../images/regioni_mapnik.png', 'png256')
+        
+
 
 Mapscript
 =========
@@ -724,18 +759,17 @@ GRASS
 * GRASS Python scripting library
 * GRASS ctypes bindings (low level GRASS library calls)
 
- .. image:: images/grasslogo_vector_small.png
+.. image :: images/grasslogo_vector_small.png
     :align: right
 
-* has a lot of environment requirements
+* lot of environment requirements
 * difficult to configure for an headless use
-* http://grass.osgeo.org/programming6/pythonlib.html
-* http://grass.osgeo.org/grass64/manuals/html64_user/index.html
 
 
 GRASS: scripting
 ================
 
+Environment setup
 
 .. sourcecode:: python
 
@@ -744,18 +778,40 @@ GRASS: scripting
     GISBASE = '/usr/lib/grass64/'
     wd = os.path.dirname(os.path.realpath(__file__))
 
+    # Setup environment
     sys.path.append( GISBASE + 'etc/python/' )
     os.environ['GISBASE'] = GISBASE
     os.environ['GISRC'] = '/home/' + os.environ['USER'] + '/.grassrc6'
     os.environ['PATH'] = os.environ['PATH'] + ':' + GISBASE + 'scripts/'
     os.environ['PATH'] = os.environ['PATH'] + ':' + GISBASE + 'bin/'
+    os.environ['LD_LIBRARY_PATH'] = GISBASE + 'lib/'
+    os.environ['GIS_LOCK'] = "%s" % os.getpid()
 
     import grass.script as grass
 
-    print grass.gisenv()
+GRASS: scripting (2)
+====================
 
-    print wd + '/../data/regioni.shp'
-    print grass.run_command('v.in.ogr -l', dsn = wd + '/../data/regioni.shp')
+Running commands
+
+.. sourcecode:: python
+
+    print grass.run_command('g.version', flags = 'r')
+    print grass.run_command('v.in.ogr', flags = 'l', dsn = wd + '/../data/regioni.shp')
+    print grass.run_command('v.in.ogr', flags='c', layer = 'regioni', location = 'regioni', output = 'regioni',  dsn = wd + '/../data/regioni.shp')
+    # Set region resolution
+    print grass.run_command('g.mapset', mapset='PERMANENT', location='regioni')
+    print grass.run_command('g.region', res = 0.02)
+    print grass.run_command('g.list',  type = 'vect')
+    print grass.run_command('v.to.rast', input='regioni', output='regioni', column='cod_reg')
+    print grass.run_command('r.out.png', input='regioni', output= wd + '/../images/regioni_grass.png')
+
+
+GRASS: result
+=============
+
+.. image:a images/regioni_grass.png
+    :scale: 50%
 
 
 GRASS: ctypes
@@ -767,12 +823,14 @@ GRASS: ctypes
 
 .. class:: handout
 
-    Ctypes reads LD_LIBRARY_PATH on python interpreter startup: non way to set this from the script.
+    Ctypes reads LD_LIBRARY_PATH at python interpreter startup: non way to set this from the script.
 
 .. sourcecode:: python
 
     from ctypes import *
+    cgrass = CDLL("libgrass_gis.so")
     cgrass.G__gisinit()
+
 
 
 Links
@@ -784,5 +842,10 @@ Links
 	* http://desktopgisbook.com/Creating_a_Standalone_GIS_Application_1
 	* http://www.dimitrisk.gr/qgis/creator/
 
+* GRASS
+    * http://grass.osgeo.org/programming6/pythonlib.html
+    * http://grass.osgeo.org/grass64/manuals/html64_user/index.html
 
+* Mapnik
+    * http://mapnik.org
 

@@ -32,5 +32,5 @@ print grass.run_command('g.mapset', mapset='PERMANENT', location='regioni')
 print grass.run_command('g.region', res = 0.02)
 print grass.run_command('g.list',  type = 'vect')
 print grass.run_command('v.to.rast', input='regioni', output='regioni', column='cod_reg')
-
+print grass.run_command('r.out.png', input='regioni', output= wd + '/../images/regioni_grass.png')
 
