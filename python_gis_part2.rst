@@ -303,9 +303,15 @@ Building blocks - Web Services: GeoNames
 GeoNames: Web Services
 ======================
 
+.. sidebar :: GeoNames
+    
+    * License: CC
+    * REST, XML and JSON WSs
+    * *Premium* offer
+
 Most notably:
 
-
+.. class:: incremental
 
 * geocoding
 * reverse geocoding
@@ -560,7 +566,7 @@ Geopy: risultati multipli
 Geopy: reverse
 ==============
 
-    **svn** version required
+    **svn** version required for reverse functions
 
 .. sourcecode:: bash
 
@@ -669,13 +675,30 @@ Mapnik
     Mapnik is a *C++* Toolkit for developing mapping applications. 
     Above all Mapnik is about making beautiful maps. Suitable for both server and desktop.
 
+
+.. image:: images/mapnik-logo.png
+    :align: right
+
 .. sidebar:: Pros & Cons
         
-        * Itegrated WMS server
-        * Lack of documentation  
-        * XML configuration for styles
-        * No SLD support
- 
+    * Nice *utils* programs
+    * Rendering engine for OSM
+    * Itegrated WMS server
+    * Lack of documentation  
+    * XML configuration for styles
+    * No SLD support
+    
+
+Installation
+
+.. sourcecode:: bash
+
+    $ sudo apt-get install libmapnik0.7 mapnik-utils python-mapnik
+
+Installation from source is a nightmare: lot of dependencies
+
+Mapnik: python map
+==================
 
 .. sourcecode:: python
 
@@ -687,6 +710,11 @@ Mapnik
     r.symbols.append(mapnik.PolygonSymbolizer(mapnik.Color('#f2eff9')))
     r.symbols.append(mapnik.LineSymbolizer(mapnik.Color('rgb(50%,50%,50%)'),0.1))
     s.rules.append(r)
+    # Make PIEDMONT red
+    r = mapnik.Rule()
+    r.filter = mapnik.Filter("[regione] = 'PIEMONTE'")
+    r.symbols.append(mapnik.PolygonSymbolizer(mapnik.Color('#ff0000')))
+    s.rules.append(r)
     m.append_style('My Style',s)
     lyr = mapnik.Layer('world',"+proj=latlong +datum=WGS84")
     lyr.datasource = mapnik.Shapefile(file = '../data/regioni')
@@ -695,6 +723,72 @@ Mapnik
     m.zoom_to_box(lyr.envelope())
     mapnik.render_to_file(m, '../images/regioni_mapnik.png', 'png256')
         
+
+
+Mapnik: layer inspection
+========================
+
+    Can be useful for dynamic rules building
+
+.. sourcecode:: python
+
+    # .. continues from previous example
+    >>> feature = lyr.datasource.all_features()[0]
+    >>> for p in feature.attributes:
+    ...    p
+    ('boundingbo', u'')
+    ('cod_reg', 1)
+    ('cod_rip1', 11)
+    ('cod_rip2', 21)
+    ('gid', 1)
+    ('objectid', 1)
+    ('regione', u'PIEMONTE')
+    ('shape_area', 25388746287.599998)
+    ('shape_len', 1334295.0100499999)
+
+Mapnik: XML mapfile
+===================
+
+.. sourcecode:: xml
+
+    <?xml version="1.0" encoding="utf-8"?>
+    <!DOCTYPE Map>
+    <Map bgcolor="steelblue" srs="+proj=latlong +datum=WGS84">
+
+      <Style name="My Style">
+        <Rule>
+          <PolygonSymbolizer>
+            <CssParameter name="fill">#f2eff9</CssParameter>
+          </PolygonSymbolizer>
+          <LineSymbolizer>
+            <CssParameter name="stroke">rgb(50%,50%,50%)</CssParameter>
+            <CssParameter name="stroke-width">0.1</CssParameter>
+          </LineSymbolizer>
+        </Rule>
+        <Rule>
+            <Filter>[regione] = 'PIEMONTE'</Filter>
+          <PolygonSymbolizer>
+            <CssParameter name="fill">#ff0000</CssParameter>
+          </PolygonSymbolizer>
+        </Rule>
+      </Style>
+
+      <Layer name="regioni" srs="+proj=latlong +datum=WGS84">
+        <StyleName>My Style</StyleName>
+        <Datasource>
+          <Parameter name="type">shape</Parameter>
+          <Parameter name="file">../data/regioni</Parameter>
+        </Datasource>
+      </Layer>
+
+    </Map>    
+
+
+Mapnik: result
+==============
+
+.. image:: images/regioni_mapnik.png
+
 
 
 Mapscript
@@ -848,4 +942,4 @@ Links
 
 * Mapnik
     * http://mapnik.org
-
+    * http://code.google.com/p/mapnik-utils/

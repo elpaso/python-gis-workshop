@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map>
+<Map bgcolor="steelblue" srs="+proj=latlong +datum=WGS84">
+
+  <Style name="My Style">
+    <Rule>
+      <PolygonSymbolizer>
+        <CssParameter name="fill">#f2eff9</CssParameter>
+      </PolygonSymbolizer>
+      <LineSymbolizer>
+        <CssParameter name="stroke">rgb(50%,50%,50%)</CssParameter>
+        <CssParameter name="stroke-width">0.1</CssParameter>
+      </LineSymbolizer>
+    </Rule>
+    <Rule>
+        <Filter>[regione] = 'PIEMONTE'</Filter>
+      <PolygonSymbolizer>
+        <CssParameter name="fill">#ff0000</CssParameter>
+      </PolygonSymbolizer>
+    </Rule>
+  </Style>
+
+  <Layer name="regioni" srs="+proj=latlong +datum=WGS84">
+    <StyleName>My Style</StyleName>
+    <Datasource>
+      <Parameter name="type">shape</Parameter>
+      <Parameter name="file">../data/regioni</Parameter>
+    </Datasource>
+  </Layer>
+
+</Map>

@@ -289,8 +289,16 @@ onstraintlanguage=CQLTEXT&amp;constraint=&quot;csw:AnyText Like '%pollution%'&qu
 </div>
 <div class="slide" id="geonames-web-services">
 <h1>GeoNames: Web Services</h1>
+<div class="sidebar">
+<p class="first sidebar-title">GeoNames</p>
+<ul class="last simple">
+<li>License: CC</li>
+<li>REST, XML and JSON WSs</li>
+<li><em>Premium</em> offer</li>
+</ul>
+</div>
 <p>Most notably:</p>
-<ul class="simple">
+<ul class="incremental simple">
 <li>geocoding</li>
 <li>reverse geocoding</li>
 <li>place hierarchy</li>
@@ -502,7 +510,7 @@ Geopy (<a class="reference external" href="http://code.google.com/p/geopy/">http
 <div class="slide" id="geopy-reverse">
 <h1>Geopy: reverse</h1>
 <blockquote>
-<strong>svn</strong> version required</blockquote>
+<strong>svn</strong> version required for reverse functions</blockquote>
 <div class="highlight"><pre><span class="nv">$ </span>svn checkout http://geopy.googlecode.com/svn/branches/reverse-geocode geopy
 <span class="nv">$ </span><span class="nb">cd </span>geopy/
 <span class="nv">$ </span>sudo python setup.py install
@@ -623,16 +631,94 @@ A library to consume OGC(TM) web services.</blockquote>
 <blockquote>
 Mapnik is a <em>C++</em> Toolkit for developing mapping applications.
 Above all Mapnik is about making beautiful maps. Suitable for both server and desktop.</blockquote>
+<div class="sidebar">
+<p class="first sidebar-title">Pros &amp; Cons</p>
+<ul class="last simple">
+<li>Itegrated WMS server</li>
+<li>Lack of documentation</li>
+<li>XML configuration for styles</li>
+<li>No SLD support</li>
+</ul>
+</div>
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">mapnik</span>
-<span class="n">m</span> <span class="o">=</span> <span class="n">mapnik</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span><span class="mi">300</span><span class="p">,</span><span class="s">&quot;+proj=latlong +datum=WGS84&quot;</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">mapnik</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">300</span><span class="p">,</span><span class="s">&quot;+proj=latlong +datum=WGS84&quot;</span><span class="p">)</span>
 <span class="n">m</span><span class="o">.</span><span class="n">background</span> <span class="o">=</span> <span class="n">mapnik</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="s">&#39;steelblue&#39;</span><span class="p">)</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">mapnik</span><span class="o">.</span><span class="n">Style</span><span class="p">()</span>
-<span class="n">r</span><span class="o">=</span><span class="n">mapnik</span><span class="o">.</span><span class="n">Rule</span><span class="p">()</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">mapnik</span><span class="o">.</span><span class="n">Rule</span><span class="p">()</span>
 <span class="n">r</span><span class="o">.</span><span class="n">symbols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mapnik</span><span class="o">.</span><span class="n">PolygonSymbolizer</span><span class="p">(</span><span class="n">mapnik</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="s">&#39;#f2eff9&#39;</span><span class="p">)))</span>
 <span class="n">r</span><span class="o">.</span><span class="n">symbols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mapnik</span><span class="o">.</span><span class="n">LineSymbolizer</span><span class="p">(</span><span class="n">mapnik</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="s">&#39;rgb(50%,50%,50%)&#39;</span><span class="p">),</span><span class="mf">0.1</span><span class="p">))</span>
 <span class="n">s</span><span class="o">.</span><span class="n">rules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="c"># Make PIEDMONT red</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">mapnik</span><span class="o">.</span><span class="n">Rule</span><span class="p">()</span>
+<span class="n">r</span><span class="o">.</span><span class="n">filter</span> <span class="o">=</span> <span class="n">mapnik</span><span class="o">.</span><span class="n">Filter</span><span class="p">(</span><span class="s">&quot;[regione] = &#39;PIEMONTE&#39;&quot;</span><span class="p">)</span>
+<span class="n">r</span><span class="o">.</span><span class="n">symbols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mapnik</span><span class="o">.</span><span class="n">PolygonSymbolizer</span><span class="p">(</span><span class="n">mapnik</span><span class="o">.</span><span class="n">Color</span><span class="p">(</span><span class="s">&#39;#ff0000&#39;</span><span class="p">)))</span>
+<span class="n">s</span><span class="o">.</span><span class="n">rules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
 <span class="n">m</span><span class="o">.</span><span class="n">append_style</span><span class="p">(</span><span class="s">&#39;My Style&#39;</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+<span class="n">lyr</span> <span class="o">=</span> <span class="n">mapnik</span><span class="o">.</span><span class="n">Layer</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">,</span><span class="s">&quot;+proj=latlong +datum=WGS84&quot;</span><span class="p">)</span>
+<span class="n">lyr</span><span class="o">.</span><span class="n">datasource</span> <span class="o">=</span> <span class="n">mapnik</span><span class="o">.</span><span class="n">Shapefile</span><span class="p">(</span><span class="nb">file</span> <span class="o">=</span> <span class="s">&#39;../data/regioni&#39;</span><span class="p">)</span>
+<span class="n">lyr</span><span class="o">.</span><span class="n">styles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;My Style&#39;</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lyr</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">zoom_to_box</span><span class="p">(</span><span class="n">lyr</span><span class="o">.</span><span class="n">envelope</span><span class="p">())</span>
+<span class="n">mapnik</span><span class="o">.</span><span class="n">render_to_file</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="s">&#39;../images/regioni_mapnik.png&#39;</span><span class="p">,</span> <span class="s">&#39;png256&#39;</span><span class="p">)</span>
 </pre></div>
+</div>
+<div class="slide" id="mapnik-layer-inspection">
+<h1>Mapnik: layer inspection</h1>
+<blockquote>
+Can be useful for dynamic rules building</blockquote>
+<div class="highlight"><pre><span class="c"># .. continues from previous example</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">feature</span> <span class="o">=</span> <span class="n">lyr</span><span class="o">.</span><span class="n">datasource</span><span class="o">.</span><span class="n">all_features</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">feature</span><span class="o">.</span><span class="n">attributes</span><span class="p">:</span>
+<span class="o">...</span>    <span class="n">p</span>
+<span class="p">(</span><span class="s">&#39;boundingbo&#39;</span><span class="p">,</span> <span class="s">u&#39;&#39;</span><span class="p">)</span>
+<span class="p">(</span><span class="s">&#39;cod_reg&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">(</span><span class="s">&#39;cod_rip1&#39;</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="p">(</span><span class="s">&#39;cod_rip2&#39;</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
+<span class="p">(</span><span class="s">&#39;gid&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">(</span><span class="s">&#39;objectid&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">(</span><span class="s">&#39;regione&#39;</span><span class="p">,</span> <span class="s">u&#39;PIEMONTE&#39;</span><span class="p">)</span>
+<span class="p">(</span><span class="s">&#39;shape_area&#39;</span><span class="p">,</span> <span class="mf">25388746287.599998</span><span class="p">)</span>
+<span class="p">(</span><span class="s">&#39;shape_len&#39;</span><span class="p">,</span> <span class="mf">1334295.0100499999</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="slide" id="mapnik-xml-mapfile">
+<h1>Mapnik: XML mapfile</h1>
+<div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="cp">&lt;!DOCTYPE Map&gt;</span>
+<span class="nt">&lt;Map</span> <span class="na">bgcolor=</span><span class="s">&quot;steelblue&quot;</span> <span class="na">srs=</span><span class="s">&quot;+proj=latlong +datum=WGS84&quot;</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;Style</span> <span class="na">name=</span><span class="s">&quot;My Style&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;Rule&gt;</span>
+      <span class="nt">&lt;PolygonSymbolizer&gt;</span>
+        <span class="nt">&lt;CssParameter</span> <span class="na">name=</span><span class="s">&quot;fill&quot;</span><span class="nt">&gt;</span>#f2eff9<span class="nt">&lt;/CssParameter&gt;</span>
+      <span class="nt">&lt;/PolygonSymbolizer&gt;</span>
+      <span class="nt">&lt;LineSymbolizer&gt;</span>
+        <span class="nt">&lt;CssParameter</span> <span class="na">name=</span><span class="s">&quot;stroke&quot;</span><span class="nt">&gt;</span>rgb(50%,50%,50%)<span class="nt">&lt;/CssParameter&gt;</span>
+        <span class="nt">&lt;CssParameter</span> <span class="na">name=</span><span class="s">&quot;stroke-width&quot;</span><span class="nt">&gt;</span>0.1<span class="nt">&lt;/CssParameter&gt;</span>
+      <span class="nt">&lt;/LineSymbolizer&gt;</span>
+    <span class="nt">&lt;/Rule&gt;</span>
+    <span class="nt">&lt;Rule&gt;</span>
+        <span class="nt">&lt;Filter&gt;</span>[regione] = &#39;PIEMONTE&#39;<span class="nt">&lt;/Filter&gt;</span>
+      <span class="nt">&lt;PolygonSymbolizer&gt;</span>
+        <span class="nt">&lt;CssParameter</span> <span class="na">name=</span><span class="s">&quot;fill&quot;</span><span class="nt">&gt;</span>#ff0000<span class="nt">&lt;/CssParameter&gt;</span>
+      <span class="nt">&lt;/PolygonSymbolizer&gt;</span>
+    <span class="nt">&lt;/Rule&gt;</span>
+  <span class="nt">&lt;/Style&gt;</span>
+
+  <span class="nt">&lt;Layer</span> <span class="na">name=</span><span class="s">&quot;regioni&quot;</span> <span class="na">srs=</span><span class="s">&quot;+proj=latlong +datum=WGS84&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;StyleName&gt;</span>My Style<span class="nt">&lt;/StyleName&gt;</span>
+    <span class="nt">&lt;Datasource&gt;</span>
+      <span class="nt">&lt;Parameter</span> <span class="na">name=</span><span class="s">&quot;type&quot;</span><span class="nt">&gt;</span>shape<span class="nt">&lt;/Parameter&gt;</span>
+      <span class="nt">&lt;Parameter</span> <span class="na">name=</span><span class="s">&quot;file&quot;</span><span class="nt">&gt;</span>../data/regioni<span class="nt">&lt;/Parameter&gt;</span>
+    <span class="nt">&lt;/Datasource&gt;</span>
+  <span class="nt">&lt;/Layer&gt;</span>
+
+<span class="nt">&lt;/Map&gt;</span>
+</pre></div>
+</div>
+<div class="slide" id="mapnik-result">
+<h1>Mapnik: result</h1>
+<img alt="images/regioni_mapnik.png" src="images/regioni_mapnik.png" />
 </div>
 <div class="slide" id="mapscript">
 <h1>Mapscript</h1>
