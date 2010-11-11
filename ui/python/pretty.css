@@ -49,7 +49,7 @@ blockquote {
     margin-right : 0;
     margin-top : 0;
     padding-bottom : 0.5em;
-    padding-left : 2.5em;
+    padding-left : 70px;
     padding-right : 2em;
     padding-top : 0;
     min-height: 60px;
@@ -511,7 +511,7 @@ blockquote {
 
 
 strong {
-    color: orange;
+    color: maroon;
   }
 
 

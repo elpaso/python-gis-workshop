@@ -203,7 +203,7 @@
 <em>Web Feature Service</em> (WFS) provides a standard interface allowing requests for geographical features across the web using platform-independent calls</blockquote>
 <p>The WFS specification defines interfaces for describing data manipulation operations of geographic features. Data manipulation operations include the ability to:</p>
 <ul class="incremental simple">
-<li>Get or Query features based on spatial and non-spatial constraints (*)</li>
+<li>Get or Query features based on spatial and non-spatial constraints</li>
 <li>Create a new feature instance (WFS-T)</li>
 <li>Delete a feature instance (WFS-T)</li>
 <li>Update a feature instance (WFS-T)</li>
@@ -278,7 +278,7 @@ Catalogue Service</blockquote>
 <h1>OGC WS: CSW GetRecords operation</h1>
 <p>main parameters: outputFormat (XML, text, html), maxRecords, SortBy, Constraint</p>
 <p>GetRecords operation (output is XML):</p>
-<p><a class="reference external" href="http://www.someserver.com/csw/csw.cgi?request=GetRecords&amp;version=2.0.2&amp;outputFormat=application/xml&amp;outputSchema=http://www.opengis.net/cat/csw/2.0.2&amp;namespace=csw:http://www.opengis.org/cat/csw&amp;ResponseHandler=">http://www.someserver.com/csw/csw.cgi?request=GetRecords&amp;version=2.0.2&amp;outputFormat=application/xml&amp;outputSchema=http://www.opengis.net/cat/csw/2.0.2&amp;namespace=csw:http://www.opengis.org/cat/csw&amp;ResponseHandler=</a>&quot;<a class="reference external" href="mailto:pvretano&#64;cubewerx.com">mailto:pvretano&#64;cubewerx.com</a>&quot;&amp;typeName=csw:Record&amp;elementSetName=brief&amp;constraintlanguage=CQLTEXT&amp;constraint=&quot;csw:AnyText Like '%pollution%'&quot;</p>
+<p><a class="reference external" href="http://www.someserver.com/csw/csw.cgi?request=GetRecords&amp;version=2.0.2&amp;outputFormat=application/xml&amp;outputSchema=http://www.opengis.net/cat/csw/2.0.2&amp;namespace=csw:http://www.opengis.org/cat/csw&amp;ResponseHandler=&quot;mailto:pvretano&#64;cubewerx.com&quot;&amp;typeName=csw:Record&amp;elementSetName=brief&amp;constraintlanguage=CQLTEXT&amp;constraint=&quot;csw:AnyTextLike'%pollution%'&quot;">http://www.someserver.com/csw/csw.cgi?request=GetRecords&amp;version=2.0.2&amp;outputFormat=application/xml&amp;outputSchema=http://www.opengis.net/cat/csw/2.0.2&amp;namespace=csw:http://www.opengis.org/cat/csw&amp;ResponseHandler=&quot;mailto:pvretano&#64;cubewerx.com&quot;&amp;typeName=csw:Record&amp;elementSetName=brief&amp;constraintlanguage=CQLTEXT&amp;constraint=&quot;csw:AnyTextLike'%pollution%'&quot;</a></p>
 </div>
 <div class="slide" id="ogc-ws-wps">
 <h1>OGC WS: WPS</h1>
@@ -337,9 +337,8 @@ Catalogue Service</blockquote>
 <div class="slide" id="building-blocks-ws-google-maps">
 <h1>Building blocks - WS: Google Maps</h1>
 <div class="sidebar">
-<p class="first sidebar-title">License ex.</p>
-<p class="last">Elevation API:
-the Elevation API may only be used in conjunction with displaying results on a Google map; using elevation data without displaying a map for which elevation data was requested is prohibited.</p>
+<p class="first sidebar-title">License example</p>
+<p class="last">[...] the Elevation API may only be used in conjunction with displaying results on a Google map; using elevation data without displaying a map for which elevation data was requested is prohibited.</p>
 </div>
 <ul>
 <li><p class="first">google map embedding (javascript API)</p>
@@ -371,6 +370,21 @@ Via Guglielmo Oberdan, 123, 06034 Foligno Perugia, Italy
 <span class="nt">&lt;/formatted_address&gt;</span>
 ...
 </pre></div>
+</div>
+<div class="slide" id="libraries-tools">
+<h1>Libraries &amp; Tools</h1>
+<blockquote>
+Libraries &amp; Tools for the <strong>pythonic geographer</strong></blockquote>
+<ul class="simple">
+<li>QGIS</li>
+<li>GeoPy</li>
+<li>OWSLib</li>
+<li>MapNik</li>
+<li>MapScript</li>
+<li>PyWPS</li>
+<li>GRASS</li>
+<li>TileLite</li>
+</ul>
 </div>
 <div class="slide" id="building-blocks-qgis">
 <h1>Building blocks: QGIS</h1>
@@ -657,6 +671,7 @@ Above all Mapnik is about making beautiful maps. Suitable for both server and de
 <li>Lack of documentation</li>
 <li>XML configuration for styles</li>
 <li>No SLD support</li>
+<li>QuantumNik QGIS plugin</li>
 </ul>
 </div>
 <p>Installation</p>
@@ -794,6 +809,8 @@ Python bindings to <strong>UMN MapServer</strong> (<em>C</em>)</blockquote>
 </div>
 <div class="slide" id="pywps">
 <h1>pyWPS</h1>
+<p>(Python Web Processing Service) is an implementation of the <em>Web Processing Service</em> standard from Open Geospatial Consortium.</p>
+<p>It has been started in Mai 2006 as a project supported by DBU and is currently (2009) mainly sponsored by HS-RS. It offers an environment for programming own processes (geofunctions or models) which can be accessed from the public. The main advantage of PyWPS is, that it has been written with native support for GRASS GIS.</p>
 </div>
 <div class="slide" id="grass">
 <h1>GRASS</h1>
@@ -886,6 +903,7 @@ Powerful <strong>raster</strong> GIS analysis (mixed: <em>C</em>, <em>Python</em
 <dd><ul class="first last simple">
 <li><a class="reference external" href="http://mapnik.org">http://mapnik.org</a></li>
 <li><a class="reference external" href="http://code.google.com/p/mapnik-utils/">http://code.google.com/p/mapnik-utils/</a></li>
+<li><a class="reference external" href="http://bitbucket.org/springmeyer/quantumnik/">http://bitbucket.org/springmeyer/quantumnik/</a></li>
 </ul>
 </dd>
 </dl>

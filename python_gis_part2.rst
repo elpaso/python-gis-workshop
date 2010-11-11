@@ -20,6 +20,8 @@ Building blocks: overview
         rankdir="LR"        
 
 		node [shape=box]
+
+
 		subgraph cluster_libs {
 			label="Libraries"
 			style=filled
@@ -43,9 +45,16 @@ Building blocks: overview
 			raster [label="Raster"]
 		}
 
+        
+        /*
+        subgraph cluster_tilesystems {
+            label="Tile caches"
+            node [style="filled" color="grey"]
+            cachelite [label="CacheLite"]
+            tilecache [label="TileCache"]
+        }
+        */
 
-
-		// input
 		prop_ws -> geopy
 		ows -> owslib [dir="both" color="blue"]
 		ows -> mapscript [dir="both" color="blue"]       
@@ -63,8 +72,6 @@ Building blocks: overview
         raster -> qgis
         raster -> mapscript
         raster -> mapnik [dir="both" color="blue"]
-        
-		
 	}
 
 .. sidebar:: Classification
@@ -179,7 +186,7 @@ The WFS specification defines interfaces for describing data manipulation operat
 
 .. class:: incremental
 
-    * Get or Query features based on spatial and non-spatial constraints (*)
+    * Get or Query features based on spatial and non-spatial constraints
     * Create a new feature instance (WFS-T)
     * Delete a feature instance (WFS-T)
     * Update a feature instance (WFS-T)
@@ -275,7 +282,7 @@ main parameters: outputFormat (XML, text, html), maxRecords, SortBy, Constraint
 
 GetRecords operation (output is XML):
 
-http://www.someserver.com/csw/csw.cgi?request=GetRecords&version=2.0.2&outputFormat=application/xml&outputSchema=http://www.opengis.net/cat/csw/2.0.2&namespace=csw:http://www.opengis.org/cat/csw&ResponseHandler="mailto:pvretano@cubewerx.com"&typeName=csw:Record&elementSetName=brief&constraintlanguage=CQLTEXT&constraint="csw:AnyText Like '%pollution%'"
+`<http://www.someserver.com/csw/csw.cgi?request=GetRecords&version=2.0.2&outputFormat=application/xml&outputSchema=http://www.opengis.net/cat/csw/2.0.2&namespace=csw:http://www.opengis.org/cat/csw&ResponseHandler="mailto:pvretano@cubewerx.com"&typeName=csw:Record&elementSetName=brief&constraintlanguage=CQLTEXT&constraint="csw:AnyText Like '%pollution%'">`_
 
 OGC WS: WPS
 =====================
@@ -338,10 +345,9 @@ Response:
 Building blocks - WS: Google Maps
 ===========================================
 
-.. sidebar:: License ex.
+.. sidebar:: License example
     
-    Elevation API:
-    the Elevation API may only be used in conjunction with displaying results on a Google map; using elevation data without displaying a map for which elevation data was requested is prohibited.
+    [...] the Elevation API may only be used in conjunction with displaying results on a Google map; using elevation data without displaying a map for which elevation data was requested is prohibited.
 
 
 
@@ -373,6 +379,23 @@ Response:
     </formatted_address>
     ...
 
+Libraries & Tools
+======================
+
+    Libraries & Tools for the **pythonic geographer**
+
+* QGIS
+* GeoPy
+* OWSLib
+* MapNik
+* MapScript
+* PyWPS
+* GRASS
+* TileLite
+
+
+
+
 Building blocks: QGIS
 =====================
 
@@ -399,46 +422,48 @@ QGIS: standalone headless
 .. sourcecode:: python
 
 	>>> # Application init
-	>>> from qgis.gui import *
-	>>> from qgis.core import *
-	>>> QgsApplication.setPrefixPath("/usr", True)
-	>>> QgsApplication.initQgis()
-	>>> vlayer = QgsVectorLayer("regioni.shp", "regioni", "ogr")
+	>>> from qgis import core 
+	>>> core.QgsApplication.setPrefixPath("/usr", True)
+	>>> core.QgsApplication.initQgis()
+	>>> vlayer = core.QgsVectorLayer("regioni.shp", "regioni", "ogr")
 	>>> vlayer.isValid()
 	True
 	>>> # Add layer to registry
-        >>> QgsMapLayerRegistry.instance().addMapLayer(vlayer)
+    >>> core.QgsMapLayerRegistry.instance().addMapLayer(vlayer)
         <qgis.core.QgsVectorLayer object at 0x13be270>
+    >>> # Continue ...
 
 
 
 QGIS: standalone (render)
 =========================
 
-	Rendering
+	Rendering and image through *QGIS* API
 
 .. sourcecode:: python
 
-	>>> # GUI setup
-	>>> from PyQt4.QtGui import *
-	>>> from PyQt4.QtCore import *
-	>>> img = QImage(QSize(800,600), QImage.Format_ARGB32_Premultiplied)
-	>>> p = QPainter()
-	>>> p.begin(img)
-	True
-	>>> p.setRenderHint(QPainter.Antialiasing)
-	>>> render = QgsMapRenderer()
-	>>> lst = [ vlayer.getLayerID() ]
-	>>> render.setLayerSet(lst)
-	>>> rect = QgsRectangle(render.fullExtent())
-	>>> rect.scale(1.1)
-	>>> render.setExtent(rect)
-	>>> render.setOutputSize(img.size(), img.logicalDpiX())
-	>>> render.render(p)
-	>>> p.end()
-	True
-	>>> img.save("render.png","png")
-	True
+    >>> # ... from previous example
+    >>> from PyQt4 import QtGui, QtCore
+    >>> img = QtGui.QImage(QtCore.QSize(800,600), QtGui.QImage.Format_ARGB32_Premultiplied)
+    >>> p = QtGui.QPainter()
+    >>> p.begin(img)
+    True
+    >>> p.setRenderHint(QtGui.QPainter.Antialiasing)
+    >>> render = core.QgsMapRenderer()
+    >>> lst = [ vlayer.getLayerID() ]
+    >>> render.setLayerSet(lst)
+    >>> rect = core.QgsRectangle(render.fullExtent())
+    >>> rect.scale(1.1)
+    >>> render.setExtent(rect)
+    >>> render.setOutputSize(img.size(), img.logicalDpiX())
+    >>> img.size()
+    >>> p.isActive()
+    True
+    >>> render.render(p)
+    >>> p.end()
+    True
+    >>> img.save(wd + "/../images/regioni_qgis.png","png")
+    True
 
 
 QGIS: result
@@ -847,6 +872,14 @@ MapScript: result
 pyWPS
 =====
 
+    (Python Web Processing Service) is an implementation of the *Web Processing Service* standard from Open Geospatial Consortium.
+    It offers an environment for programming own processes (geofunctions or models) which can be accessed from the public. The main advantage of PyWPS is, that it has been written with native support for *GRASS* GIS.
+
+* http://pywps.wald.intevation.org/
+
+.. sourcecode:: bash
+    
+    $ 
 
 GRASS
 =====
@@ -937,13 +970,13 @@ Links
 	* http://www.qgis.org/pyqgis-cookbook/
 	* http://desktopgisbook.com/Creating_a_Standalone_GIS_Application_1
 	* http://www.dimitrisk.gr/qgis/creator/
-
 * GRASS
     * http://grass.osgeo.org/programming6/pythonlib.html
     * http://grass.osgeo.org/grass64/manuals/html64_user/index.html
-
 * Mapnik
     * http://mapnik.org
     * http://code.google.com/p/mapnik-utils/
     * http://bitbucket.org/springmeyer/quantumnik/
+* PyWPS
+    * http://pywps.wald.intevation.org/
 
