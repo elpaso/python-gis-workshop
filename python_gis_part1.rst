@@ -38,7 +38,7 @@ Building blocks: GDAL/OGR
 **GDAL** Geospatial Data Abstraction Library
     **OGR** Simple Feature Library
     
-* basic library for almost all FOSS4G projects (and often $$$ projects)
+* basic library for almost all FOSS4G projects (and often proprietary projects)
 * library and utilities for reading/writing a plethora of GIS formats
 * raster/cover (GDAL) and vectorial (OGR)
 * OGR follows the OGC Simple feature access specifications
@@ -51,25 +51,25 @@ GDAL/OGR: large diffusion
     Huge list of sofware using GDAL, here only most important (full list @ GDAL website)
 
 * **FOSS4G**: GRASS, GeoServer, gvSIG, MapServer, MapGuide, Orfeo Toolbox, OSSIM, QGIS, R
-* **$$$**: ArcGis, ERDAS, FME, Google Earth
+* **proprietary**: ArcGis, ERDAS, FME, Google Earth
 
-GDAL/OGR: many supported formats (vector)
-=========================================
+GDAL/OGR: vector formats
+========================
 
     Long list too, here only most important (full list @ gdal website)
 
     OGR (Vector) (get the full list with "ogrinfo --formats"):
 
 * **FOSS4G** (RW): PostGis, Spatialite, MySQL, csv, GeoJSON, GeoRSS, GML, GPSBabel, GPX, GRASS, KML, WFS
-* **$$$**: Shapefile, ArcInfo Coverage (R), ArcInfo .E00 (R), AutoCAD DXF, Esri PGDB (R), ArcSde (R), FMEObjects Gateway (R), MapInfo, Microstation DGN, Oracle Spatial, Microsoft MS Spatial 
+* **proprietary**: Shapefile, ArcInfo Coverage (R), ArcInfo .E00 (R), AutoCAD DXF, Esri PGDB (R), ArcSde (R), FMEObjects Gateway (R), MapInfo, Microstation DGN, Oracle Spatial, Microsoft MS Spatial 
 
-GDAL/OGR: many supported formats (raster)
-=========================================
+GDAL/OGR: raster formats
+========================
 
     GDAL (Raster) (get the full list with gdalinfo --formats):
 
 * **FOSS4G** (RW): GRASS Rasters, WKTRaster, Rasterlite
-* **$$$**: ArcInfo ASCII Grid, ArcSde Raster (R), ERDAS (R), Oracle Spatial GeoRaster, Intergraph, TIFF/GeoTIFF (Adobe)
+* **proprietary**: ArcInfo ASCII Grid, ArcSde Raster (R), ERDAS (R), Oracle Spatial GeoRaster, Intergraph, TIFF/GeoTIFF (Adobe)
 
 GDAL/OGR: bindings
 ==================
@@ -84,8 +84,8 @@ GDAL/OGR: bindings
 * .Net (VB, C#, ...)
 * R
 
-GDAL/OGR: command line utilities (raster)
-=========================================
+GDAL/OGR: utilities (raster)
+============================
 
     The power of GDAL/OGR at your fingertips (mostly in c, cpp but some written in python)!
 
@@ -98,8 +98,8 @@ GDAL/OGR: command line utilities (raster)
 * gdal_grid: create raster from scattered data
 * gdal_polygonize.py: generate polygons from raster
 
-GDAL/OGR: command line utilities (vector)
-=========================================
+GDAL/OGR: utilities (vector)
+============================
 
 * ogrinfo: lists information about an OGR supported data source
 * ogr2ogr: converts simple features data between file formats
@@ -113,8 +113,8 @@ Building blocks: GEOS
 * provides all the OGC Simple Features implementations for SQL spatial predicate functions and spatial operators
 * license: **LGPL**
 
-GEOS: API for modelling and manipulating 2-dimensional linear geometry
-======================================================================
+GEOS: Geometry Engine, Open Source
+==================================
 
 **GEOS** Geometry Engine, Open Source
 
@@ -129,7 +129,7 @@ GEOS: huge diffusion
     Huge list of sofware using GEOS, here only most important (full list @ GEOS website)
 
 * **FOSS4G**: PostGIS, Spatialite, MapServer, QGIS, OGR, Shapely, GeoDjango
-* **$$$**: FME, Autodesk MapGuide Enterprise
+* **proprietary**: FME, Autodesk MapGuide Enterprise
 
 GEOS: bindings
 ==================
@@ -150,7 +150,7 @@ Building blocks: PROJ.4
 **PROJ.4** Cartographic Projections Library
 
 * PROJ.4 Cartographic Projections library originally written by Gerald Evenden then of the USGS
-* written in c/c++
+* written in C/C++
 * both a **command line** and an **API**
 * used from almost any FOSS4G project
 * ported to javascript (Proj4js) and Java (Proj4J)
@@ -170,7 +170,6 @@ Just 2 methods available:
     
     int pj_transform( projPJ srcdefn, projPJ dstdefn, long point_count, int point_offset, double *x, double *y, double *z );
     
-
 Implementations
 ===============
 
@@ -367,8 +366,8 @@ GeoDjango: Architecture
     * PROJ.4 (Cartographic Projections Library)
     * GeoIP
 
-GeoDjango features: Model API (1)
-=================================
+GeoDjango: Model API (1)
+========================
 
     Geometry Field (django.contrib.gis.db extends django.db)
     
@@ -384,8 +383,8 @@ GeoDjango features: Model API (1)
 * **spatial_index** (default True, spatial index is built)
 
 
-GeoDjango features: Model API (2)
-=================================
+GeoDjango: Model API (2)
+========================
 
     In Django models we get Geographic Field e GeoManager
 
@@ -401,8 +400,8 @@ GeoDjango features: Model API (2)
         objects = models.GeoManager()
 
         
-GeoDjango features: Model API (3)
-=================================
+GeoDjango: Model API (3)
+========================
 
 .. sourcecode:: bash
 
@@ -424,8 +423,8 @@ GeoDjango features: Model API (3)
     COMMIT;
 
     
-GeoDjango features: Model API (4)
-=================================
+GeoDjango: Model API (4)
+========================
 
     CRUD methods: Create, Update
 
@@ -449,8 +448,8 @@ GeoDjango features: Model API (4)
         WHERE "fauna_sandboxlayer"."id" = 1 '}
  
         
-GeoDjango features: Model API (5)
-=================================
+GeoDjango: Model API (5)
+========================
 
     CRUD methods: Read, Delete
 
@@ -477,8 +476,8 @@ GeoDjango features: Model API (5)
     {'time': '0.002', 'sql': 'DELETE FROM "fauna_sandboxlayer" WHERE "id" IN (3, 2)'}
     
     
-GeoDjango features: GEOS API (1)
-================================
+GeoDjango: GEOS API (1)
+=======================
 
     a model for geometric objects (Simple Feature Access)
     
@@ -488,17 +487,17 @@ GeoDjango features: GEOS API (1)
 * Geometry Collections (MultiPoint, MultiLineString, MultiPolygon, GeometryCollection)
 
 
-GeoDjango features: GEOS API (2)
-================================
+GeoDjango: GEOS API (2)
+=======================
 
-* **geometric attributes and methods** (empty, geom_type, num_coords, centroid, envelope, area, distance, length, srs, transform...)
+* **geometric attributes and methods** (empty, geom_type, num_coords, centroid, area, distance, length, srs, transform...)
 * **representation and interoperation** (ewkt, hex, hexewkb, json, geojson, kml, ogr, wkb, ewkb, wkt)
 * **unary predicates** (has_z, simple, valid...)
 * **binary predicates** (contains, crosses, equals, intersects, touches, within, ...)
-* **spatial analysis methods** (buffer, difference, intersection, simplify, union, ...)
+* **constructive spatial analysis methods** (buffer, difference, intersection, simplify, union, envelope, ...)
 
-GeoDjango features: GEOS API, Example 1
-=======================================
+GeoDjango: GEOS API, Example 1
+==============================
 
     geometric objects (point), geometric properties (hasz, geom_type)
     and representation and serialization 
@@ -520,8 +519,8 @@ GeoDjango features: GEOS API, Example 1
     'SRID=4326;POINT (13.7988281250000000 42.5390625000000000)'
 
 
-GeoDjango features: GEOS API, Example 2
-=======================================
+GeoDjango: GEOS API, Example 2
+==============================
 
     predicates and relationships, transformations (requires GDAL), spatial analysis methods
     
@@ -541,8 +540,8 @@ GeoDjango features: GEOS API, Example 2
     >>> buffer.save()
 
     
-GeoDjango features: GDAL/OGR API
-================================
+GeoDjango: GDAL/OGR API
+=======================
 
     excellent alternative to GDAL/OGR Python bindings
 
@@ -552,8 +551,8 @@ GeoDjango features: GDAL/OGR API
 * get access to other API via representative properties (wkt, wkb, json, ...)
 
 
-GeoDjango features: GDAL/OGR API, Example
-=========================================
+GeoDjango: GDAL/OGR API, Example
+================================
 
 .. sourcecode:: python
 
@@ -574,8 +573,8 @@ GeoDjango features: GDAL/OGR API, Example
     4326
 
 
-GeoDjango features: GDAL/OGR API, Example (follows)
-===================================================
+GeoDjango: GDAL/OGR API, Example
+================================
 
 .. sourcecode:: python
 
@@ -598,8 +597,8 @@ GeoDjango features: GDAL/OGR API, Example (follows)
     MULTIPOLYGON (((8.439415832216145 46.465900481500874,8.439484266241374 46.465576832714113,8.43950386...
 
 
-GeoDjango features: Measurement Units API
-=========================================
+GeoDjango: Measurement Units API
+================================
 
     API for measurement units conversion and management
 
@@ -617,47 +616,13 @@ GeoDjango features: Measurement Units API
     >>>  a = d1 * d2
     print a
     40.2336 sq_km
-    
-    
-GeoDjango features: GeoModelAdmin
-=================================
-
-.. sourcecode:: python
-
-    from django.contrib import admin
-    from django.contrib.gis.admin import GeoModelAdmin
-    from models import *
-
-    class AvvistamentoAdmin(GeoModelAdmin):
-
-        model = Avvistamento
-
-        list_display = ['data', 'animale', 'interesse']
-        list_filter = ['data', 'animale', 'interesse']
-        date_hierarchy = 'data'
-        fieldsets = (
-          ('Caratteristiche avvistamento', {'fields': (('data', 'animale', 'note', 'interesse'))}),
-          ('Mappa', {'fields': ('geometry',)}),
-        )
-
-        # Openlayers settings
-        scrollable = False
-        map_width = 500
-        map_height = 500
-        openlayers_url = '/static/openlayers/lib/OpenLayers.js'
-        default_zoom = 6
-        default_lon = 13
-        default_lat = 42
-        
-    admin.site.register(Avvistamento, AvvistamentoAdmin)
-    
 
 Shapely
 =======
 
 * it is a Python binding library to GEOS via ctypes (like the GeoDjango GEOS API)
 * aims to be general purpose, not only GEOS (even if it is a loyal OGC SFA implementation)
-* excellent documentation
+* excellent documentation (very nice manual)
 * integration: via serialization/deserialization via well known formats (wkt, wkb)
 * projections are not supported, so geometries must be in a unique projected srs
 * license: **BSD**
@@ -680,7 +645,7 @@ Shapely: OGC SFA (2)
 * **representation and interoperation** (ewkt, hex, hexewkb, json, geojson, kml, ogr, wkb, ewkb, wkt)
 * **unary predicates** (has_z, is_empty, is_ring, is_simple, is_valid)
 * **binary predicates** (contains, crosses, equals, intersects, touches, within, ...)
-* **spatial analysis methods** (buffer, difference, intersection, simplify, union, polygonize, linemerge, ...)
+* **constructive spatial analysis methods** (buffer, difference, intersection, simplify, union, polygonize, linemerge, ...)
 * **diagnostics** (explain_validity)
 
 Shapely, Example 1
@@ -768,6 +733,143 @@ Shapely, Example 4
 GeoAlchemy
 ==========
 
+    GeoAlchemy
+    
+* it is a spatial extension to SQLAlchemy
+* it provides support for Geospatial data types at the ORM layer using SQLAlchemy
+* it aims to support spatial operations and relations specified by the Open Geospatial Consortium (OGC). The project started under Google Summer of Code Program
+* differently from other libraries, it does **NOT DEPEND** on other GIS building blocks (GDAL, GEOS...)
+* still not so mature like GeoDjango
+* license: **MIT**
+
+GeoAlchemy: SQLAlchemy notes
+============================
+
+    SQLAlchemy
+    
+* SQLAlchemy is the most powerful Python SQL Toolkit and ORM
+* compared to the Django ORM, it has a most powerfull abstraction
+* supports not only tables (like Django) but also joins, subqueries, and unions
+* higly scalable (ie: configuration of how many SELECT to emit while loading whole graphs of objects: lazy loading and eager load)
+* greater set of DB supported if compared to Django
+* support for transactions (i.e. nice rollback mechanism)
+* excellent documentations
+
+GeoAlchemy: Spatial database
+============================
+
+    Supported spatial database
+    
+* PostGis
+* Spatialite
+* MySQL (not OGC-compliant, limited functionality)
+* Oracle
+* MS SQL Server 2008 (Django do not support it)
+
+GeoAlchemy: Use cases
+=====================
+
+* like Django, you may use it in Desktop and web application
+* web frameworks that integrates well with SQLAlchemy: TurboGears and Pylons (highly configurable for models, templates and helpers)
+* Django is not the best SQLAlchemy friend, but you may still use it :D
+
+GeoAlchemy: features
+====================
+
+* **NO** model for geometric objects (Simple Feature Access) :(
+* **geometric attributes and methods** (dimension, srid, geometry_type, num_points, length, area, centroid, transform, coords)
+* **representation and interoperation** (wkt, wkb, svg, gml, kml, geojson)
+* **unary predicates** (has_z, is_valid, is_empty, is_simple, is_closed, is_ring)
+* **binary predicates** (contains, crosses, equals, intersects, touches, within, ...)
+* **constructive spatial analysis methods** [limited] (buffer, boundary, convex_hull)
+
+GeoAlchemy, Example 1
+=====================
+
+    the model
+    
+.. sourcecode:: python
+
+    engine = create_engine('postgresql://postgres:postgres@localhost/gis_test', echo=True)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    metadata = MetaData(engine)
+    Base = declarative_base(metadata=metadata)
+        
+    class Spot(Base):
+        __tablename__ = 'spots'
+        id = Column(Integer, primary_key=True)
+        name = Column(Unicode, nullable=False)
+        height = Column(Integer)
+        created = Column(DateTime, default=datetime.now())
+        geom = GeometryColumn(Point(2))
+        
+    metadata.drop_all()   # comment this on first occassion
+    metadata.create_all()
+        
+GeoAlchemy, Example 2
+=====================
+
+    data creation
+    
+.. sourcecode:: python
+
+    >>> wkt_spot1 = "POINT(-81.40 38.08)"
+    >>> spot1 = Spot(name="Gas Station", height=240.8, geom=WKTSpatialElement(wkt_spot1))
+    >>> geom_spot2 = WKTSpatialElement('POINT(30250865 -610981)', 2249)
+    >>> spot2 = Spot(name="Park", height=53.2, geom=geom_spot2
+    >>> session.add_all([spot1, spot2])
+    >>> session.commit()
+    
+GeoAlchemy, Example 3
+=====================
+
+    data reading and representation
+    
+.. sourcecode:: python
+
+    >>> s = session.query(Spot).get(1)
+    >>> session.scalar(s.geom.wkt)
+    'POINT(-81.42 37.65)'
+    >>> session.scalar(s.geom.gml)
+    '<gml:Point srsName="EPSG:4326"><gml:coordinates>-81.42,37.65</gml:coordinates></gml:Point>'
+    >>> session.scalar(s.geom.kml)
+    '<Point><coordinates>-81.42,37.65</coordinates></Point>'
+    
+GeoAlchemy, Example 4
+=====================
+
+    geometric properties
+    
+.. sourcecode:: python
+
+    >>> s = session.query(Spot).filter(Spot.height > 240).first()
+    >>> session.scalar(s.geom.geometry_type)
+    'ST_Point'
+    >>> session.scalar(s.geom.x)
+    -81.420000000000002
+    >>> session.scalar(s.geom.y)
+    37.649999999999999
+    >>> s.geom.coords(session)
+    [-81.420000000000002, 37.649999999999999]
+    
+GeoAlchemy, Example 5
+=====================
+
+    constructive spatial analysis methods and binary predicates
+    
+.. sourcecode:: python
+
+    >>> r = session.query(Road).first()
+    >>> l = session.query(Lake).first()
+    >>> buffer_geom = DBSpatialElement(session.scalar(r.geom.buffer(10.0)))
+    >>> session.scalar(buffer_geom.wkt)
+    'POLYGON((-77.4495270615657 28.6622373442108,....
+    >>> session.query(Road).filter(Road.geom.intersects(r.geom)).count()
+    1L
+    >>> session.query(Lake).filter(Lake.geom.touches(r.geom)).count()
+    0L
+
 Notes on implementations
 ========================
 
@@ -789,7 +891,7 @@ Notes on implementations: SWIG
 Notes on implementations: ctypes
 ================================
 
-* as SWIG it aims to give connection features to programs written in C and C++ but it is a **Python** specific library
+* as SWIG it aims to give connection features to programs written in C, but it is a **Python** specific library
 
 .. sourcecode:: python
 
