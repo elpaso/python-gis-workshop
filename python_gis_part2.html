@@ -278,7 +278,9 @@ Catalogue Service</blockquote>
 <h1>OGC WS: CSW GetRecords operation</h1>
 <p>main parameters: outputFormat (XML, text, html), maxRecords, SortBy, Constraint</p>
 <p>GetRecords operation (output is XML):</p>
-<p><a class="reference external" href="http://www.someserver.com/csw/csw.cgi?request=GetRecords&amp;version=2.0.2&amp;outputFormat=application/xml&amp;outputSchema=http://www.opengis.net/cat/csw/2.0.2&amp;namespace=csw:http://www.opengis.org/cat/csw&amp;ResponseHandler=&quot;mailto:pvretano&#64;cubewerx.com&quot;&amp;typeName=csw:Record&amp;elementSetName=brief&amp;constraintlanguage=CQLTEXT&amp;constraint=&quot;csw:AnyTextLike'%pollution%'&quot;">http://www.someserver.com/csw/csw.cgi?request=GetRecords&amp;version=2.0.2&amp;outputFormat=application/xml&amp;outputSchema=http://www.opengis.net/cat/csw/2.0.2&amp;namespace=csw:http://www.opengis.org/cat/csw&amp;ResponseHandler=&quot;mailto:pvretano&#64;cubewerx.com&quot;&amp;typeName=csw:Record&amp;elementSetName=brief&amp;constraintlanguage=CQLTEXT&amp;constraint=&quot;csw:AnyTextLike'%pollution%'&quot;</a></p>
+<pre class="literal-block">
+http://www.someserver.com/csw/csw.cgi?request=GetRecords&amp;version=2.0.2&amp;outputFormat=application/xml&amp;outputSchema=http://www.opengis.net/cat/csw/2.0.2&amp;namespace=csw:http://www.opengis.org/cat/csw&amp;ResponseHandler=&quot;mailto:info&#64;site.com&amp;typeName=csw:Record&amp;elementSetName=brief&amp;constraintlanguage=CQLTEXT&amp;constraint=&quot;csw:AnyText Like '%pollution%'&quot;
+</pre>
 </div>
 <div class="slide" id="ogc-ws-wps">
 <h1>OGC WS: WPS</h1>
@@ -383,7 +385,6 @@ Libraries &amp; Tools for the <strong>pythonic geographer</strong></blockquote>
 <li>MapScript</li>
 <li>PyWPS</li>
 <li>GRASS</li>
-<li>TileLite</li>
 </ul>
 </div>
 <div class="slide" id="building-blocks-qgis">
@@ -401,48 +402,50 @@ capabilities and python scripting support.</p>
 <h1>QGIS: standalone headless</h1>
 <blockquote>
 Loading a vector layer</blockquote>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="c"># Application init</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">qgis.gui</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">QgsApplication</span><span class="o">.</span><span class="n">setPrefixPath</span><span class="p">(</span><span class="s">&quot;/usr&quot;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">QgsApplication</span><span class="o">.</span><span class="n">initQgis</span><span class="p">()</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">vlayer</span> <span class="o">=</span> <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="s">&quot;regioni.shp&quot;</span><span class="p">,</span> <span class="s">&quot;regioni&quot;</span><span class="p">,</span> <span class="s">&quot;ogr&quot;</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">vlayer</span><span class="o">.</span><span class="n">isValid</span><span class="p">()</span>
-<span class="bp">True</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="c"># Add layer to registry</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">QgsMapLayerRegistry</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">addMapLayer</span><span class="p">(</span><span class="n">vlayer</span><span class="p">)</span>
-<span class="o">&lt;</span><span class="n">qgis</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">QgsVectorLayer</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x13be270</span><span class="o">&gt;</span>
+<div class="highlight"><pre>    <span class="o">&gt;&gt;&gt;</span> <span class="c"># Application init</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">qgis</span> <span class="kn">import</span> <span class="n">core</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">core</span><span class="o">.</span><span class="n">QgsApplication</span><span class="o">.</span><span class="n">setPrefixPath</span><span class="p">(</span><span class="s">&quot;/usr&quot;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">core</span><span class="o">.</span><span class="n">QgsApplication</span><span class="o">.</span><span class="n">initQgis</span><span class="p">()</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">vlayer</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">QgsVectorLayer</span><span class="p">(</span><span class="s">&quot;regioni.shp&quot;</span><span class="p">,</span> <span class="s">&quot;regioni&quot;</span><span class="p">,</span> <span class="s">&quot;ogr&quot;</span><span class="p">)</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">vlayer</span><span class="o">.</span><span class="n">isValid</span><span class="p">()</span>
+    <span class="bp">True</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="c"># Add layer to registry</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">core</span><span class="o">.</span><span class="n">QgsMapLayerRegistry</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">addMapLayer</span><span class="p">(</span><span class="n">vlayer</span><span class="p">)</span>
+    <span class="o">&lt;</span><span class="n">qgis</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">QgsVectorLayer</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x13be270</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c"># Continue ...</span>
 </pre></div>
 </div>
 <div class="slide" id="qgis-standalone-render">
 <h1>QGIS: standalone (render)</h1>
 <blockquote>
-Rendering</blockquote>
-<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="c"># GUI setup</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">PyQt4.QtGui</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">PyQt4.QtCore</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">img</span> <span class="o">=</span> <span class="n">QImage</span><span class="p">(</span><span class="n">QSize</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span><span class="mi">600</span><span class="p">),</span> <span class="n">QImage</span><span class="o">.</span><span class="n">Format_ARGB32_Premultiplied</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">QPainter</span><span class="p">()</span>
+Rendering and image through <em>QGIS</em> API</blockquote>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="c"># ... from previous example</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">PyQt4</span> <span class="kn">import</span> <span class="n">QtGui</span><span class="p">,</span> <span class="n">QtCore</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">img</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QImage</span><span class="p">(</span><span class="n">QtCore</span><span class="o">.</span><span class="n">QSize</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span><span class="mi">600</span><span class="p">),</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QImage</span><span class="o">.</span><span class="n">Format_ARGB32_Premultiplied</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QPainter</span><span class="p">()</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">p</span><span class="o">.</span><span class="n">begin</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
 <span class="bp">True</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span><span class="o">.</span><span class="n">setRenderHint</span><span class="p">(</span><span class="n">QPainter</span><span class="o">.</span><span class="n">Antialiasing</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">render</span> <span class="o">=</span> <span class="n">QgsMapRenderer</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span><span class="o">.</span><span class="n">setRenderHint</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QPainter</span><span class="o">.</span><span class="n">Antialiasing</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">render</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">QgsMapRenderer</span><span class="p">()</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">lst</span> <span class="o">=</span> <span class="p">[</span> <span class="n">vlayer</span><span class="o">.</span><span class="n">getLayerID</span><span class="p">()</span> <span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">render</span><span class="o">.</span><span class="n">setLayerSet</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">rect</span> <span class="o">=</span> <span class="n">QgsRectangle</span><span class="p">(</span><span class="n">render</span><span class="o">.</span><span class="n">fullExtent</span><span class="p">())</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">rect</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">QgsRectangle</span><span class="p">(</span><span class="n">render</span><span class="o">.</span><span class="n">fullExtent</span><span class="p">())</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">rect</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">1.1</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">render</span><span class="o">.</span><span class="n">setExtent</span><span class="p">(</span><span class="n">rect</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">render</span><span class="o">.</span><span class="n">setOutputSize</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">img</span><span class="o">.</span><span class="n">logicalDpiX</span><span class="p">())</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span><span class="o">.</span><span class="n">isActive</span><span class="p">()</span>
+<span class="bp">True</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">render</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">p</span><span class="o">.</span><span class="n">end</span><span class="p">()</span>
 <span class="bp">True</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">&quot;render.png&quot;</span><span class="p">,</span><span class="s">&quot;png&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">wd</span> <span class="o">+</span> <span class="s">&quot;/../images/regioni_qgis.png&quot;</span><span class="p">,</span><span class="s">&quot;png&quot;</span><span class="p">)</span>
 <span class="bp">True</span>
 </pre></div>
 </div>
 <div class="slide" id="qgis-result">
 <h1>QGIS: result</h1>
-<img alt="images/render.png" src="images/render.png" style="width: 640.0px; height: 480.0px;" />
+<img alt="images/regioni_qgis.png" src="images/regioni_qgis.png" style="width: 640.0px; height: 480.0px;" />
 </div>
 <div class="slide" id="qgis-standalone-gui">
 <h1>QGIS: standalone GUI</h1>
@@ -809,8 +812,12 @@ Python bindings to <strong>UMN MapServer</strong> (<em>C</em>)</blockquote>
 </div>
 <div class="slide" id="pywps">
 <h1>pyWPS</h1>
-<p>(Python Web Processing Service) is an implementation of the <em>Web Processing Service</em> standard from Open Geospatial Consortium.</p>
-<p>It has been started in Mai 2006 as a project supported by DBU and is currently (2009) mainly sponsored by HS-RS. It offers an environment for programming own processes (geofunctions or models) which can be accessed from the public. The main advantage of PyWPS is, that it has been written with native support for GRASS GIS.</p>
+<blockquote>
+(Python Web Processing Service) is an implementation of the <em>Web Processing Service</em> standard from Open Geospatial Consortium.
+It offers an environment for programming own processes (geofunctions or models) which can be accessed from the public. The main advantage of PyWPS is, that it has been written with native support for <em>GRASS</em> GIS.</blockquote>
+<ul class="simple">
+<li><a class="reference external" href="http://pywps.wald.intevation.org/">http://pywps.wald.intevation.org/</a></li>
+</ul>
 </div>
 <div class="slide" id="grass">
 <h1>GRASS</h1>
@@ -904,6 +911,14 @@ Powerful <strong>raster</strong> GIS analysis (mixed: <em>C</em>, <em>Python</em
 <li><a class="reference external" href="http://mapnik.org">http://mapnik.org</a></li>
 <li><a class="reference external" href="http://code.google.com/p/mapnik-utils/">http://code.google.com/p/mapnik-utils/</a></li>
 <li><a class="reference external" href="http://bitbucket.org/springmeyer/quantumnik/">http://bitbucket.org/springmeyer/quantumnik/</a></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>PyWPS</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="http://pywps.wald.intevation.org/">http://pywps.wald.intevation.org/</a></li>
 </ul>
 </dd>
 </dl>
