@@ -119,26 +119,18 @@
 </div>
 <div class="slide" id="summary">
 <h1>Summary</h1>
-<blockquote>
-Part 1 - Paolo Corti</blockquote>
-<ul>
-<li><p class="first"><strong>GDAL/OGR</strong> (Python bindings, GeoDjango)</p>
-</li>
-<li><p class="first"><strong>GEOS</strong> (GeoDjango, Shapely)</p>
-</li>
-<li><p class="first"><strong>PROJ.4</strong> (Python bindings, GeoDjango)</p>
-</li>
-<li><p class="first">GeoAlchemy</p>
-<blockquote>
+<p><strong>Part 1 - Paolo Corti</strong></p>
+<ul class="simple">
+<li><strong>GDAL/OGR (Python bindings, GeoDjango)</strong></li>
+<li><strong>GEOS (GeoDjango, Shapely)</strong></li>
+<li><strong>PROJ.4 (Python bindings, GeoDjango)</strong></li>
+<li><strong>GeoAlchemy</strong></li>
+</ul>
 <p>Part 2 - Alessandro Pasotti</p>
-</blockquote>
-</li>
-<li><p class="first"><strong>OWS</strong> (OWSLib, pyWPS)</p>
-</li>
-<li><p class="first"><strong>WebServices</strong> (GeoPy, Mapnik, Mapscript)</p>
-</li>
-<li><p class="first"><strong>Desktop</strong> (QGIS, GRASS)</p>
-</li>
+<ul class="simple">
+<li>OWS (OWSLib, pyWPS)</li>
+<li>WebServices (GeoPy, Mapnik, Mapscript)</li>
+<li>Desktop (QGIS, GRASS)</li>
 </ul>
 </div>
 <div class="slide" id="building-blocks">
@@ -176,7 +168,7 @@ Part 1 - Paolo Corti</blockquote>
 <div class="slide" id="gdal-ogr-large-diffusion">
 <h1>GDAL/OGR: large diffusion</h1>
 <blockquote>
-Huge list of sofware using GDAL, here only most important (full list &#64; GDAL website)</blockquote>
+Large list of sofware using GDAL, here only most important (full list &#64; GDAL website)</blockquote>
 <ul class="simple">
 <li><strong>FOSS4G</strong>: GRASS, GeoServer, gvSIG, MapServer, MapGuide, Orfeo Toolbox, OSSIM, QGIS, R</li>
 <li><strong>proprietary</strong>: ArcGis, ERDAS, FME, Google Earth</li>
@@ -186,7 +178,7 @@ Huge list of sofware using GDAL, here only most important (full list &#64; GDAL 
 <h1>GDAL/OGR: vector formats</h1>
 <blockquote>
 <p>Long list too, here only most important (full list &#64; gdal website)</p>
-<p>OGR (Vector) (get the full list with &quot;ogrinfo --formats&quot;):</p>
+<p>OGR (Vector) (get the full list with <strong>ogrinfo --formats</strong>):</p>
 </blockquote>
 <ul class="simple">
 <li><strong>FOSS4G</strong> (RW): PostGis, Spatialite, MySQL, csv, GeoJSON, GeoRSS, GML, GPSBabel, GPX, GRASS, KML, WFS</li>
@@ -196,7 +188,7 @@ Huge list of sofware using GDAL, here only most important (full list &#64; GDAL 
 <div class="slide" id="gdal-ogr-raster-formats">
 <h1>GDAL/OGR: raster formats</h1>
 <blockquote>
-GDAL (Raster) (get the full list with gdalinfo --formats):</blockquote>
+GDAL (Raster) (get the full list with <strong>gdalinfo --formats</strong>):</blockquote>
 <ul class="simple">
 <li><strong>FOSS4G</strong> (RW): GRASS Rasters, WKTRaster, Rasterlite</li>
 <li><strong>proprietary</strong>: ArcInfo ASCII Grid, ArcSde Raster (R), ERDAS (R), Oracle Spatial GeoRaster, Intergraph, TIFF/GeoTIFF (Adobe)</li>
@@ -244,7 +236,7 @@ The power of GDAL/OGR at your fingertips (mostly in c, cpp but some written in p
 <ul class="simple">
 <li>it is a C++ port of <strong>JTS</strong> (Java Topology Suite from Vivid Solutions)</li>
 <li>originally started from Refractions for PostGIS</li>
-<li>provides all the OGC Simple Features implementations for SQL spatial predicate functions and spatial operators</li>
+<li>provides all the <strong>OGC Simple Feature Access</strong> implementations for SQL spatial predicate functions and spatial operators</li>
 <li>license: <strong>LGPL</strong></li>
 </ul>
 </div>
@@ -252,16 +244,18 @@ The power of GDAL/OGR at your fingertips (mostly in c, cpp but some written in p
 <h1>GEOS: Geometry Engine, Open Source</h1>
 <p><strong>GEOS</strong> Geometry Engine, Open Source</p>
 <ul class="simple">
-<li>model for geometric objects (Point, Linestring, Polygon, Multipoint, Multipolygon, GeomCollection)</li>
-<li>predicates and relationships (has_z, is_empty, is_valid, contains, crosses, equals, intersects, touches...)</li>
-<li>spatial analysis methods (boundary, centroid, difference, intersection, union, buffer, envelope, simplify...)</li>
-<li>interoperability and serialization/deserialization (WKT, WKB...)</li>
+<li><strong>model for geometric objects</strong> (Point, Linestring, Polygon, Multipoint, Multipolygon, GeomCollection)</li>
+<li><strong>geometric attributes and methods</strong> (empty, geom_type, num_coords, centroid, area, distance, length, srs, transform...)</li>
+<li><strong>representation and interoperation</strong> (ewkt, hex, hexewkb, json, geojson, kml, ogr, wkb, ewkb, wkt)</li>
+<li><strong>unary predicates</strong> (has_z, simple, valid...)</li>
+<li><strong>binary predicates</strong> (contains, crosses, equals, intersects, touches, within, ...)</li>
+<li><strong>constructive spatial analysis methods</strong> (buffer, difference, intersection, simplify, union, envelope, ...)</li>
 </ul>
 </div>
 <div class="slide" id="geos-huge-diffusion">
 <h1>GEOS: huge diffusion</h1>
 <blockquote>
-Huge list of sofware using GEOS, here only most important (full list &#64; GEOS website)</blockquote>
+Large list of sofware using GEOS, here only most important (full list &#64; GEOS website)</blockquote>
 <ul class="simple">
 <li><strong>FOSS4G</strong>: PostGIS, Spatialite, MapServer, QGIS, OGR, Shapely, GeoDjango</li>
 <li><strong>proprietary</strong>: FME, Autodesk MapGuide Enterprise</li>
@@ -272,7 +266,7 @@ Huge list of sofware using GEOS, here only most important (full list &#64; GEOS 
 <blockquote>
 bindings provide the GEOS power to developers using other languages than C/C++</blockquote>
 <ul class="simple">
-<li><strong>Python</strong> (not manteined anymore --&gt; GeoDjango, Shapely)</li>
+<li><strong>Python</strong> (not maintained anymore --&gt; <strong>GeoDjango, Shapely</strong>)</li>
 <li>Ruby</li>
 <li>PHP</li>
 </ul>
@@ -287,7 +281,7 @@ bindings provide the GEOS power to developers using other languages than C/C++</
 <li>written in C/C++</li>
 <li>both a <strong>command line</strong> and an <strong>API</strong></li>
 <li>used from almost any FOSS4G project</li>
-<li>ported to javascript (Proj4js) and Java (Proj4J)</li>
+<li>ported to javascript (<strong>Proj4js</strong>) and Java (<strong>Proj4J</strong>)</li>
 <li>license: <strong>MIT</strong></li>
 </ul>
 </div>
@@ -315,9 +309,9 @@ int pj_transform<span class="o">(</span> projPJ srcdefn, projPJ dstdefn, long po
 <div class="slide" id="id1">
 <h1>GDAL/OGR bindings</h1>
 <ul class="simple">
-<li>GDAL/OGR library offers Python bindings generated by SWIG</li>
+<li>GDAL/OGR library offers Python bindings generated by <strong>SWIG</strong></li>
 <li>GDAL is for raster, OGR for vector</li>
-<li>GDAL Python bindings is the only solution for raster</li>
+<li>GDAL Python bindings is the <strong>only solution for raster</strong></li>
 <li>documentation to be improved</li>
 <li>license: <strong>X/MIT</strong></li>
 </ul>
@@ -448,12 +442,13 @@ accessing shapefile features and geometries</blockquote>
 <li>some GDAL command line utilities</li>
 <li>many GDAL regression tests are written in Python: <a class="reference external" href="http://svn.osgeo.org/gdal/trunk/autotest/">http://svn.osgeo.org/gdal/trunk/autotest/</a></li>
 <li>Geoprocessing with Python using OpenSource GIS: <a class="reference external" href="http://www.gis.usu.edu/~chrisg/python/2009/">http://www.gis.usu.edu/~chrisg/python/2009/</a></li>
+<li>GDAL mailing list: <a class="reference external" href="http://lists.osgeo.org/mailman/listinfo/gdal-dev/">http://lists.osgeo.org/mailman/listinfo/gdal-dev/</a></li>
 </ul>
 </div>
 <div class="slide" id="geodjango">
 <h1>GeoDjango</h1>
 <ul class="simple">
-<li><strong>Django</strong>: The Web framework for perfectionists with deadlines. A DRY framework with an ORM (object relational mapper), a router, a MVC implementation and a great backend application</li>
+<li><strong>Django</strong>: The Web framework for perfectionists with deadlines. A <strong>DRY</strong> framework with an <strong>ORM</strong> (object relational mapper), a router, a <strong>MVC</strong> implementation and a great backend application</li>
 <li><strong>GeoDjango</strong>: The Geographic Web Framework for perfectionists with deadlines</li>
 <li>since Django 1.0 is a <strong>core package</strong></li>
 <li>it is a framework including a set of API, utility and tool for developing GIS application with Django</li>
@@ -468,7 +463,7 @@ accessing shapefile features and geometries</blockquote>
 <li><p class="first"><strong>GeoDjango Architecture</strong></p>
 </li>
 <li><dl class="first docutils">
-<dt><strong>GeoDjango features tour</strong></dt>
+<dt><strong>GeoDjango main features</strong></dt>
 <dd><ul class="first last simple">
 <li>GeoDjango Model API</li>
 <li>GEOS API</li>
@@ -486,7 +481,7 @@ accessing shapefile features and geometries</blockquote>
 <h1>GeoDjango: Architecture</h1>
 <ul>
 <li><dl class="first docutils">
-<dt>Spatial Database</dt>
+<dt><strong>Spatial Database</strong></dt>
 <dd><ul class="first last simple">
 <li>PostGis</li>
 <li>Spatialite</li>
@@ -497,7 +492,7 @@ accessing shapefile features and geometries</blockquote>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>GIS Libraries (Python API via ctypes)</dt>
+<dt><strong>GIS Libraries</strong> (Python API via <strong>ctypes</strong>)</dt>
 <dd><ul class="first last simple">
 <li>GEOS (Geometry Engine Open Source)</li>
 <li>GDAL/OGR (Geospatial Data Abstraction Library)</li>
@@ -512,7 +507,7 @@ accessing shapefile features and geometries</blockquote>
 <div class="slide" id="geodjango-model-api-1">
 <h1>GeoDjango: Model API (1)</h1>
 <blockquote>
-Geometry Field (django.contrib.gis.db extends django.db)</blockquote>
+<strong>Geometry Field</strong> (django.contrib.gis.db extends django.db)</blockquote>
 <ul>
 <li><p class="first">PointField, LineStringField, PolygonField</p>
 </li>
@@ -520,7 +515,7 @@ Geometry Field (django.contrib.gis.db extends django.db)</blockquote>
 </li>
 <li><p class="first">GeometryCollectionField</p>
 </li>
-<li><p class="first">GeometryField &lt;novità 1.2&gt;</p>
+<li><p class="first">GeometryField</p>
 <blockquote>
 <p>Geometry Field options</p>
 </blockquote>
@@ -536,7 +531,7 @@ Geometry Field (django.contrib.gis.db extends django.db)</blockquote>
 <div class="slide" id="geodjango-model-api-2">
 <h1>GeoDjango: Model API (2)</h1>
 <blockquote>
-In Django models we get Geographic Field e GeoManager</blockquote>
+In Django models we get <strong>Geometry Field</strong> and <strong>GeoManager</strong></blockquote>
 <div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib.gis.db</span> <span class="kn">import</span> <span class="n">models</span>
 
 <span class="k">class</span> <span class="nc">Site</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
@@ -675,7 +670,7 @@ excellent alternative to GDAL/OGR Python bindings</blockquote>
 <li>not <strong>required</strong> for GeoDjango (required only for srs trasformations and for LayerMapping)</li>
 <li>via the <strong>DataSource</strong> class get the access to any <strong>OGR</strong> format, (R/W in many cases)</li>
 <li>get access to the GEOS API via geos method on <strong>OGRGeometry</strong> class</li>
-<li>get access to other API via representative properties (wkt, wkb, json, ...)</li>
+<li>get access to other API via interoperation and representation properties (wkt, wkb, json, ...)</li>
 </ul>
 </div>
 <div class="slide" id="geodjango-gdal-ogr-api-example">
@@ -736,14 +731,28 @@ API for measurement units conversion and management</blockquote>
 <span class="mf">40.2336</span> <span class="n">sq_km</span>
 </pre></div>
 </div>
+<div class="slide" id="geodjango-resources">
+<h1>GeoDjango: resources</h1>
+<ul class="simple">
+<li>excellent documentation: <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/contrib/gis/">http://docs.djangoproject.com/en/dev/ref/contrib/gis/</a></li>
+<li>official tutorial: <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/contrib/gis/tutorial/">http://docs.djangoproject.com/en/dev/ref/contrib/gis/tutorial/</a></li>
+<li>GeoDjango Basic Apps: <a class="reference external" href="http://code.google.com/p/geodjango-basic-apps/">http://code.google.com/p/geodjango-basic-apps/</a></li>
+<li>Python Geospatial Development, a book from Packt: <a class="reference external" href="https://www.packtpub.com/python-geo-spatial-development/book">https://www.packtpub.com/python-geo-spatial-development/book</a></li>
+<li>Justin Bronn at DjangoCon 2008: <a class="reference external" href="http://www.youtube.com/watch?v=zOaimbSe6n8">http://www.youtube.com/watch?v=zOaimbSe6n8</a></li>
+<li>mailing list: <a class="reference external" href="http://groups.google.com/group/geodjango">http://groups.google.com/group/geodjango</a></li>
+<li>an overview by Dane Springmeyer: <a class="reference external" href="http://www.geowebguru.com/articles/99-overview-geodjango">http://www.geowebguru.com/articles/99-overview-geodjango</a></li>
+<li>workshop &#64; FOSS4G-IT 2010 (Lugano): <a class="reference external" href="https://github.com/capooti/geodjango-tutorial">https://github.com/capooti/geodjango-tutorial</a> (in Italian)</li>
+<li>a day with GeoDjango: <a class="reference external" href="http://www.paolocorti.net/2009/04/01/a-day-with-geodjango/">http://www.paolocorti.net/2009/04/01/a-day-with-geodjango/</a></li>
+</ul>
+</div>
 <div class="slide" id="shapely">
 <h1>Shapely</h1>
 <ul class="simple">
 <li>it is a Python binding library to GEOS via ctypes (like the GeoDjango GEOS API)</li>
-<li>aims to be general purpose, not only GEOS (even if it is a loyal OGC SFA implementation)</li>
+<li>aims to be <strong>general purpose</strong>, not only for GIS stuff (even if it is a loyal OGC SFA implementation)</li>
 <li>excellent documentation (very nice manual)</li>
-<li>integration: via serialization/deserialization via well known formats (wkt, wkb)</li>
-<li>projections are not supported, so geometries must be in a unique projected srs</li>
+<li><strong>integration</strong>: via serialization/deserialization with standard well known formats (wkt, wkb)</li>
+<li><strong>projections are not supported</strong>, so geometries must be in a unique projected srs</li>
 <li>license: <strong>BSD</strong></li>
 </ul>
 </div>
@@ -756,7 +765,7 @@ a model for geometric objects (Simple Feature Access)</blockquote>
 <li>LineString, LinearRing</li>
 <li>Polygon</li>
 <li>Geometry Collections (MultiPoint, MultiLineString, MultiPolygon, GeometryCollection)</li>
-<li>Empty features, Linear Referencing</li>
+<li><strong>Empty features, Linear Referencing</strong></li>
 </ul>
 </div>
 <div class="slide" id="shapely-ogc-sfa-2">
@@ -771,7 +780,7 @@ a model for geometric objects (Simple Feature Access)</blockquote>
 </ul>
 </div>
 <div class="slide" id="shapely-example-1">
-<h1>Shapely, Example 1</h1>
+<h1>Shapely: Example 1</h1>
 <blockquote>
 geometric objects (point), general attributes and methods
 and representation and interoperation</blockquote>
@@ -794,7 +803,7 @@ and representation and interoperation</blockquote>
 </pre></div>
 </div>
 <div class="slide" id="shapely-example-2">
-<h1>Shapely, Example 2</h1>
+<h1>Shapely: Example 2</h1>
 <blockquote>
 geometric objects (polygon), general attributes and methods
 and representation and interoperation</blockquote>
@@ -817,7 +826,7 @@ and representation and interoperation</blockquote>
 </pre></div>
 </div>
 <div class="slide" id="shapely-example-3">
-<h1>Shapely, Example 3</h1>
+<h1>Shapely: Example 3</h1>
 <blockquote>
 unary predicates, binary predicates, spatial analysis methods</blockquote>
 <div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">polygon</span><span class="o">.</span><span class="n">has_z</span>
@@ -834,7 +843,7 @@ unary predicates, binary predicates, spatial analysis methods</blockquote>
 </pre></div>
 </div>
 <div class="slide" id="shapely-example-4">
-<h1>Shapely, Example 4</h1>
+<h1>Shapely: Example 4</h1>
 <blockquote>
 diagnostics</blockquote>
 <div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">coords</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
@@ -844,12 +853,22 @@ diagnostics</blockquote>
 <span class="s">&#39;Ring Self-intersection[1 1]&#39;</span>
 </pre></div>
 </div>
+<div class="slide" id="shapely-resources">
+<h1>Shapely: resources</h1>
+<ul class="simple">
+<li>excellent documentation: <a class="reference external" href="http://gispython.org/shapely/docs/1.2/">http://gispython.org/shapely/docs/1.2/</a></li>
+<li>GIS Python Lab: <a class="reference external" href="http://trac.gispython.org/lab">http://trac.gispython.org/lab</a></li>
+<li>Sean Gillies Blog: <a class="reference external" href="http://sgillies.net/blog/">http://sgillies.net/blog/</a></li>
+<li>Python Workshop at FOSS4G 2010: <a class="reference external" href="http://www.mapfish.org/doc/tutorials/python-workshop/geoalchemy.html">http://www.mapfish.org/doc/tutorials/python-workshop/geoalchemy.html</a></li>
+<li>mailing list &#64;gispython.org: <a class="reference external" href="http://lists.gispython.org/mailman/listinfo/community">http://lists.gispython.org/mailman/listinfo/community</a></li>
+</ul>
+</div>
 <div class="slide" id="geoalchemy">
 <h1>GeoAlchemy</h1>
 <blockquote>
 GeoAlchemy</blockquote>
 <ul class="simple">
-<li>it is a spatial extension to SQLAlchemy</li>
+<li>it is a spatial extension to <strong>SQLAlchemy</strong></li>
 <li>it provides support for Geospatial data types at the ORM layer using SQLAlchemy</li>
 <li>it aims to support spatial operations and relations specified by the Open Geospatial Consortium (OGC). The project started under Google Summer of Code Program</li>
 <li>differently from other libraries, it does <strong>NOT DEPEND</strong> on other GIS building blocks (GDAL, GEOS...)</li>
@@ -864,10 +883,10 @@ SQLAlchemy</blockquote>
 <ul class="simple">
 <li>SQLAlchemy is the most powerful Python SQL Toolkit and ORM</li>
 <li>compared to the Django ORM, it has a most powerfull abstraction</li>
-<li>supports not only tables (like Django) but also joins, subqueries, and unions</li>
-<li>higly scalable (ie: configuration of how many SELECT to emit while loading whole graphs of objects: lazy loading and eager load)</li>
+<li>supports not only tables (like Django) but also <strong>joins, subqueries, and unions</strong></li>
+<li>higly <strong>scalable</strong> (ie: configuration of how many SELECT to emit while loading whole graphs of objects: lazy loading and eager load)</li>
 <li>greater set of DB supported if compared to Django</li>
-<li>support for transactions (i.e. nice rollback mechanism)</li>
+<li>support for <strong>transactions</strong> (i.e. nice rollback mechanism)</li>
 <li>excellent documentations</li>
 </ul>
 </div>
@@ -880,13 +899,13 @@ Supported spatial database</blockquote>
 <li>Spatialite</li>
 <li>MySQL (not OGC-compliant, limited functionality)</li>
 <li>Oracle</li>
-<li>MS SQL Server 2008 (Django do not support it)</li>
+<li>MS SQL Server 2008 (Django does not support it)</li>
 </ul>
 </div>
 <div class="slide" id="geoalchemy-use-cases">
 <h1>GeoAlchemy: Use cases</h1>
 <ul class="simple">
-<li>like Django, you may use it in Desktop and web application</li>
+<li>like Django, you may use it in <strong>desktop and web</strong> application</li>
 <li>web frameworks that integrates well with SQLAlchemy: TurboGears and Pylons (highly configurable for models, templates and helpers)</li>
 <li>Django is not the best SQLAlchemy friend, but you may still use it :D</li>
 </ul>
@@ -903,7 +922,7 @@ Supported spatial database</blockquote>
 </ul>
 </div>
 <div class="slide" id="geoalchemy-example-1">
-<h1>GeoAlchemy, Example 1</h1>
+<h1>GeoAlchemy: Example 1</h1>
 <blockquote>
 the model</blockquote>
 <div class="highlight"><pre><span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s">&#39;postgresql://postgres:postgres@localhost/gis_test&#39;</span><span class="p">,</span> <span class="n">echo</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -925,7 +944,7 @@ the model</blockquote>
 </pre></div>
 </div>
 <div class="slide" id="geoalchemy-example-2">
-<h1>GeoAlchemy, Example 2</h1>
+<h1>GeoAlchemy: Example 2</h1>
 <blockquote>
 data creation</blockquote>
 <div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">wkt_spot1</span> <span class="o">=</span> <span class="s">&quot;POINT(-81.40 38.08)&quot;</span>
@@ -937,7 +956,7 @@ data creation</blockquote>
 </pre></div>
 </div>
 <div class="slide" id="geoalchemy-example-3">
-<h1>GeoAlchemy, Example 3</h1>
+<h1>GeoAlchemy: Example 3</h1>
 <blockquote>
 data reading and representation</blockquote>
 <div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Spot</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -950,7 +969,7 @@ data reading and representation</blockquote>
 </pre></div>
 </div>
 <div class="slide" id="geoalchemy-example-4">
-<h1>GeoAlchemy, Example 4</h1>
+<h1>GeoAlchemy: Example 4</h1>
 <blockquote>
 geometric properties</blockquote>
 <div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Spot</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">Spot</span><span class="o">.</span><span class="n">height</span> <span class="o">&gt;</span> <span class="mi">240</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
@@ -965,7 +984,7 @@ geometric properties</blockquote>
 </pre></div>
 </div>
 <div class="slide" id="geoalchemy-example-5">
-<h1>GeoAlchemy, Example 5</h1>
+<h1>GeoAlchemy: Example 5</h1>
 <blockquote>
 constructive spatial analysis methods and binary predicates</blockquote>
 <div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Road</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
@@ -979,6 +998,15 @@ constructive spatial analysis methods and binary predicates</blockquote>
 <span class="il">0L</span>
 </pre></div>
 </div>
+<div class="slide" id="geoalchemy-resources">
+<h1>GeoAlchemy: resources</h1>
+<ul class="simple">
+<li>documentation: <a class="reference external" href="http://www.geoalchemy.org/">http://www.geoalchemy.org/</a></li>
+<li>official tutorial: <a class="reference external" href="http://www.geoalchemy.org/tutorial.html">http://www.geoalchemy.org/tutorial.html</a></li>
+<li>Python Workshop at FOSS4G 2010: <a class="reference external" href="http://www.mapfish.org/doc/tutorials/python-workshop/geoalchemy.html">http://www.mapfish.org/doc/tutorials/python-workshop/geoalchemy.html</a></li>
+<li>mailing list: <a class="reference external" href="http://groups.google.com/group/geoalchemy?pli=1">http://groups.google.com/group/geoalchemy?pli=1</a></li>
+</ul>
+</div>
 <div class="slide" id="notes-on-implementations">
 <h1>Notes on implementations</h1>
 <ul>
@@ -988,7 +1016,8 @@ constructive spatial analysis methods and binary predicates</blockquote>
 <dt>Python and C/C++ libraries</dt>
 <dd><ul class="first last simple">
 <li>with <strong>SWIG</strong> (GDAL/OGR bindings, Mapscript, GRASS, QGIS)</li>
-<li>with <strong>ctypes</strong> (GeoDjango, Shapely, Mapnik)</li>
+<li>with <strong>ctypes</strong> (GeoDjango, Shapely)</li>
+<li>with <strong>Boost.Python</strong> (Mapnik)</li>
 </ul>
 </dd>
 </dl>
