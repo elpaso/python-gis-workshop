@@ -39,21 +39,13 @@ Building blocks: overview
 			label="Data providers"
 			color = "grey"
 			shapefile [label="Vector (OGR)"]
-			ows [label="OGC WS"]
+			ows [label="WS (OCG)"]
 			postgis [label="PostGIS"]
 			prop_ws [label="WS (Google & C.)"]
 			raster [label="Raster"]
 		}
 
         
-        /*
-        subgraph cluster_tilesystems {
-            label="Tile caches"
-            node [style="filled" color="grey"]
-            cachelite [label="CacheLite"]
-            tilecache [label="TileCache"]
-        }
-        */
 
 		prop_ws -> geopy
 		ows -> owslib [dir="both" color="blue"]
@@ -69,8 +61,8 @@ Building blocks: overview
         raster -> grass [dir="both" color="blue"]
         postgis -> qgis [dir="both" color="blue"]
         postgis -> mapnik [dir="both" color="blue"]
-        raster -> qgis
-        raster -> mapscript
+        raster -> qgis [dir="both" color="blue"]
+        raster -> mapscript [dir="both" color="blue"]
         raster -> mapnik [dir="both" color="blue"]
 	}
 
