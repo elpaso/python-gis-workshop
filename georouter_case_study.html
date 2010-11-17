@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.7: http://docutils.sourceforge.net/" />
+<meta name="version" content="S5 1.1" />
+<title>GeoDjango + PGRouting + GeoExt = Gis Fun!</title>
+<style type="text/css">
+
+.highlight .hll { background-color: #333333 }
+.highlight  { background: #111111; color: #ffffff }
+.highlight .c { color: #008800; font-style: italic; background-color: #0f140f } /* Comment */
+.highlight .err { color: #ffffff } /* Error */
+.highlight .g { color: #ffffff } /* Generic */
+.highlight .k { color: #fb660a; font-weight: bold } /* Keyword */
+.highlight .l { color: #ffffff } /* Literal */
+.highlight .n { color: #ffffff } /* Name */
+.highlight .o { color: #ffffff } /* Operator */
+.highlight .x { color: #ffffff } /* Other */
+.highlight .p { color: #ffffff } /* Punctuation */
+.highlight .cm { color: #008800; font-style: italic; background-color: #0f140f } /* Comment.Multiline */
+.highlight .cp { color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f } /* Comment.Preproc */
+.highlight .c1 { color: #008800; font-style: italic; background-color: #0f140f } /* Comment.Single */
+.highlight .cs { color: #008800; font-style: italic; background-color: #0f140f } /* Comment.Special */
+.highlight .gd { color: #ffffff } /* Generic.Deleted */
+.highlight .ge { color: #ffffff } /* Generic.Emph */
+.highlight .gr { color: #ffffff } /* Generic.Error */
+.highlight .gh { color: #ffffff; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #ffffff } /* Generic.Inserted */
+.highlight .go { color: #444444; background-color: #222222 } /* Generic.Output */
+.highlight .gp { color: #ffffff } /* Generic.Prompt */
+.highlight .gs { color: #ffffff } /* Generic.Strong */
+.highlight .gu { color: #ffffff; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #ffffff } /* Generic.Traceback */
+.highlight .kc { color: #fb660a; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #fb660a; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #fb660a; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #fb660a } /* Keyword.Pseudo */
+.highlight .kr { color: #fb660a; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #cdcaa9; font-weight: bold } /* Keyword.Type */
+.highlight .ld { color: #ffffff } /* Literal.Date */
+.highlight .m { color: #0086f7; font-weight: bold } /* Literal.Number */
+.highlight .s { color: #0086d2 } /* Literal.String */
+.highlight .na { color: #ff0086; font-weight: bold } /* Name.Attribute */
+.highlight .nb { color: #ffffff } /* Name.Builtin */
+.highlight .nc { color: #ffffff } /* Name.Class */
+.highlight .no { color: #0086d2 } /* Name.Constant */
+.highlight .nd { color: #ffffff } /* Name.Decorator */
+.highlight .ni { color: #ffffff } /* Name.Entity */
+.highlight .ne { color: #ffffff } /* Name.Exception */
+.highlight .nf { color: #ff0086; font-weight: bold } /* Name.Function */
+.highlight .nl { color: #ffffff } /* Name.Label */
+.highlight .nn { color: #ffffff } /* Name.Namespace */
+.highlight .nx { color: #ffffff } /* Name.Other */
+.highlight .py { color: #ffffff } /* Name.Property */
+.highlight .nt { color: #fb660a; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #fb660a } /* Name.Variable */
+.highlight .ow { color: #ffffff } /* Operator.Word */
+.highlight .w { color: #888888 } /* Text.Whitespace */
+.highlight .mf { color: #0086f7; font-weight: bold } /* Literal.Number.Float */
+.highlight .mh { color: #0086f7; font-weight: bold } /* Literal.Number.Hex */
+.highlight .mi { color: #0086f7; font-weight: bold } /* Literal.Number.Integer */
+.highlight .mo { color: #0086f7; font-weight: bold } /* Literal.Number.Oct */
+.highlight .sb { color: #0086d2 } /* Literal.String.Backtick */
+.highlight .sc { color: #0086d2 } /* Literal.String.Char */
+.highlight .sd { color: #0086d2 } /* Literal.String.Doc */
+.highlight .s2 { color: #0086d2 } /* Literal.String.Double */
+.highlight .se { color: #0086d2 } /* Literal.String.Escape */
+.highlight .sh { color: #0086d2 } /* Literal.String.Heredoc */
+.highlight .si { color: #0086d2 } /* Literal.String.Interpol */
+.highlight .sx { color: #0086d2 } /* Literal.String.Other */
+.highlight .sr { color: #0086d2 } /* Literal.String.Regex */
+.highlight .s1 { color: #0086d2 } /* Literal.String.Single */
+.highlight .ss { color: #0086d2 } /* Literal.String.Symbol */
+.highlight .bp { color: #ffffff } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #fb660a } /* Name.Variable.Class */
+.highlight .vg { color: #fb660a } /* Name.Variable.Global */
+.highlight .vi { color: #fb660a } /* Name.Variable.Instance */
+.highlight .il { color: #0086f7; font-weight: bold } /* Literal.Number.Integer.Long */
+
+</style>
+<!-- configuration parameters -->
+<meta name="defaultView" content="slideshow" />
+<meta name="controlVis" content="hidden" />
+<!-- style sheet links -->
+<script src="ui/python/slides.js" type="text/javascript"></script>
+<link rel="stylesheet" href="ui/python/slides.css"
+      type="text/css" media="projection" id="slideProj" />
+<link rel="stylesheet" href="ui/python/outline.css"
+      type="text/css" media="screen" id="outlineStyle" />
+<link rel="stylesheet" href="ui/python/print.css"
+      type="text/css" media="print" id="slidePrint" />
+<link rel="stylesheet" href="ui/python/opera.css"
+      type="text/css" media="projection" id="operaFix" />
+
+<style type="text/css">
+#currentSlide {display: none;}
+</style>
+</head>
+<body>
+<div class="layout">
+<div id="controls"></div>
+<div id="currentSlide"></div>
+<div id="header">
+
+</div>
+<div id="footer">
+<h1>GeoDjango + PGRouting + GeoExt Studio di un caso: GeoRouter</h1>
+<h2>GFOSS Day, Foligno - 18/19 November 2010</h2>
+</div>
+</div>
+<div class="presentation">
+<div class="slide" id="slide0">
+<h1 class="title">GeoDjango + PGRouting + GeoExt Studio di un caso: GeoRouter</h1>
+<h2 class="subtitle" id="alessandro-pasotti-apasotti-gmail-com">Alessandro Pasotti (<a class="reference external" href="mailto:apasotti&#64;gmail.com">apasotti&#64;gmail.com</a>)</h2>
+
+
+</div>
+<div class="slide" id="premesse">
+<h1>Premesse</h1>
+<ul class="simple">
+<li>Il cliente esegue rilievi in campo di sentieri e percorsi con finalità di turismo &quot;dolce&quot; e &quot;sostenibile&quot;</li>
+<li>Committenti: APT, Ministero, altre PPAA</li>
+<li>I rilievi sono corredati da:<ul>
+<li>immagini georeferenziate,</li>
+<li>descrizione di tutti i nodi in entrambe le direzioni</li>
+<li>tempi di percorrenza a piedi e in bicicletta</li>
+<li>caratteristiche del fondo stradale</li>
+<li>percentuale di percorribilità in bicicletta</li>
+<li>relazioni sul percorso</li>
+</ul>
+</li>
+</ul>
+<p>Obbiettivo:</p>
+<blockquote>
+Realizzare un gruppo di siti per visualizzare i percorsi e le risorse turistiche del territorio</blockquote>
+</div>
+<div class="slide" id="caratteristiche">
+<h1>Caratteristiche</h1>
+<ul class="incremental simple">
+<li>Oltre ai percorsi, il portale deve gestire altre risorse, eventualmente georeferenziate:<ul>
+<li>Blog</li>
+<li>POI</li>
+<li>News</li>
+<li>Strutture ricettive</li>
+<li>Viaggi a tappe</li>
+<li>Diari di viaggio</li>
+<li>Foto</li>
+<li>...</li>
+</ul>
+</li>
+<li>Mappa <em>embeddable</em></li>
+<li>Interoperabile tramite <em>WS</em></li>
+</ul>
+</div>
+<div class="slide" id="altre-caratteristiche">
+<h1>Altre caratteristiche</h1>
+<ul class="incremental simple">
+<li>Accessibilità (non completato)</li>
+<li>Multisito (un solo DB, N siti), possibilità di pubblicare un contenuto su più siti</li>
+<li>Attivazione di nuovi siti (domini) da pannello di controllo</li>
+<li>Multilingua</li>
+<li>Rivendibile: pannello di controllo cliente, con accesso limitato</li>
+<li>Routing (inizialmente anche ibrido)</li>
+<li>Versioni <em>Mobile</em></li>
+<li>Output in diversi formati GIS:<ul>
+<li>GML</li>
+<li>KML</li>
+<li>GPX</li>
+<li>GDB (Garmin)</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="slide" id="tecnologie">
+<h1>Tecnologie</h1>
+<img alt="images/django-logo.png" class="align-right" src="images/django-logo.png" />
+<img alt="images/postgis_elephant.png" class="align-right" src="images/postgis_elephant.png" />
+<img alt="images/geoext-logo.png" class="align-right" src="images/geoext-logo.png" />
+<ul class="incremental simple">
+<li>GeoDjango<ul>
+<li>RPC4Django</li>
+</ul>
+</li>
+<li>PostGIS</li>
+<li>PG-Routing</li>
+<li>GeoExt</li>
+</ul>
+</div>
+<div class="slide" id="multisito">
+<h1>Multisito</h1>
+<ul class="incremental simple">
+<li>Django non supporta multisito in una singola istanza!</li>
+<li>Middleware per modificare <strong>SITE_ID</strong> e altri parametri di configurazione dipendenti dal sito</li>
+<li>Middleware per la <em>cache</em> sito-specifica</li>
+<li>Modifiche al pannello di controllo per (applicazione <em>admin</em>) per l'accesso <em>staff</em> con amministrazione di un singolo canale</li>
+<li>Custom manager per mostrare solo le risorse pubblicate sul sito</li>
+</ul>
+</div>
+<div class="slide" id="multilingua">
+<h1>Multilingua</h1>
+<ul class="incremental simple">
+<li>Django non supporta contenuti multilingua</li>
+<li>Applicazione <strong>transmeta</strong>, modificata per avere <em>setter</em> e <em>getter</em> e default nullo su campi obbligatori</li>
+<li>Custom manager su tutte le applicazioni per mostrare solo le risorse tradotte nella lingua desiderata (controllo sui campi obbligatori)</li>
+</ul>
+</div>
+<div class="slide" id="routing">
+<h1>Routing</h1>
+<ul class="incremental simple">
+<li>Routing sulla rete interna (arco-nodo)</li>
+<li>Guida virtuale con POI e altre risorse</li>
+<li>Generazione <em>roadbook</em></li>
+<li>Routing ibrido con dati Google e interni</li>
+<li>Creazione itinerari</li>
+</ul>
+</div>
+<div class="slide" id="applicazioni-django-utilizzate">
+<h1>Applicazioni Django utilizzate</h1>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="32%" />
+<col width="41%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Applicazione</th>
+<th class="head">Uso</th>
+<th class="head">Mod. ?</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Photologue</td>
+<td>gestione gallerie di foto</td>
+<td>Si</td>
+</tr>
+<tr><td>OlWidget</td>
+<td>widget openlayers</td>
+<td>Si</td>
+</tr>
+<tr><td>LocaleURL</td>
+<td>localizzazione</td>
+<td>Si</td>
+</tr>
+<tr><td>Transmeta</td>
+<td>traduzione contenuto</td>
+<td>Si</td>
+</tr>
+<tr><td>RPC4Django</td>
+<td>WS XML-RPC / JSON-RPC</td>
+<td>No</td>
+</tr>
+<tr><td>Avatar</td>
+<td>avatar</td>
+<td>No</td>
+</tr>
+<tr><td>Tagging</td>
+<td>tags</td>
+<td>No</td>
+</tr>
+<tr><td>Profiles</td>
+<td>profili utente</td>
+<td>No</td>
+</tr>
+<tr><td>Registration</td>
+<td>registrazione utenti</td>
+<td>No</td>
+</tr>
+<tr><td>Gatekeeper</td>
+<td>moderazione</td>
+<td>Si</td>
+</tr>
+<tr><td>TinyMCE e FileEditor</td>
+<td>GUI</td>
+<td>No</td>
+</tr>
+<tr><td>Treemenus</td>
+<td>menu</td>
+<td>Si</td>
+</tr>
+<tr><td>MPTT</td>
+<td>albero di categorie</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="slide" id="applicazioni-django-sviluppate">
+<h1>Applicazioni Django sviluppate</h1>
+<table border="1" class="docutils">
+<colgroup>
+<col width="46%" />
+<col width="54%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Applicazione</th>
+<th class="head">Uso</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>GeoExt</td>
+<td>GUI mappa front-end</td>
+</tr>
+<tr><td>ItFTS</td>
+<td>Full Text Search</td>
+</tr>
+<tr><td>ItCMS</td>
+<td>Funzioni CMS</td>
+</tr>
+<tr><td>ItSites</td>
+<td>Gestione multisito</td>
+</tr>
+<tr><td>Routing</td>
+<td>Routing</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="slide" id="mappe-olwidget">
+<h1>Mappe: OlWidget</h1>
+<blockquote>
+<a class="reference external" href="http://olwidget.org/">http://olwidget.org/</a>
+olwidget is a javascript library that makes it easy to add editable maps to forms. It operates by replacing a textarea with an editable map, and writes WKT data back to the textarea for processing.</blockquote>
+<img alt="images/olwidget.png" src="images/olwidget.png" />
+</div>
+<div class="slide" id="mappe-olwidget-admin">
+<h1>Mappe: OlWidget admin</h1>
+<img alt="images/olwidget_admin.png" src="images/olwidget_admin.png" />
+</div>
+<div class="slide" id="mappe-olwidget-admin-2">
+<h1>Mappe: OlWidget admin 2</h1>
+<img alt="images/olwidget_admin_detail.png" src="images/olwidget_admin_detail.png" />
+</div>
+<div class="slide" id="mappe-geoext">
+<h1>Mappe: GeoExt</h1>
+<blockquote>
+<a class="reference external" href="http://www.geoext.org/">http://www.geoext.org/</a>
+JavaScript Toolkit for Rich Web Mapping Applications</blockquote>
+<img alt="images/geoext.png" src="images/geoext.png" />
+</div>
+<div class="slide" id="il-routing">
+<h1>Il routing</h1>
+<ul class="incremental simple">
+<li>Calcolo dei tempi di percorrenza (a piedi e in bici)</li>
+<li>Routing tramite PG-Routing</li>
+<li>Routing ibrido tramite Google</li>
+<li>Roadbook</li>
+<li>Profilo altimetrico con Google Charts</li>
+</ul>
+</div>
+<div class="slide" id="rpc-ws-rpc4django">
+<h1>RPC WS: RPC4Django</h1>
+<img alt="images/rpc4django.png" src="images/rpc4django.png" />
+</div>
+<div class="slide" id="mobile">
+<h1>Mobile</h1>
+<img alt="images/mobile.png" src="images/mobile.png" />
+</div>
+<div class="slide" id="id1">
+<h1>Mobile</h1>
+<img alt="images/mobile-detail.png" src="images/mobile-detail.png" />
+</div>
+<div class="slide" id="deployment">
+<h1>Deployment</h1>
+<img alt="images/wsgi_deployment.png" class="align-right" src="images/wsgi_deployment.png" />
+<ul class="incremental simple">
+<li>slice su VM XEN USA</li>
+<li>GIT</li>
+<li>nginx proxy per la parte statica</li>
+<li>mod_wsgi</li>
+<li>memcached</li>
+</ul>
+</div>
+<div class="slide" id="problemi">
+<h1>Problemi</h1>
+<ul class="simple">
+<li>Deployment complesso</li>
+<li>WSGI thread singolo, multiprocesso</li>
+<li>Occupazione di memoria</li>
+<li>Caching essenziale!</li>
+<li>Dati vettoriali nella mappa</li>
+</ul>
+</div>
+</div>
+</body>
+</html>

@@ -229,7 +229,7 @@
 <h1>OGC WS: WFS GetFeature operation</h1>
 <p>main parameters: typeName, maxfeatures, query...</p>
 <p>sample GetFeature operation (output is GML)</p>
-<p><a class="reference external" href="http://myserver/geoserver/wfs?request=GetFeature&amp;version=1.0.0&amp;typeName=layer1&amp;maxfeatures=1">http://myserver/geoserver/wfs?request=GetFeature&amp;version=1.0.0&amp;typeName=layer1&amp;maxfeatures=1</a></p>
+<p><a class="reference external" href="http://wms.pcn.minambiente.it/cgi-bin/mapserv.exe?map=/ms_ogc/wfs/regioni_wfs_f33.map&amp;service=WFS&amp;typename=regioni_f33&amp;request=GetFeature&amp;version=1.0.0">http://wms.pcn.minambiente.it/cgi-bin/mapserv.exe?map=/ms_ogc/wfs/regioni_wfs_f33.map&amp;service=WFS&amp;typename=regioni_f33&amp;request=GetFeature&amp;version=1.0.0</a></p>
 </div>
 <div class="slide" id="ogc-ws-wcs">
 <h1>OGC WS: WCS</h1>
@@ -277,20 +277,28 @@ Catalogue Service</blockquote>
 <div class="slide" id="ogc-ws-csw-getrecords-operation">
 <h1>OGC WS: CSW GetRecords operation</h1>
 <p>main parameters: outputFormat (XML, text, html), maxRecords, SortBy, Constraint</p>
-<p>GetRecords operation (output is XML):</p>
-<pre class="literal-block">
-http://www.someserver.com/csw/csw.cgi?request=GetRecords&amp;version=2.0.2&amp;outputFormat=application/xml&amp;outputSchema=http://www.opengis.net/cat/csw/2.0.2&amp;namespace=csw:http://www.opengis.org/cat/csw&amp;ResponseHandler=&quot;mailto:info&#64;site.com&amp;typeName=csw:Record&amp;elementSetName=brief&amp;constraintlanguage=CQLTEXT&amp;constraint=&quot;csw:AnyText Like '%pollution%'&quot;
-</pre>
+<p>GetRecords operation (output is XML)</p>
+<div class="highlight"><pre>http://www.someserver.com/csw/csw.cgi?request=GetRecords<span class="err">&amp;</span>version=2.0.2<span class="err">&amp;</span>outputFormat=application/xml<span class="err">&amp;</span>outputSchema=http://www.opengis.net/cat/csw/2.0.2<span class="err">&amp;</span>namespace=csw:http://www.opengis.org/cat/csw<span class="err">&amp;</span>ResponseHandler=&quot;mailto:info@site.com<span class="err">&amp;</span>typeName=csw:Record<span class="err">&amp;</span>elementSetName=brief<span class="err">&amp;</span>constraintlanguage=CQLTEXT<span class="err">&amp;</span>constraint=&quot;csw:AnyText Like &#39;%pollution%&#39;&quot;
+</pre></div>
 </div>
 <div class="slide" id="ogc-ws-wps">
 <h1>OGC WS: WPS</h1>
 <div class="sidebar">
 <p class="first sidebar-title">Libs</p>
-<ul class="last simple">
+<blockquote>
+<ul class="simple">
 <li>pyWPS</li>
 </ul>
+</blockquote>
+<p class="last">Web Processing Server provides rules for standardizing how inputs and outputs (requests and responses) for geospatial processing services</p>
 </div>
-<p>Web Processing Server provides rules for standardizing how inputs and outputs (requests and responses) for geospatial processing services</p>
+<p>Operations:</p>
+<ul class="incremental simple">
+<li><em>GetCapabilities</em> returns service-level metadata</li>
+<li><em>DescribeProcess</em> returns a description of a process including its inputs and outputs</li>
+<li><em>Execute</em> returns the output(s) of a process</li>
+</ul>
+<p>Accepts parameters as GET, POST, SOAP</p>
 </div>
 <div class="slide" id="building-blocks-ws-geonames">
 <h1>Building blocks - WS: GeoNames</h1>
@@ -371,6 +379,12 @@ http://www.someserver.com/csw/csw.cgi?request=GetRecords&amp;version=2.0.2&amp;o
 Via Guglielmo Oberdan, 123, 06034 Foligno Perugia, Italy
 <span class="nt">&lt;/formatted_address&gt;</span>
 ...
+<span class="nt">&lt;geometry&gt;</span>
+    <span class="nt">&lt;location&gt;</span>
+        <span class="nt">&lt;lat&gt;</span>42.9561745<span class="nt">&lt;/lat&gt;</span>
+        <span class="nt">&lt;lng&gt;</span>12.7090235<span class="nt">&lt;/lng&gt;</span>
+   <span class="nt">&lt;/location&gt;</span>
+...
 </pre></div>
 </div>
 <div class="slide" id="libraries-tools">
@@ -402,14 +416,14 @@ capabilities and python scripting support.</p>
 <h1>QGIS: standalone headless</h1>
 <blockquote>
 Loading a vector layer</blockquote>
-<div class="highlight"><pre>    <span class="o">&gt;&gt;&gt;</span> <span class="c"># Application init</span>
-    <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">qgis</span> <span class="kn">import</span> <span class="n">core</span>
-    <span class="o">&gt;&gt;&gt;</span> <span class="n">core</span><span class="o">.</span><span class="n">QgsApplication</span><span class="o">.</span><span class="n">setPrefixPath</span><span class="p">(</span><span class="s">&quot;/usr&quot;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
-    <span class="o">&gt;&gt;&gt;</span> <span class="n">core</span><span class="o">.</span><span class="n">QgsApplication</span><span class="o">.</span><span class="n">initQgis</span><span class="p">()</span>
-    <span class="o">&gt;&gt;&gt;</span> <span class="n">vlayer</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">QgsVectorLayer</span><span class="p">(</span><span class="s">&quot;regioni.shp&quot;</span><span class="p">,</span> <span class="s">&quot;regioni&quot;</span><span class="p">,</span> <span class="s">&quot;ogr&quot;</span><span class="p">)</span>
-    <span class="o">&gt;&gt;&gt;</span> <span class="n">vlayer</span><span class="o">.</span><span class="n">isValid</span><span class="p">()</span>
-    <span class="bp">True</span>
-    <span class="o">&gt;&gt;&gt;</span> <span class="c"># Add layer to registry</span>
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="c"># Application init</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">qgis</span> <span class="kn">import</span> <span class="n">core</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">core</span><span class="o">.</span><span class="n">QgsApplication</span><span class="o">.</span><span class="n">setPrefixPath</span><span class="p">(</span><span class="s">&quot;/usr&quot;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">core</span><span class="o">.</span><span class="n">QgsApplication</span><span class="o">.</span><span class="n">initQgis</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">vlayer</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">QgsVectorLayer</span><span class="p">(</span><span class="s">&quot;regioni.shp&quot;</span><span class="p">,</span> <span class="s">&quot;regioni&quot;</span><span class="p">,</span> <span class="s">&quot;ogr&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">vlayer</span><span class="o">.</span><span class="n">isValid</span><span class="p">()</span>
+<span class="bp">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c"># Add layer to registry</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">core</span><span class="o">.</span><span class="n">QgsMapLayerRegistry</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">addMapLayer</span><span class="p">(</span><span class="n">vlayer</span><span class="p">)</span>
     <span class="o">&lt;</span><span class="n">qgis</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">QgsVectorLayer</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x13be270</span><span class="o">&gt;</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="c"># Continue ...</span>
@@ -458,6 +472,7 @@ Rendering and image through <em>QGIS</em> API</blockquote>
 </ul>
 </div>
 <img alt="images/qgis_qui_programming.png" src="images/qgis_qui_programming.png" />
+<img alt="images/qt-designer.png" src="images/qt-designer.png" />
 </div>
 <div class="slide" id="qgis-standalone-gui-less-is-more">
 <h1>QGIS standalone GUI less is more</h1>
@@ -626,6 +641,8 @@ A library to consume OGC(TM) web services.</blockquote>
 <span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="n">wms</span><span class="o">.</span><span class="n">contents</span><span class="p">)</span>
 <span class="p">[</span><span class="s">&#39;ortofoto_colore_06&#39;</span><span class="p">,</span> <span class="s">&#39;watermark&#39;</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">wms</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="s">&#39;ortofoto_colore_06&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">md</span><span class="o">.</span><span class="n">crsOptions</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="p">[</span><span class="s">&#39;EPSG:32632&#39;</span><span class="p">]</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">wms</span><span class="p">[</span><span class="s">&#39;ortofoto_colore_06&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">boundingBox</span>
 <span class="p">(</span><span class="mf">298457.0</span><span class="p">,</span> <span class="mf">3914540.0</span><span class="p">,</span> <span class="mf">1327000.0</span><span class="p">,</span> <span class="mf">5239710.0</span><span class="p">,</span> <span class="s">&#39;EPSG:32632&#39;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">wms</span><span class="p">[</span><span class="s">&#39;ortofoto_colore_06&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">boundingBoxWGS84</span>
@@ -818,6 +835,7 @@ It offers an environment for programming own processes (geofunctions or models) 
 <ul class="simple">
 <li><a class="reference external" href="http://pywps.wald.intevation.org/">http://pywps.wald.intevation.org/</a></li>
 </ul>
+<img alt="images/pywps-schema.png" src="images/pywps-schema.png" />
 </div>
 <div class="slide" id="grass">
 <h1>GRASS</h1>
@@ -869,8 +887,7 @@ Powerful <strong>raster</strong> GIS analysis (mixed: <em>C</em>, <em>Python</em
 </div>
 <div class="slide" id="grass-result">
 <h1>GRASS: result</h1>
-<!-- image:a images/regioni_grass.png
-:scale: 50% -->
+<img alt="images/regioni_grass.png" src="images/regioni_grass.png" style="width: 297.5px; height: 290.0px;" />
 </div>
 <div class="slide" id="grass-ctypes">
 <h1>GRASS: ctypes</h1>

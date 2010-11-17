@@ -474,6 +474,7 @@ div.sidebar {
 
 pre.literal-block, pre.doctest-block {
     background-color: black;
+    color: white;
   }
 
 
@@ -495,12 +496,12 @@ table {
 
 
 table th {
-    border: solid 1px white;
+    border: solid 1px #0000AA;
   }
 
 
 table td {
-    border: solid 1px white;
+    border: solid 1px #0000AA;
   }
 
 
@@ -562,8 +563,8 @@ div.sidebar p.sidebar-title {
 
 
 dt {
-    color: orange;
-    font-weight:bold;
+    /*color: orange;
+    font-weight:bold;*/
   }
 
 

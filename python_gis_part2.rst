@@ -215,7 +215,8 @@ main parameters: typeName, maxfeatures, query...
 
 sample GetFeature operation (output is GML)
 
-http://myserver/geoserver/wfs?request=GetFeature&version=1.0.0&typeName=layer1&maxfeatures=1
+http://wms.pcn.minambiente.it/cgi-bin/mapserv.exe?map=/ms_ogc/wfs/regioni_wfs_f33.map&service=WFS&typename=regioni_f33&request=GetFeature&version=1.0.0
+
 
 OGC WS: WCS
 =====================
@@ -230,6 +231,7 @@ Operations:
     * GetCapabilities
     * DescribeCoverage
     * GetCoverage
+
 
 OGC WS: WCS GetCoverage operation
 ===========================================
@@ -280,7 +282,9 @@ OGC WS: CSW GetRecords operation
 
 main parameters: outputFormat (XML, text, html), maxRecords, SortBy, Constraint
 
-GetRecords operation (output is XML)::
+GetRecords operation (output is XML)
+
+.. sourcecode:: xml
 
     http://www.someserver.com/csw/csw.cgi?request=GetRecords&version=2.0.2&outputFormat=application/xml&outputSchema=http://www.opengis.net/cat/csw/2.0.2&namespace=csw:http://www.opengis.org/cat/csw&ResponseHandler="mailto:info@site.com&typeName=csw:Record&elementSetName=brief&constraintlanguage=CQLTEXT&constraint="csw:AnyText Like '%pollution%'"
 
@@ -294,8 +298,17 @@ OGC WS: WPS
 
 	* pyWPS
 
-Web Processing Server provides rules for standardizing how inputs and outputs (requests and responses) for geospatial processing services
+    Web Processing Server provides rules for standardizing how inputs and outputs (requests and responses) for geospatial processing services
 
+Operations:
+
+.. class:: incremental
+
+* *GetCapabilities* returns service-level metadata
+* *DescribeProcess* returns a description of a process including its inputs and outputs
+* *Execute* returns the output(s) of a process
+
+Accepts parameters as GET, POST, SOAP
 
 Building blocks - WS: GeoNames
 ========================================
@@ -381,6 +394,13 @@ Response:
     Via Guglielmo Oberdan, 123, 06034 Foligno Perugia, Italy
     </formatted_address>
     ...
+    <geometry>
+        <location>
+            <lat>42.9561745</lat>
+            <lng>12.7090235</lng>
+       </location>
+    ...
+ 
 
 Libraries & Tools
 ======================
@@ -422,14 +442,14 @@ QGIS: standalone headless
 
 .. sourcecode:: python
 
-	>>> # Application init
-	>>> from qgis import core 
-	>>> core.QgsApplication.setPrefixPath("/usr", True)
-	>>> core.QgsApplication.initQgis()
-	>>> vlayer = core.QgsVectorLayer("regioni.shp", "regioni", "ogr")
-	>>> vlayer.isValid()
-	True
-	>>> # Add layer to registry
+    >>> # Application init
+    >>> from qgis import core 
+    >>> core.QgsApplication.setPrefixPath("/usr", True)
+    >>> core.QgsApplication.initQgis()
+    >>> vlayer = core.QgsVectorLayer("regioni.shp", "regioni", "ogr")
+    >>> vlayer.isValid()
+    True
+    >>> # Add layer to registry
     >>> core.QgsMapLayerRegistry.instance().addMapLayer(vlayer)
         <qgis.core.QgsVectorLayer object at 0x13be270>
     >>> # Continue ...
@@ -491,6 +511,10 @@ QGIS: standalone GUI
 		"GUI design w. QtDesigner" -> "Connect GUI events w. python code"
 	}
 
+
+
+
+.. image:: images/qt-designer.png
 
 
 QGIS standalone GUI less is more
@@ -656,6 +680,8 @@ OWSLib: installation and usage
     >>> list(wms.contents)
     ['ortofoto_colore_06', 'watermark']
     >>> wms.contents['ortofoto_colore_06']
+    >>> md.crsOptions
+    Out[7]: ['EPSG:32632']
     >>> wms['ortofoto_colore_06'].boundingBox
     (298457.0, 3914540.0, 1327000.0, 5239710.0, 'EPSG:32632')
     >>> wms['ortofoto_colore_06'].boundingBoxWGS84
@@ -879,6 +905,9 @@ pyWPS
 * http://pywps.wald.intevation.org/
     
 
+.. image:: images/pywps-schema.png
+
+
 GRASS
 =====
     Powerful **raster** GIS analysis (mixed: *C*, *Python* etc.)
@@ -937,7 +966,7 @@ Running commands
 GRASS: result
 =============
 
-.. image:a images/regioni_grass.png
+.. image:: images/regioni_grass.png
     :scale: 50%
 
 
