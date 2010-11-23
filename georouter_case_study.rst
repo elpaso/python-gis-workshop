@@ -11,6 +11,8 @@ Alessandro Pasotti (apasotti@gmail.com)
 ---------------------------------------
 
 
+Licenza: Creative Commons Attribuzione - Condividi allo stesso modo 3.0
+
 
 Premesse
 =========================

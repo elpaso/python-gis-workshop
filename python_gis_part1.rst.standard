@@ -9,10 +9,10 @@ Developing Geospatial software with Python, Part 1
 Alessandro Pasotti (apasotti@gmail.com), Paolo Corti (pcorti@gmail.com)
 -----------------------------------------------------------------------
 
-.. raw:: pdf
+License:
+Creative Commons Attribution - Share Alike 3.0
 
-   PageBreak
-   
+
 Summary
 =======
 
@@ -29,10 +29,6 @@ Part 2 - Alessandro Pasotti
 * WebServices (GeoPy, Mapnik, Mapscript)
 * Desktop (QGIS, GRASS)
 
-.. raw:: pdf
-
-   PageBreak
-   
 Building blocks
 ===============
 
@@ -41,10 +37,6 @@ Building blocks
 * **GEOS** Geometry Engine, Open Source
 * **PROJ.4** Cartographic Projections Library
 
-.. raw:: pdf
-
-   PageBreak
-   
 Building blocks: GDAL/OGR
 =========================
 **GDAL** Geospatial Data Abstraction Library
@@ -57,10 +49,6 @@ Building blocks: GDAL/OGR
 * written mostly in C++ by Frank Warmerdam
 * license: **X/MIT**
 
-.. raw:: pdf
-
-   PageBreak
-   
 GDAL/OGR: large diffusion
 =========================
 
@@ -69,10 +57,6 @@ GDAL/OGR: large diffusion
 * **FOSS4G**: GRASS, GeoServer, gvSIG, MapServer, MapGuide, Orfeo Toolbox, OSSIM, QGIS, R
 * **proprietary**: ArcGis, ERDAS, FME, Google Earth
 
-.. raw:: pdf
-
-   PageBreak
-   
 GDAL/OGR: vector formats
 ========================
 
@@ -83,10 +67,6 @@ GDAL/OGR: vector formats
 * **FOSS4G** (RW): PostGis, Spatialite, MySQL, csv, GeoJSON, GeoRSS, GML, GPSBabel, GPX, GRASS, KML, WFS
 * **proprietary**: Shapefile, ArcInfo Coverage (R), ArcInfo .E00 (R), AutoCAD DXF, Esri PGDB (R), ArcSde (R), FMEObjects Gateway (R), MapInfo, Microstation DGN, Oracle Spatial, Microsoft MS Spatial 
 
-.. raw:: pdf
-
-   PageBreak
-   
 GDAL/OGR: raster formats
 ========================
 
@@ -95,10 +75,6 @@ GDAL/OGR: raster formats
 * **FOSS4G** (RW): GRASS Rasters, WKTRaster, Rasterlite
 * **proprietary**: ArcInfo ASCII Grid, ArcSde Raster (R), ERDAS (R), Oracle Spatial GeoRaster, Intergraph, TIFF/GeoTIFF (Adobe)
 
-.. raw:: pdf
-
-   PageBreak
-   
 GDAL/OGR: bindings
 ==================
 
@@ -112,10 +88,6 @@ GDAL/OGR: bindings
 * .Net (VB, C#, ...)
 * R
 
-.. raw:: pdf
-
-   PageBreak
-   
 GDAL/OGR: utilities (raster)
 ============================
 
@@ -130,10 +102,6 @@ GDAL/OGR: utilities (raster)
 * gdal_grid: create raster from scattered data
 * gdal_polygonize.py: generate polygons from raster
 
-.. raw:: pdf
-
-   PageBreak
-   
 GDAL/OGR: utilities (vector)
 ============================
 
@@ -141,10 +109,6 @@ GDAL/OGR: utilities (vector)
 * ogr2ogr: converts simple features data between file formats
 * ogrtindex: creates a tileindex
 
-.. raw:: pdf
-
-   PageBreak
-   
 Building blocks: GEOS
 =====================
 
@@ -153,10 +117,6 @@ Building blocks: GEOS
 * provides all the **OGC Simple Feature Access** implementations for SQL spatial predicate functions and spatial operators
 * license: **LGPL**
 
-.. raw:: pdf
-
-   PageBreak
-   
 GEOS: Geometry Engine, Open Source
 ==================================
 
@@ -169,10 +129,6 @@ GEOS: Geometry Engine, Open Source
 * **binary predicates** (contains, crosses, equals, intersects, touches, within, ...)
 * **constructive spatial analysis methods** (buffer, difference, intersection, simplify, union, envelope, ...)
 
-.. raw:: pdf
-
-   PageBreak
-   
 GEOS: huge diffusion
 ====================
 
@@ -181,10 +137,6 @@ GEOS: huge diffusion
 * **FOSS4G**: PostGIS, Spatialite, MapServer, QGIS, OGR, Shapely, GeoDjango
 * **proprietary**: FME, Autodesk MapGuide Enterprise
 
-.. raw:: pdf
-
-   PageBreak
-   
 GEOS: bindings
 ==================
 
@@ -198,10 +150,6 @@ Java developers of course must use the JTS!
 
 .NET developers can use the .NET JTS port (NetTopologySuite)
 
-.. raw:: pdf
-
-   PageBreak
-   
 Building blocks: PROJ.4
 =======================
 
@@ -214,10 +162,6 @@ Building blocks: PROJ.4
 * ported to javascript (**Proj4js**) and Java (**Proj4J**)
 * license: **MIT**
 
-.. raw:: pdf
-
-   PageBreak
-   
 PROJ.4: API
 ===========
 
@@ -231,11 +175,7 @@ Just 2 methods available:
     projPJ pj_init_plus(const char *definition);
     
     int pj_transform( projPJ srcdefn, projPJ dstdefn, long point_count, int point_offset, double *x, double *y, double *z );
-
-.. raw:: pdf
-
-   PageBreak
-   
+    
 Implementations
 ===============
 
@@ -244,10 +184,6 @@ Implementations
 * **Shapely**: Python API to GEOS
 * **GeoAlchemy**: Python API integrating SQLAlchemy for spatial database support
 
-.. raw:: pdf
-
-   PageBreak
-   
 GDAL/OGR bindings
 =================
 
@@ -257,10 +193,6 @@ GDAL/OGR bindings
 * documentation to be improved
 * license: **X/MIT**
 
-.. raw:: pdf
-
-   PageBreak
-   
 GDAL/OGR bindings: GDAL example (1)
 ===================================
 
@@ -277,10 +209,6 @@ GDAL/OGR bindings: GDAL example (1)
     >>> print 'Raster has %s bands' % ds.RasterCount
     Raster has 3 bands
 
-.. raw:: pdf
-
-   PageBreak
-   
 GDAL/OGR bindings: GDAL example (2)
 ===================================
 
@@ -302,10 +230,6 @@ GDAL/OGR bindings: GDAL example (2)
     >>> print 'raster rotation is %s' % geotransform[2]
     raster rotation is 0.0
 
-.. raw:: pdf
-
-   PageBreak
-   
 GDAL/OGR bindings: GDAL example (3)
 ===================================
 
@@ -321,10 +245,6 @@ GDAL/OGR bindings: GDAL example (3)
     >>> value
     61
 
-.. raw:: pdf
-
-   PageBreak
-   
 GDAL/OGR bindings: OGR example (1)
 ==================================
 
@@ -341,10 +261,6 @@ GDAL/OGR bindings: OGR example (1)
     >>> print layer.GetFeatureCount()
     20
 
-.. raw:: pdf
-
-   PageBreak
-   
 GDAL/OGR bindings: OGR example (2)
 ==================================
 
@@ -368,10 +284,6 @@ GDAL/OGR bindings: OGR example (2)
     >>> fieldDefn.GetTypeName()
     'String'
 
-.. raw:: pdf
-
-   PageBreak
-   
 GDAL/OGR bindings: OGR example (3)
 ==================================
 
@@ -394,10 +306,6 @@ GDAL/OGR bindings: OGR example (3)
     >>> geometry.GetDimension()
     2
 
-.. raw:: pdf
-
-   PageBreak
-   
 GDAL/OGR bindings: OGR example (4)
 ==================================
 
@@ -418,10 +326,6 @@ GDAL/OGR bindings: OGR example (4)
     >>> mybuffer.GetArea()
     35462220275.922073
 
-.. raw:: pdf
-
-   PageBreak
-   
 GDAL/OGR bindings: resources
 ============================
 
@@ -431,10 +335,6 @@ GDAL/OGR bindings: resources
 * Geoprocessing with Python using OpenSource GIS: http://www.gis.usu.edu/~chrisg/python/2009/
 * GDAL mailing list: http://lists.osgeo.org/mailman/listinfo/gdal-dev/
 
-.. raw:: pdf
-
-   PageBreak
-   
 GeoDjango
 =========
 
@@ -446,10 +346,6 @@ GeoDjango
 * excellent documentation
 * license: **BSD**
 
-.. raw:: pdf
-
-   PageBreak
-   
 GeoDjango: Index
 ================
 
@@ -463,10 +359,6 @@ GeoDjango: Index
     * GeoDjango Admin site
     * Utilities (LayerMapping, OgrInspect)
 
-.. raw:: pdf
-
-   PageBreak
-   
 GeoDjango: Architecture
 =======================
 
@@ -481,10 +373,6 @@ GeoDjango: Architecture
     * PROJ.4 (Cartographic Projections Library)
     * GeoIP
 
-.. raw:: pdf
-
-   PageBreak
-   
 GeoDjango: Model API (1)
 ========================
 
@@ -502,10 +390,6 @@ GeoDjango: Model API (1)
 * **spatial_index** (default True, spatial index is built)
 
 
-.. raw:: pdf
-
-   PageBreak
-   
 GeoDjango: Model API (2)
 ========================
 
@@ -522,10 +406,7 @@ GeoDjango: Model API (2)
         geometry = models.MultiPolygonField(srid=4326) 
         objects = models.GeoManager()
 
-.. raw:: pdf
-
-   PageBreak
-   
+        
 GeoDjango: Model API (3)
 ========================
 
@@ -548,10 +429,7 @@ GeoDjango: Model API (3)
         ON "myapp_site" USING GIST ( "geometry" GIST_GEOMETRY_OPS );
     COMMIT;
 
-.. raw:: pdf
-
-   PageBreak
-   
+    
 GeoDjango: Model API (4)
 ========================
 
@@ -566,7 +444,7 @@ GeoDjango: Model API (4)
     {'time': '0.061', 'sql': 'INSERT INTO "fauna_sandboxlayer" ("nome", "geometry") 
     VALUES (E\'punto 1\', ST_GeomFromEWKB(E\'\\\\001\\\\...'))'}
 
-:: 
+::
         
     >>> new_point = SandboxLayer.objects.get(nome__contains='pun')
     >>> new_point.nome = 'punto 2'     
@@ -575,11 +453,8 @@ GeoDjango: Model API (4)
     {'time': '0.002', 'sql': 'UPDATE "fauna_sandboxlayer" SET "nome" = E\'punto 2\', 
         "geometry" = ST_GeomFromEWKB(E\'\\\\001\\\\...') 
         WHERE "fauna_sandboxlayer"."id" = 1 '}
-
-.. raw:: pdf
-
-   PageBreak
-   
+ 
+        
 GeoDjango: Model API (5)
 ========================
 
@@ -607,11 +482,7 @@ GeoDjango: Model API (5)
     >>> print(connection.queries[-2])
     {'time': '0.002', 'sql': 'DELETE FROM "fauna_sandboxlayer" WHERE "id" IN (3, 2)'}
     
-
-.. raw:: pdf
-
-   PageBreak
-   
+    
 GeoDjango: GEOS API (1)
 =======================
 
@@ -622,10 +493,7 @@ GeoDjango: GEOS API (1)
 * Polygon
 * Geometry Collections (MultiPoint, MultiLineString, MultiPolygon, GeometryCollection)
 
-.. raw:: pdf
 
-   PageBreak
-   
 GeoDjango: GEOS API (2)
 =======================
 
@@ -635,10 +503,6 @@ GeoDjango: GEOS API (2)
 * **binary predicates** (contains, crosses, equals, intersects, touches, within, ...)
 * **constructive spatial analysis methods** (buffer, difference, intersection, simplify, union, envelope, ...)
 
-.. raw:: pdf
-
-   PageBreak
-   
 GeoDjango: GEOS API, Example 1
 ==============================
 
@@ -661,10 +525,7 @@ GeoDjango: GEOS API, Example 1
     >>> point.ewkt # extended wkt
     'SRID=4326;POINT (13.7988281250000000 42.5390625000000000)'
 
-.. raw:: pdf
 
-   PageBreak
-   
 GeoDjango: GEOS API, Example 2
 ==============================
 
@@ -685,10 +546,7 @@ GeoDjango: GEOS API, Example 2
     >>> buffer = SandboxLayer(nome='buffer',geometry=transformed_point.buffer(20000))
     >>> buffer.save()
 
-.. raw:: pdf
-
-   PageBreak
-   
+    
 GeoDjango: GDAL/OGR API
 =======================
 
@@ -699,10 +557,7 @@ GeoDjango: GDAL/OGR API
 * get access to the GEOS API via geos method on **OGRGeometry** class
 * get access to other API via interoperation and representation properties (wkt, wkb, json, ...)
 
-.. raw:: pdf
 
-   PageBreak
-   
 GeoDjango: GDAL/OGR API, Example
 ================================
 
@@ -724,10 +579,7 @@ GeoDjango: GDAL/OGR API, Example
     >>> print(lyr.srs.srid)
     4326
 
-.. raw:: pdf
 
-   PageBreak
-   
 GeoDjango: GDAL/OGR API, Example
 ================================
 
@@ -751,10 +603,7 @@ GeoDjango: GDAL/OGR API, Example
     >>> print(feat.geom.wkt[:100])
     MULTIPOLYGON (((8.439415832216145 46.465900481500874,8.439484266241374 46.465576832714113,8.43950386...
 
-.. raw:: pdf
 
-   PageBreak
-   
 GeoDjango: Measurement Units API
 ================================
 
@@ -774,11 +623,7 @@ GeoDjango: Measurement Units API
     >>>  a = d1 * d2
     print a
     40.2336 sq_km
-
-.. raw:: pdf
-
-   PageBreak
-   
+    
 GeoDjango: resources
 ====================
 
@@ -792,10 +637,6 @@ GeoDjango: resources
 * workshop @ FOSS4G-IT 2010 (Lugano): https://github.com/capooti/geodjango-tutorial (in Italian)
 * a day with GeoDjango: http://www.paolocorti.net/2009/04/01/a-day-with-geodjango/
 
-.. raw:: pdf
-
-   PageBreak
-   
 Shapely
 =======
 
@@ -806,10 +647,6 @@ Shapely
 * **projections are not supported**, so geometries must be in a unique projected srs
 * license: **BSD**
 
-.. raw:: pdf
-
-   PageBreak
-   
 Shapely features: OGC SFA (1)
 =============================
 
@@ -821,10 +658,6 @@ Shapely features: OGC SFA (1)
 * Geometry Collections (MultiPoint, MultiLineString, MultiPolygon, GeometryCollection)
 * **Empty features, Linear Referencing**
 
-.. raw:: pdf
-
-   PageBreak
-   
 Shapely: OGC SFA (2)
 ====================
 
@@ -835,10 +668,6 @@ Shapely: OGC SFA (2)
 * **constructive spatial analysis methods** (buffer, difference, intersection, simplify, union, polygonize, linemerge, ...)
 * **diagnostics** (explain_validity)
 
-.. raw:: pdf
-
-   PageBreak
-   
 Shapely: Example 1
 ==================
 
@@ -863,11 +692,7 @@ Shapely: Example 1
     'Point'
     >>> point.wkt
     'POINT (0.0000000000000000 0.0000000000000000)'
-
-.. raw:: pdf
-
-   PageBreak
-   
+    
 Shapely: Example 2
 ==================
 
@@ -893,10 +718,6 @@ Shapely: Example 2
     >>> list(polygon.interiors)
     []
 
-.. raw:: pdf
-
-   PageBreak
-   
 Shapely: Example 3
 ==================
 
@@ -916,10 +737,6 @@ Shapely: Example 3
     >>> buffer.contains(point)
     True
 
-.. raw:: pdf
-
-   PageBreak
-   
 Shapely: Example 4
 ==================
 
@@ -932,11 +749,7 @@ Shapely: Example 4
     >>> from shapely.validation import explain_validity
     >>> explain_validity(p)
     'Ring Self-intersection[1 1]'
-
-.. raw:: pdf
-
-   PageBreak
-   
+    
 Shapely: resources
 ====================
 
@@ -946,10 +759,6 @@ Shapely: resources
 * Python Workshop at FOSS4G 2010: http://www.mapfish.org/doc/tutorials/python-workshop/geoalchemy.html
 * mailing list @gispython.org: http://lists.gispython.org/mailman/listinfo/community
 
-.. raw:: pdf
-
-   PageBreak
-   
 GeoAlchemy
 ==========
 
@@ -962,10 +771,6 @@ GeoAlchemy
 * still not so mature like GeoDjango
 * license: **MIT**
 
-.. raw:: pdf
-
-   PageBreak
-   
 GeoAlchemy: SQLAlchemy notes
 ============================
 
@@ -979,10 +784,6 @@ GeoAlchemy: SQLAlchemy notes
 * support for **transactions** (i.e. nice rollback mechanism)
 * excellent documentations
 
-.. raw:: pdf
-
-   PageBreak
-   
 GeoAlchemy: Spatial database
 ============================
 
@@ -994,10 +795,6 @@ GeoAlchemy: Spatial database
 * Oracle
 * MS SQL Server 2008 (Django does not support it)
 
-.. raw:: pdf
-
-   PageBreak
-   
 GeoAlchemy: Use cases
 =====================
 
@@ -1005,10 +802,6 @@ GeoAlchemy: Use cases
 * web frameworks that integrates well with SQLAlchemy: TurboGears and Pylons (highly configurable for models, templates and helpers)
 * Django is not the best SQLAlchemy friend, but you may still use it :D
 
-.. raw:: pdf
-
-   PageBreak
-   
 GeoAlchemy: features
 ====================
 
@@ -1019,10 +812,6 @@ GeoAlchemy: features
 * **binary predicates** (contains, crosses, equals, intersects, touches, within, ...)
 * **constructive spatial analysis methods** [limited] (buffer, boundary, convex_hull)
 
-.. raw:: pdf
-
-   PageBreak
-   
 GeoAlchemy: Example 1
 =====================
 
@@ -1046,11 +835,7 @@ GeoAlchemy: Example 1
         
     metadata.drop_all()   # comment this on first occassion
     metadata.create_all()
-
-.. raw:: pdf
-
-   PageBreak
-   
+        
 GeoAlchemy: Example 2
 =====================
 
@@ -1064,11 +849,7 @@ GeoAlchemy: Example 2
     >>> spot2 = Spot(name="Park", height=53.2, geom=geom_spot2
     >>> session.add_all([spot1, spot2])
     >>> session.commit()
-
-.. raw:: pdf
-
-   PageBreak
-   
+    
 GeoAlchemy: Example 3
 =====================
 
@@ -1083,11 +864,7 @@ GeoAlchemy: Example 3
     '<gml:Point srsName="EPSG:4326"><gml:coordinates>-81.42,37.65</gml:coordinates></gml:Point>'
     >>> session.scalar(s.geom.kml)
     '<Point><coordinates>-81.42,37.65</coordinates></Point>'
-
-.. raw:: pdf
-
-   PageBreak
-   
+    
 GeoAlchemy: Example 4
 =====================
 
@@ -1104,11 +881,7 @@ GeoAlchemy: Example 4
     37.649999999999999
     >>> s.geom.coords(session)
     [-81.420000000000002, 37.649999999999999]
-
-.. raw:: pdf
-
-   PageBreak
-   
+    
 GeoAlchemy: Example 5
 =====================
 
@@ -1125,11 +898,7 @@ GeoAlchemy: Example 5
     1L
     >>> session.query(Lake).filter(Lake.geom.touches(r.geom)).count()
     0L
-
-.. raw:: pdf
-
-   PageBreak
-   
+    
 GeoAlchemy: resources
 =====================
 
@@ -1138,10 +907,6 @@ GeoAlchemy: resources
 * Python Workshop at FOSS4G 2010: http://www.mapfish.org/doc/tutorials/python-workshop/geoalchemy.html
 * mailing list: http://groups.google.com/group/geoalchemy?pli=1
 
-.. raw:: pdf
-
-   PageBreak
-   
 Notes on implementations
 ========================
 
@@ -1150,11 +915,7 @@ Notes on implementations
     * with **SWIG** (GDAL/OGR bindings, Mapscript, GRASS, QGIS)
     * with **ctypes** (GeoDjango, Shapely)
     * with **Boost.Python** (Mapnik)
-
-.. raw:: pdf
-
-   PageBreak
-   
+    
 Notes on implementations: SWIG
 ==============================
 
@@ -1165,10 +926,6 @@ Notes on implementations: SWIG
 * nice tutorial: http://www.swig.org/tutorial.html
 * basically you write an interface library to the C/C++ code and then you can build the Python module with the swig command
 
-.. raw:: pdf
-
-   PageBreak
-   
 Notes on implementations: ctypes
 ================================
 

@@ -12,7 +12,7 @@ python rst-directive.py \
 
 
 if [ ! -z "$PDF" ] ; then
-    sed -e 's/.. sourcecode.*/::/g'  $NAME.rst |perl -e 'while(<>) { if ( m/^.. graph.?::(.*)/) { print ".. image::$1\n\n"; $off = 1; } elsif (m/^\S.*/) { $off = 0; print $_;} elsif(!$off) {print "$_"; };}'  > $NAME.rst.standard 
+    sed -e 's/.. sourcecode.*/::/g' $NAME.rst | sed -e 's/.*incremental.*//g' |sed -e 's/.. sidebar.*//g' | perl -npe 's/^[\s\t]+\*/*/g' |perl -e 'while(<>) { if ( m/^.. graph.?::(.*)/) { print ".. image::$1\n\n"; $off = 1; } elsif (m/^\S.*/) { $off = 0; print $_;} elsif(!$off) {print "$_"; };}'  > $NAME.rst.standard 
     rst2pdf $NAME.rst.standard -o $NAME.pdf -s a5-landscape.style
 fi
 

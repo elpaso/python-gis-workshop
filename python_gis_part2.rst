@@ -9,6 +9,11 @@ Developing Geospatial software with Python, Part 2
 Alessandro Pasotti (apasotti@gmail.com), Paolo Corti (pcorti@gmail.com)
 -----------------------------------------------------------------------
 
+
+License:
+Creative Commons Attribution - Share Alike 3.0
+
+
 Building blocks: overview
 =========================
 
